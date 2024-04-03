@@ -1,5 +1,5 @@
-
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
@@ -10,19 +10,20 @@ import ProductPage from "./pages/Shop/ProductPage";
 const App = () => {
   return (
     <div className="min-h-screen w-screen">
-    <BrowserRouter>
-      <Navbar />
-      <Routes>
-       <Route path="/" element={<Home/>}/>
-       <Route path="/login" element={<Login/>}/>
-       <Route path="/register" element={<Register/>}/>
-       <Route path="/shop" element={<Shop/>}/>
-       <Route path="/shop/product/:id" element={<ProductPage/>}/>
-      </Routes>
-      <Footer/>
-    </BrowserRouter>
-  </div>
-  )
-}
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/shop/product/:id" element={<ProductPage />} />
+        </Routes>
+        <Footer />
+        <Toaster position="bottom-center" />
+      </BrowserRouter>
+    </div>
+  );
+};
 
-export default App
+export default App;
