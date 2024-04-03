@@ -7,7 +7,14 @@ import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import Shop from "./pages/Shop/Shop";
 import ProductPage from "./pages/Shop/ProductPage";
+import { useDispatch } from "react-redux";
+import { useFetchUserProfileQuery } from "./redux/api/userApi";
+
+
 const App = () => {
+  const dispatch = useDispatch()
+  const {data}=useFetchUserProfileQuery()
+ console.log(data)
   return (
     <div className="min-h-screen w-screen">
       <BrowserRouter>

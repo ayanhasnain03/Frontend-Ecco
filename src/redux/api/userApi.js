@@ -15,12 +15,19 @@ export const userApi = createApi({
   endpoints: (builder) => ({
     login: builder.mutation({
       query: ({ email, password }) => ({
-        url: 'login',
+        url: '/login',
         method: 'POST',
         body: { email, password },
       }),
     }),
+    fetchUserProfile: builder.query({
+      query: () => ({
+        url: `/me`, // Assuming this endpoint retrieves the user profile
+        method: "GET", // Use GET method to fetch data
+      }),
+    }),
+
   }),
 });
 
-export const { useLoginMutation } = userApi;
+export const { useLoginMutation, useFetchUserProfileQuery } = userApi
