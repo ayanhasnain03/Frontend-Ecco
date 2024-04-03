@@ -1,50 +1,23 @@
 import React, { useState } from "react";
 import Card from "../../components/Card";
+import { useGetAllCategoriesQuery, useSearchProductsQuery } from "../../redux/api/productApi";
 
 const Shop = () => {
+  const [search, setSearch] = useState("");
+  const [sort, setSort] = useState("");
+  const [maxPrice, setMaxPrice] = useState(100000);
+  const [category, setCategory] = useState("");
   const [page, setPage] = useState(1);
-  const products = [
-    {
-      id: "fyf",
-      title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-      price: 109.95,
-      description:
-        "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-      category: "men's clothing",
-      image: "https://m.media-amazon.com/images/I/61YCt73E3sL._AC_UL320_.jpg",
-      rating: {
-        rate: 3.9,
-        count: 120,
-      },
-    },
-    {
-      id: "fy43",
-      title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-      price: 109.95,
-      description:
-        "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-      category: "men's clothing",
-      image: "https://m.media-amazon.com/images/I/61YCt73E3sL._AC_UL320_.jpg",
-      rating: {
-        rate: 3.9,
-        count: 120,
-      },
-    },
-    {
-      id: "fy43sdf",
-      title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-      price: 109.95,
-      description:
-        "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-      category: "men's clothing",
-      image: "https://m.media-amazon.com/images/I/61YCt73E3sL._AC_UL320_.jpg",
-      rating: {
-        rate: 3.9,
-        count: 120,
-      },
-    },
-  ];
-  const searchedData = { totalPage: 4 };
+  const { isLoading: productLoading, data: searchedData } =
+    useSearchProductsQuery({ search,
+      sort,
+      category,
+      page,
+      price: maxPrice});
+
+const {data:productCategory}=useGetAllCategoriesQuery()
+
+
 
   const isPrevPage = page > 1;
   const isNextPage = page < 4;
@@ -57,10 +30,14 @@ const Shop = () => {
           <div className="price flex flex-col gap-2 mt-8">
             <label htmlFor="sorting">Sorting</label>
 
-            <select className="text-black w-[10rem] p-1.5">
+            <select
+              value={sort}
+              onChange={(e) => setSort(e.target.value)}
+              className="text-black w-[10rem] p-1.5"
+            >
               <option value="">None</option>
-              <option value="">Price low to high</option>
-              <option value="">High to Low</option>
+              <option value="asc">Price low to high</option>
+              <option value="dsc">High to Low</option>
             </select>
           </div>
 
@@ -70,21 +47,22 @@ const Shop = () => {
               <div class="relative mb-6">
                 <div>
                   <label htmlFor="labels-range-input" className="sr-only">
-                    Labels range
+                    Max Price: {maxPrice || ""}
                   </label>
                   <input
                     id="labels-range-input"
                     type="range"
-                    defaultValue={1000}
                     min={100}
-                    max={1500}
+                    max={10000}
+                    value={maxPrice}
+                    onChange={(e) => setMaxPrice(Number(e.target.value))}
                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
                   />
                   <span className="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">
-                    Min ($100)
+                    Min (₹100)
                   </span>
                   <span class="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">
-                    Max ($1500)
+                    Max (₹10000)
                   </span>
                 </div>
               </div>
@@ -94,10 +72,14 @@ const Shop = () => {
           <div className="category flex flex-col gap-2 mt-8">
             <label htmlFor="sorting">Category</label>
 
-            <select className="text-black w-[10rem] p-1.5">
+            <select   value={category}
+            onChange={(e) => setCategory(e.target.value)} className="text-black w-[10rem] p-1.5">
               <option value="">All</option>
-              <option value="">H&M</option>
-              <option value="">GUCCI</option>
+              {
+              productCategory?.categories.map((cat)=>(
+              <option value={cat} key={cat}>{cat.toUpperCase()}</option>
+              ))
+              }
             </select>
           </div>
         </div>
@@ -106,14 +88,17 @@ const Shop = () => {
           <div className="search mb-10 mt-6">
             <input
               type="text"
-              placeholder="search"
+              placeholder="Search by name..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
               className="w-[20rem] mx-8 md:w-[80rem] p-1.5 text-black"
             />
           </div>
           <div className="flex  md:flex-row flex-wrap md:items-center ml-[5rem] justify-center gap-5  flex-col">
-            {products.map((product, i) => (
-              <Card products={product} />
-            ))}
+            {searchedData &&
+              searchedData.products.map((e, i) => (
+                <Card products={e} key={i} />
+              ))}
           </div>
         </div>
       </div>

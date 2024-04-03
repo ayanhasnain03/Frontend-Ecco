@@ -5,10 +5,10 @@ const Card = ({ products }) => {
   return (
     <>
       <div className="card  h-[28rem] w-[15rem] overflow-hidden p-2 relative hover:-translate-y-3 duration-75">
-    <Link to={`/shop/product/${products.id}`}>
+    <Link to={`/shop/product/${products._id}`}>
     <div className="overflow-hidden">
           <img
-            src={products.image}
+            src={products.image.url}
             className="h-[15rem] w-full object-cover"
             alt="wew"
           />
@@ -16,13 +16,13 @@ const Card = ({ products }) => {
         <div className="title mt-4">
           <div>
             {" "}
-            <h1 className="mb-2">Vertex</h1>
+            <h1 className="mb-2">{products.brand}</h1>
             <p className="mb-4">
-              Lorem ipsum dolor Lorem ipsum dolor sit amet.
+             {products.description}
             </p>
           </div>
           <div className="flex justify-between items-center">
-            <h1 className="mb-2">$45</h1>
+            <h1 className="mb-2">{products.price}</h1>
             <p>*****</p>
           </div>
         </div>
