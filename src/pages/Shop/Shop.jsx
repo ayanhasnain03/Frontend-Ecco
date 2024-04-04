@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Card from "../../components/Card";
 import { useGetAllCategoriesQuery, useSearchProductsQuery } from "../../redux/api/productApi";
+import Loader from "../../components/Loader";
 
 const Shop = () => {
   const [search, setSearch] = useState("");
@@ -22,7 +23,8 @@ const {data:productCategory}=useGetAllCategoriesQuery()
   const isPrevPage = page > 1;
   const isNextPage = page < 4;
   return (
-    <>
+<>
+
       <div className="flex md:flex-row flex-col mt-20 justify-around">
         <div className="flex md:h-[35rem]  h-[25rem] w-[25rem] flex-col md:w-[15rem] bg-black md:m-5 px-5">
           <h5 className="text-2xl font-extralight">Fillters</h5>
@@ -94,12 +96,16 @@ const {data:productCategory}=useGetAllCategoriesQuery()
               className="w-[20rem] mx-8 md:w-[80rem] p-1.5 text-black"
             />
           </div>
+      {
+        productLoading ? (<Loader length={5}/>):(
           <div className="flex  md:flex-row flex-wrap md:items-center ml-[5rem] justify-center gap-5  flex-col">
             {searchedData &&
               searchedData.products.map((e, i) => (
                 <Card products={e} key={i} />
               ))}
           </div>
+        )
+      }
         </div>
       </div>
       <div className="md:ml-[10rem] ml-[5.5rem] mt-2">
@@ -125,7 +131,7 @@ const {data:productCategory}=useGetAllCategoriesQuery()
           </article>
         )}
       </div>
-    </>
+</>
   );
 };
 
