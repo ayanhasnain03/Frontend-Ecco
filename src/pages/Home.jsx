@@ -3,7 +3,9 @@ import logo from "../assets/logo.png"
 import {motion } from "framer-motion"
 import Card from "../components/Card"
 import Marquee from "../components/Marquee"
+import { useGetTopProductsQuery } from "../redux/api/productApi"
 const Home = () => {
+  const {data}=useGetTopProductsQuery()
 const products = [
   {
   "id": "fyf",
@@ -45,7 +47,7 @@ const products = [
 
 
 ]
- 
+
   return (
  <div className="h-full w-full">
       <div className="banner">
@@ -64,7 +66,7 @@ const products = [
    <h1 className="m-8 text-2xl font-semibold">Popular Products</h1>
 <div className="mt-5  w-full flex items-center justify-center md:justify-around flex-wrap gap-10 ">
 {
-  products.map((product,i)=>(
+  data?.topProduct?.map((product,i)=>(
     <Card products={product}/>
   ))
 }

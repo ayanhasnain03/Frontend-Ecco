@@ -13,7 +13,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 
 const App = () => {
-  const dispatch = useDispatch()
+
   const {data}=useFetchUserProfileQuery()
 
   return (
