@@ -6,12 +6,8 @@ import { MdDashboard } from "react-icons/md";
 import { motion } from "framer-motion";
 import Hamburger from "hamburger-react";
 import logo from "../assets/logo.png"
-const Navbar = () => {
-  const user = {
-    name: "ayan",
-    _id: "",
-    role: "admin",
-  };
+const Navbar = ({user}) => {
+ 
   const [isOpen, setOpen] = useState(false);
   const [toggle, setToggle] = useState(false);
   const togleHandler = () => {
@@ -37,7 +33,7 @@ const Navbar = () => {
         <ul className="z-[1000]">
           <div className="flex items-center gap-3">
             <li className=" hidden md:block">
-              {user._id ? (
+              {user?._id ? (
                 <Link to="/profile">
                   <FaUserAlt />
                 </Link>
@@ -57,7 +53,7 @@ const Navbar = () => {
                 <FaShoppingBag />
               </Link>
             </li>
-            {user.role === "admin" && (
+            {user?.role === "admin" && (
               <li className=" hidden md:block">
                 <Link to="/admin/dashboard">
                   <MdDashboard size={"1.2rem"} />
@@ -104,7 +100,7 @@ const Navbar = () => {
             <Link to="/cart">
               <FaShoppingBag />
             </Link>
-            {user._id ? (
+            {user?._id ? (
               <Link to="/">
                 <FaUserAlt />
               </Link>

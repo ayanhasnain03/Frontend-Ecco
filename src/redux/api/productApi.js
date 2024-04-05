@@ -34,6 +34,13 @@ export const productAPI = createApi({
       }),
       providesTags: ["product"],
     }),
+    getProductById: builder.query({
+      query: ({id}) => ({
+        url: `${id}`, // Assuming this endpoint retrieves the user profile
+        method: "GET", // Use GET method to fetch data
+      }),
+      providesTags: ["product"],
+    }),
   }),
 });
-export const { useSearchProductsQuery, useGetAllCategoriesQuery,useGetTopProductsQuery } = productAPI;
+export const { useSearchProductsQuery, useGetAllCategoriesQuery,useGetTopProductsQuery,useGetProductByIdQuery } = productAPI;

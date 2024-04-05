@@ -67,7 +67,7 @@ const products = [
 <div className="mt-5  w-full flex items-center justify-center md:justify-around flex-wrap gap-10 ">
 {
   data?.topProduct?.map((product,i)=>(
-    <Card products={product}/>
+    <Card products={product} key={i}/>
   ))
 }
 </div>

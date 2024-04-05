@@ -14,16 +14,16 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
 
-  const {data}=useFetchUserProfileQuery()
+  const {data:user}=useFetchUserProfileQuery()
 
   return (
     <div className="min-h-screen w-screen">
       <BrowserRouter>
-        <Navbar />
+        <Navbar user={user}  />
         <Routes>
           <Route path="/" element={<Home />} />
 
-          <Route element={<ProtectedRoute isAuthenticated={data ? false : true}/>}>
+          <Route element={<ProtectedRoute isAuthenticated={user ? false : true}/>}>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           </Route>
