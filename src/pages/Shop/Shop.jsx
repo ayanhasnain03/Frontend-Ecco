@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Card from "../../components/Card";
 import { useGetAllCategoriesQuery, useSearchProductsQuery } from "../../redux/api/productApi";
 import Loader from "../../components/Loader";
+import ScrollToTopOnReload from "../../components/ResetPage";
 
 const Shop = () => {
   const [search, setSearch] = useState("");
@@ -26,6 +27,8 @@ const {data:productCategory}=useGetAllCategoriesQuery()
 <>
 
       <div className="flex md:flex-row flex-col mt-20 justify-around">
+    <ScrollToTopOnReload/>
+
         <div className="flex md:h-[35rem]  h-[25rem] w-[25rem] flex-col md:w-[15rem] bg-black md:m-5 px-5">
           <h5 className="text-2xl font-extralight">Fillters</h5>
 
@@ -93,12 +96,12 @@ const {data:productCategory}=useGetAllCategoriesQuery()
               placeholder="Search by name..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-              className="w-[20rem] mx-8 md:w-[80rem] p-1.5 text-black"
+              className="w-[15rem] rounded-2xl outline-none md:w-[80rem] p-1.5 text-black"
             />
           </div>
       {
         productLoading ? (<Loader length={5}/>):(
-          <div className="flex  md:flex-row flex-wrap md:items-center ml-[5rem] justify-center gap-5  flex-col">
+          <div className="flex  md:flex-row flex-wrap md:items-center  justify-center gap-5  flex-col">
             {searchedData &&
               searchedData.products.map((e, i) => (
                 <Card products={e} key={i} />

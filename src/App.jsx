@@ -7,30 +7,35 @@ import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import Shop from "./pages/Shop/Shop";
 import ProductPage from "./pages/Shop/ProductPage";
-import { useDispatch } from "react-redux";
 import { useFetchUserProfileQuery } from "./redux/api/userApi";
 import ProtectedRoute from "./components/ProtectedRoute";
-
+import Profile from "./pages/User/Profile";
 
 const App = () => {
-
-  const {data:user}=useFetchUserProfileQuery()
-
+  const { data: user } = useFetchUserProfileQuery();
   return (
     <div className="min-h-screen w-screen">
       <BrowserRouter>
-        <Navbar user={user}  />
+        <Navbar user={user} />
         <Routes>
           <Route path="/" element={<Home />} />
-
-          <Route element={<ProtectedRoute isAuthenticated={user ? false : true}/>}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route
+            element={<ProtectedRoute isAuthenticated={user ? false : true} />}
+          >
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
           </Route>
-         
+
+{/* Logged User */}
+
+<Route  element={<ProtectedRoute isAuthenticated={user ? true : false} />}>
+<Route path="/profile" element={<Profile/>}/>
+</Route>
+
+
+
           <Route path="/shop" element={<Shop />} />
           <Route path="/shop/product/:id" element={<ProductPage />} />
-
         </Routes>
         <Footer />
         <Toaster position="bottom-center" />

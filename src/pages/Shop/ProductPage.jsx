@@ -1,6 +1,7 @@
 import {useParams } from "react-router-dom";
 import Card from "../../components/Card";
 import { useGetProductByIdQuery } from "../../redux/api/productApi";
+import ScrollToTopOnReload from "../../components/ResetPage";
 
 const ProductPage = () => {
   const {id}=useParams()
@@ -10,6 +11,7 @@ const ProductPage = () => {
   const submitReviewToggle = () => {};
   return (
     <div className="">
+    <ScrollToTopOnReload/>
       <div className="h-full w-full  mt-10 md:p-8 py-2 px-2 flex flex-col  md:flex-row  md:justify-between gap-9">
         <div className=" md:w-[40%] w-full mt-8 h-[35rem] md:h-[25rem] overflow-hidden flex items-center justify-center ">
           <img src={product?.image?.url} alt="" />

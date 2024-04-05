@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../redux/api/userApi";
 import toast from "react-hot-toast";
 
@@ -7,6 +7,7 @@ export default function Login() {
   const [login] = useLoginMutation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate()
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
