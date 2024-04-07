@@ -13,6 +13,7 @@ export default function Login() {
     try {
       const res = await login({ email, password }).unwrap();
       toast.success(res.message);
+      navigate("/")
     } catch (error) {
       toast.error("invaild email and password");
     }

@@ -9,7 +9,6 @@ const Home = () => {
   const { data } = useGetTopProductsQuery();
   return (
     <div className="h-full w-full">
-      <ScrollToTopOnReload />
       <div className="banner">
         <div className="h-[90vh] w-[100vw] bg-black  flex md:flex-row justify-between items-center relative ">
           <motion.div

@@ -4,15 +4,17 @@ export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
     baseUrl: `${import.meta.env.VITE_SERVER}/user`,
-    prepareHeaders: (headers, { getState }) => {
-      headers.set('Content-Type', 'application/json');
-      headers.set('Accept', 'application/json');
-      return headers;
-    },
     credentials: 'include',
   }),
   tagTypes: ['users'],
   endpoints: (builder) => ({
+    registerUser: builder.mutation({
+      query: (myForm) => ({
+        url:"/new",
+        method:"POST",
+        body:myForm,
+      }),
+    }),
     login: builder.mutation({
       query: ({ email, password }) => ({
         url: '/login',
@@ -26,8 +28,7 @@ export const userApi = createApi({
         method: "GET", // Use GET method to fetch data
       }),
     }),
-
   }),
 });
 
-export const { useLoginMutation, useFetchUserProfileQuery } = userApi
+export const { useLoginMutation, useFetchUserProfileQuery,useRegisterUserMutation } = userApi

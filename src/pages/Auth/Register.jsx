@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useRegisterUserMutation } from "../../redux/api/userApi";
 
 
 const Register = () => {
@@ -23,6 +24,7 @@ const Register = () => {
       setImage(file);
     };
   };
+  const [registerUser]=useRegisterUserMutation()
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
@@ -33,9 +35,8 @@ const Register = () => {
       myForm.append("dob", dob);
       myForm.append("gender", gender);
       myForm.append("file", image);
-
-   
-      navigate("/profile");
+const res = await registerUser(myForm)
+console.log(res)
     } catch (error) {
 
     }
