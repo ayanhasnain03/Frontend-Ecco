@@ -1,22 +1,16 @@
 import { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
-import { useLoginMutation } from "../../redux/api/userApi";
 import toast from "react-hot-toast";
-
+import { login } from "../../redux/action/userAction";
+import { useDispatch } from "react-redux";
 export default function Login() {
-  const [login] = useLoginMutation();
+const dispatch = useDispatch()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate()
-  const submitHandler = async (e) => {
+  const submitHandler = e => {
     e.preventDefault();
-    try {
-      const res = await login({ email, password }).unwrap();
-      toast.success(res.message);
-      navigate("/")
-    } catch (error) {
-      toast.error("invaild email and password");
-    }
+    dispatch(login(email,password));
   };
   return (
     <>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useRegisterUserMutation } from "../../redux/api/userApi";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/action/userAction";
 
 
 const Register = () => {
@@ -24,7 +25,7 @@ const Register = () => {
       setImage(file);
     };
   };
-  const [registerUser]=useRegisterUserMutation()
+const dispatch = useDispatch()
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
@@ -35,8 +36,9 @@ const Register = () => {
       myForm.append("dob", dob);
       myForm.append("gender", gender);
       myForm.append("file", image);
-const res = await registerUser(myForm)
-console.log(res)
+dispatch(register(myForm))
+
+
     } catch (error) {
 
     }
