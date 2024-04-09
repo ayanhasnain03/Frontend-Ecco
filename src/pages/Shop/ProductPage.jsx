@@ -1,11 +1,12 @@
 import {useParams } from "react-router-dom";
 import Card from "../../components/Card";
-import { useGetProductByIdQuery } from "../../redux/api/productApi";
+import { useGetProductByIdQuery, useLatestProductQuery } from "../../redux/api/productApi";
 import ScrollToTopOnReload from "../../components/ResetPage";
 
 const ProductPage = () => {
   const {id}=useParams()
  const {data}=useGetProductByIdQuery({id})
+ const {data:latestProducts}=useLatestProductQuery()
 
  const product=data?.product
   const submitReviewToggle = () => {};
@@ -34,9 +35,13 @@ const ProductPage = () => {
           </button>
         </div>
       </div>
-      <h1 className="text-center text-2xl">Related Products</h1>
-      <div className="flex flex-col md:flex-row flex-wrap justify-around mt-10 items-center md:items-start">
-
+      <h1 className="text-center text-2xl">Latest Products</h1>
+      <div className="flex flex-col md:flex-row flex-wrap justify-around mt-10 items-center md:items-start md:px-8 md:mr-6">
+{
+  latestProducts?.products?.map((item,i)=>(
+    <Card products={item}/>
+  ))
+}
       </div>
     </div>
   );

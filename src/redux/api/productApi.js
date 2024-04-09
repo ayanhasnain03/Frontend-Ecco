@@ -41,6 +41,13 @@ export const productAPI = createApi({
       }),
       providesTags: ["product"],
     }),
+    latestProduct: builder.query({
+      query: () => ({
+        url: `latestproducts`,
+        method: "GET", 
+      }),
+      providesTags: ["product"],
+    }),
   }),
 });
-export const { useSearchProductsQuery, useGetAllCategoriesQuery,useGetTopProductsQuery,useGetProductByIdQuery } = productAPI;
+export const { useSearchProductsQuery, useGetAllCategoriesQuery,useGetTopProductsQuery,useGetProductByIdQuery,useLatestProductQuery } = productAPI;
