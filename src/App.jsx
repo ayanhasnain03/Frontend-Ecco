@@ -20,24 +20,26 @@ const dispatch = useDispatch()
   useEffect(()=>{
 dispatch(loadUser())
 },[dispatch])
-const {user}= useSelector(state=>state.user)
-console.log(user)
+const {user,isAuthenticated}= useSelector(state=>state.user)
+
   
   return (
     <div className="min-h-screen w-screen">
       <BrowserRouter>
         <Navbar user={user} />
-        {
-          user?<h1>hello</h1>: (<h1>"muh me lelo"</h1>)
-        }
+  
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/shop" element={<Shop />} />
+<Route path="/shop/product/:id" element={<ProductPage/>}/>
           <Route
             element={<ProtectedRoute isAuthenticated={user ? false : true} />}
           >
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Route>
+
+
 
 {/* Logged User */}
 
@@ -47,8 +49,10 @@ console.log(user)
 
 
 
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/shop/product/:id" element={<ProductPage />} />
+        <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} adminRoute={true} isAdmin={true}
+         />}>
+     
+         </Route>
         </Routes>
         <Footer />
         <Toaster position="bottom-center" />
