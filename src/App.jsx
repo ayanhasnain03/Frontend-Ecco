@@ -12,6 +12,8 @@ import Profile from "./pages/User/Profile";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { loadUser } from "./redux/action/userAction";
+import Admin from "./pages/admin/admin";
+import ProductManagement from "./pages/admin/ProductManagement";
 
 
 const App = () => {
@@ -46,12 +48,10 @@ const {user,isAuthenticated}= useSelector(state=>state.user)
 <Route  element={<ProtectedRoute isAuthenticated={user ? true : false} />}>
 <Route path="/profile" element={<Profile/>}/>
 </Route>
-
-
-
         <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} adminRoute={true} isAdmin={true}
          />}>
-     
+     <Route path="/admin/dashboard" element={<Admin/>}/>
+     <Route path="/admin/productmanage" element={<ProductManagement/>}/>
          </Route>
         </Routes>
         <Footer />

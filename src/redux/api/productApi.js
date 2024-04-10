@@ -7,6 +7,14 @@ export const productAPI = createApi({
   }),
   tagTypes: ["product"],
   endpoints: (builder) => ({
+    newProduct: builder.mutation({
+      query: (formData) => ({
+        url:`new`,
+        method:"POST",
+        body:formData,
+      }),
+      invalidatesTags:["product"]
+    }),
     searchProducts: builder.query({
       query: ({ price, search, sort, category, page }) => {
         let base = `all?search=${search}&page=${page}`;
@@ -50,4 +58,4 @@ export const productAPI = createApi({
     }),
   }),
 });
-export const { useSearchProductsQuery, useGetAllCategoriesQuery,useGetTopProductsQuery,useGetProductByIdQuery,useLatestProductQuery } = productAPI;
+export const { useSearchProductsQuery, useGetAllCategoriesQuery,useGetTopProductsQuery,useGetProductByIdQuery,useLatestProductQuery,useNewProductMutation } = productAPI;

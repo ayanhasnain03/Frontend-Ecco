@@ -37,8 +37,6 @@ const dispatch = useDispatch()
       myForm.append("gender", gender);
       myForm.append("file", image);
 dispatch(register(myForm))
-
-
     } catch (error) {
 
     }
