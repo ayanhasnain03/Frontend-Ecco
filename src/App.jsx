@@ -14,26 +14,28 @@ import { useEffect } from "react";
 import { loadUser } from "./redux/action/userAction";
 import Admin from "./pages/admin/admin";
 import ProductManagement from "./pages/admin/ProductManagement";
-
+import Cart from "./pages/Cart/Cart";
 
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadUser());
+  }, [dispatch]);
 
-const dispatch = useDispatch()
-  useEffect(()=>{
-dispatch(loadUser())
-},[dispatch])
-const {user,isAuthenticated}= useSelector(state=>state.user)
+  const { user, isAuthenticated } = useSelector((state) => state.user);
 
-  
   return (
     <div className="min-h-screen w-screen">
       <BrowserRouter>
         <Navbar user={user} />
-  
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
-<Route path="/shop/product/:id" element={<ProductPage/>}/>
+          <Route path="/shop/product/:id" element={<ProductPage />} />
+          <Route path="/cart" element={<Cart />} />
+
+
           <Route
             element={<ProtectedRoute isAuthenticated={user ? false : true} />}
           >
@@ -41,18 +43,28 @@ const {user,isAuthenticated}= useSelector(state=>state.user)
             <Route path="/register" element={<Register />} />
           </Route>
 
+          {/* Logged User */}
 
-
-{/* Logged User */}
-
-<Route  element={<ProtectedRoute isAuthenticated={user ? true : false} />}>
-<Route path="/profile" element={<Profile/>}/>
-</Route>
-        <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} adminRoute={true} isAdmin={true}
-         />}>
-     <Route path="/admin/dashboard" element={<Admin/>}/>
-     <Route path="/admin/productmanage" element={<ProductManagement/>}/>
-         </Route>
+          <Route
+            element={<ProtectedRoute isAuthenticated={user ? true : false} />}
+          >
+            <Route path="/profile" element={<Profile />} />
+          </Route>
+          <Route
+            element={
+              <ProtectedRoute
+                isAuthenticated={isAuthenticated}
+                adminRoute={true}
+                isAdmin={true}
+              />
+            }
+          >
+            <Route path="/admin/dashboard" element={<Admin />} />
+            <Route
+              path="/admin/productmanage"
+              element={<ProductManagement />}
+            />
+          </Route>
         </Routes>
         <Footer />
         <Toaster position="bottom-center" />

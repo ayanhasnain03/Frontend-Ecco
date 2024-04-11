@@ -2,6 +2,7 @@ import Sidebar from "../../components/admin/Sidebar";
 import productImg from "../../assets/productImg.jpg";
 import { useState } from "react";
 import { useNewProductMutation } from "../../redux/api/productApi";
+import {toast} from "react-hot-toast"
 
 const ProductManagement = () => {
   const [title, setTitle] = useState("");
@@ -38,13 +39,13 @@ formData.append("category",category)
 formData.append("price",price)
 formData.append("quantity",stock)
 formData.append("file",image)
-const {res} = await createProduct(formData)
-console.log(res)
+const res = await createProduct(formData)
+toast.success(res?.data?.message)
   }
   return (
     <div className="h-full flex w-full  bg-black ">
       <Sidebar />
-      <div className="h-[40rem] relative w-full bg-red-500 flex flex-col md:flex-row md:justify-around items-center">
+      <div className="h-[40rem] relative w-full bg-black flex flex-col md:flex-row md:justify-around items-center">
       <div className="absolute top-8 left-5">
     <h1 className="text-2xl">Product Management</h1>
 </div>

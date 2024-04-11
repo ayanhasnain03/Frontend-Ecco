@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaHeart, FaShoppingBag, FaUserAlt } from "react-icons/fa";
+import {  FaShoppingBag, FaUserAlt } from "react-icons/fa";
 import { IoMdLogIn } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { MdDashboard } from "react-icons/md";
@@ -43,11 +43,7 @@ const Navbar = ({user}) => {
                 </Link>
               )}
             </li>
-            <li className=" hidden md:block">
-              <Link to="/favariote">
-                <FaHeart />
-              </Link>
-            </li>
+           
             <li className=" hidden md:block">
               <Link to="/cart">
                 <FaShoppingBag />
@@ -109,9 +105,8 @@ const Navbar = ({user}) => {
                 <IoMdLogIn />
               </Link>
             )}
-            <Link to="/favourite">
-              <FaHeart />
-            </Link>
+          
+          
             <Link to="/admin/dashboard">
               <MdDashboard />
             </Link>

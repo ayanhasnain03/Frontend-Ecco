@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import FavIcon from "./FavIcon";
+
 
 const Card = ({ products }) => {
   return (
@@ -31,7 +31,6 @@ const Card = ({ products }) => {
           <button className="bg-red-600 w-[8rem] rounded-lg border">
             Add to Cart
           </button>
-          <FavIcon />
         </div>
       </div>
     </>
