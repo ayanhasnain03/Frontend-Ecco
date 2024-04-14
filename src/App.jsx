@@ -48,7 +48,7 @@ const App = () => {
           <Route
             element={<ProtectedRoute isAuthenticated={user ? true : false} />}
           >
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile user={user} />}  />
           </Route>
           <Route
             element={
