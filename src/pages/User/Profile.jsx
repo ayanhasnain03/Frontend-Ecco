@@ -19,7 +19,7 @@ const Profile = ({ user }) => {
   }
   const updateProfileModal = ()=>{
     setupdateProfile(!updateProfile)
-    console.log("password upfdate")
+  
   }
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const Profile = ({ user }) => {
   return (
     <main className="h-[100vh]">
 {
-  updatePictureModal ? (<div className="z-30 bg-slate-900 md:h-[70vh] md:w-[40vw] h-[50vh] w-[65vw] absolute left-[25%] md:left-[30%] top-[20%] right-[70%]">
+  updatePictureModal ? (<div className="z-30 bg-slate-900 md:h-[70vh] md:w-[40vw] h-[70vh] w-[65vw] absolute left-[25%] md:left-[30%] top-[20%] right-[70%]">
   <UpdatePictureModal profileModal={profileModal} />
   </div>):(
     <></>

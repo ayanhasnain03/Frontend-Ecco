@@ -1,15 +1,25 @@
 import { useState } from "react";
+import { useUpdateProfileMutation } from "../../redux/api/userProfileApi";
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { loadUser } from "../../redux/action/userAction";
 
 const UpdateProfileModal = ({profileUpdate}) => {
-
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [dob, setDob] = useState("");
+  const {user}=useSelector(state=>state.user)
+    const [username, setUsername] = useState(user?.username);
+    const [email, setEmail] = useState(user?.email);
+    const [dob, setDob] = useState(user?.dob);
     const [gender, setGender] = useState("");
-
+const [updateProfile]=useUpdateProfileMutation()
+const dispatch = useDispatch()
+    const submithandler = async(e)=>{
+      e.preventDefault()
+const res = await updateProfile({username,email,dob,gender})
+dispatch(loadUser())
+toast.success(res?.data?.message)
+    }
   return (
-    <div className="relative flex items-center h-full w-full ">
+    <div className="relative flex items-center h-full  ">
 <button className="absolute top-5 right-8" onClick={profileUpdate}>X</button>
 
 <div className="w-full flex flex-col items-center ">
@@ -22,7 +32,7 @@ const UpdateProfileModal = ({profileUpdate}) => {
         </div>
 
         <div className=" sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="mt-1" >
+          <form className="mt-1" onSubmit={submithandler} >
          
             <div>
               <label
@@ -57,34 +67,14 @@ const UpdateProfileModal = ({profileUpdate}) => {
                   name="email"
                   type="email"
                   autoComplete="email"
-                  required
+
                   placeholder="xyz@gmail.com"
                   className="block w-full  py-1.5 text-black  sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
 
-            <div>
-              <div className="flex items-center justify-between">
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium leading-6"
-                >
-                  Password
-                </label>
-              </div>
-              <div className="mt-1">
-                <input
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  className="block w-full  py-1.5 text-black  sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
+        
             <div>
               <div className="flex items-center justify-between">
                 <label
@@ -101,7 +91,7 @@ const UpdateProfileModal = ({profileUpdate}) => {
                   name="password"
                   type="date"
                   autoComplete="current-password"
-                  required
+          
                   className="block w-full  py-1.5 text-black  sm:text-sm sm:leading-6"
                 />
               </div>
@@ -131,7 +121,7 @@ const UpdateProfileModal = ({profileUpdate}) => {
           
 
             <div>
-            <button  onClick={profileUpdate} className="flex w-[20rem] justify-center rounded-md bg-[#F30000]  py-1.5 text-sm mt-8  font-semibold leading-6 text-white shadow-sm hover:bg-[#f30000e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            <button  type="submit" className="flex w-[10rem] justify-center rounded-md bg-[#F30000]  py-1.5 text-sm mt-8  font-semibold leading-6 text-white shadow-sm hover:bg-[#f30000e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                   Update Profile 
                 </button>
             </div>

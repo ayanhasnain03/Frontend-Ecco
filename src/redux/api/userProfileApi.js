@@ -24,6 +24,14 @@ export const userProfileApi = createApi({
       }),
       invalidatesTags:["profileupdate"]
     }),
+    updateProfile: builder.mutation({
+      query: (data) => ({
+        url:"updateprofile",
+        method:"PUT",
+        body:data,
+      }),
+      invalidatesTags:["profileupdate"]
+    }),
   }),
 });
-export const { useUpdateProfilePictureMutation,useUpdatePasswordMutation } = userProfileApi;
+export const { useUpdateProfilePictureMutation,useUpdatePasswordMutation,useUpdateProfileMutation } = userProfileApi;

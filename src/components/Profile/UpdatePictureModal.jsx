@@ -53,10 +53,10 @@ toast.success(res?.data?.message)
 }
 </div>
 <div>
-<div className="">
+<div className=" flex flex-col items-center justify-center">
               <div className="mt-1">
                 <input
-                className="flex w-[15rem] justify-center rounded-md bg-[#000000]  py-1.5 text-sm mt-8  font-semibold leading-6 text-white shadow-sm hover:bg-[#110f0fe7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex w-[12rem] justify-center rounded-md bg-[#000000]  py-1.5 text-sm mt-8  font-semibold leading-6 text-white shadow-sm hover:bg-[#110f0fe7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   accept="image/*"
                   type="file"
                   autoComplete="current-password"
@@ -70,12 +70,15 @@ toast.success(res?.data?.message)
         {
           isLoading ? (
             <>
-              <button  type="submit"  className="flex w-[15rem]  justify-center rounded-md bg-[#F30000]  py-1.5 text-sm mt-8  font-semibold leading-6 text-white shadow-sm hover:bg-[#f30000e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+              <button  type="submit"  className="flex w-[10rem]  
+        justify-center rounded-md bg-[#F30000]  py-1.5 text-sm mt-8  font-semibold leading-6 text-white shadow-sm hover:bg-[#f30000e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
             loading...
           </button>
             </>
           ):(
-            <button   type="submit"  className="flex w-[15rem]  justify-center rounded-md bg-[#F30000]  py-1.5 text-sm mt-8  font-semibold leading-6 text-white shadow-sm hover:bg-[#f30000e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            <button   type="submit"  className="flex w-[10rem]  
+        
+            justify-center rounded-md bg-[#F30000]  py-1.5 text-sm mt-8  font-semibold leading-6 text-white shadow-sm hover:bg-[#f30000e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
             Update Profile Picture
           </button>
           )
