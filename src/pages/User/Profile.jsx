@@ -29,7 +29,7 @@ const Profile = ({ user }) => {
   return (
     <main className="h-[100vh]">
 {
-  updatePictureModal ? (<div className="z-30 bg-slate-900 md:h-[70vh] md:w-[40vw] h-[40vh] w-[60vw] absolute left-[25%] md:left-[30%] top-[20%] right-[70%]">
+  updatePictureModal ? (<div className="z-30 bg-slate-900 md:h-[70vh] md:w-[40vw] h-[50vh] w-[65vw] absolute left-[25%] md:left-[30%] top-[20%] right-[70%]">
   <UpdatePictureModal profileModal={profileModal} />
   </div>):(
     <></>
@@ -44,7 +44,7 @@ const Profile = ({ user }) => {
 }    
 {
   updateProfile ? (<div className="z-30 bg-slate-900 md:h-[80vh] md:w-[40vw] h-[60vh] w-[60vw] absolute left-[25%] md:left-[30%] top-[20%] right-[70%]">
-  <UpdateProfileModal profilePassChange={updateProfileModal} />
+  <UpdateProfileModal profileUpdate={updateProfileModal} />
   </div>):(
     <></>
   )

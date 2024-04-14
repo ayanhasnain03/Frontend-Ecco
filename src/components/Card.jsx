@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Card = ({ products }) => {
   return (
     <>
-      <div className="card  h-[28rem] w-[25rem] overflow-hidden p-2 relative hover:-translate-y-3 duration-75">
+      <div className="card  h-[28rem] w-[25rem] overflow-hidden p-2 relative hover:-translate-y-4 duration-150">
     <Link to={`/shop/product/${products?._id}`}>
     <div className="overflow-hidden">
           <img
