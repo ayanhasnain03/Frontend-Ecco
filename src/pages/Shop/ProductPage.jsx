@@ -3,12 +3,16 @@ import Card from "../../components/Card";
 import { useGetProductByIdQuery, useLatestProductQuery } from "../../redux/api/productApi";
 import ScrollToTopOnReload from "../../components/ResetPage";
 
+import Ratings from "../../components/Rating";
+
+
 const ProductPage = () => {
   const {id}=useParams()
  const {data}=useGetProductByIdQuery({id})
  const {data:latestProducts}=useLatestProductQuery()
 
  const product=data?.product
+ console.log(product?.rating)
   const submitReviewToggle = () => {};
   return (
     <div className="">
@@ -24,7 +28,11 @@ const ProductPage = () => {
             <h1>Price : ₹{product?.price}</h1>
           </div>
           <div className=" px-8 mt-2  flex flex-col gap-2">
-            <h1>Ratings: {product?.rating}</h1>
+
+
+ <Ratings value={product?.rating}/>
+
+
             <h1>Brand: {product?.brand}</h1>
             <h1>Reviews:{product?.numReviews}</h1>
             <h1>inStock:{product?.stock}</h1>

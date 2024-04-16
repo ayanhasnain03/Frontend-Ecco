@@ -67,7 +67,7 @@ const App = () => {
           </Route>
         </Routes>
         <Footer />
-        <Toaster position="top-right" />
+        <Toaster position="bottom-center" />
       </BrowserRouter>
     </div>
   );
