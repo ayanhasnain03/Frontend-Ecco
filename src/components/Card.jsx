@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 
-const Card = ({ products }) => {
+const Card = ({ products,handler }) => {
   return (
     <>
       <div className="card  h-[28rem] w-[25rem] overflow-hidden p-2 relative hover:-translate-y-4 duration-150">
@@ -28,7 +28,7 @@ const Card = ({ products }) => {
         </div>
     </Link>
         <div className="flex justify-between items-center">
-          <button className="bg-red-600 w-[8rem] rounded-lg border">
+          <button onClick={()=>handler(products)} className="bg-red-600 w-[8rem] rounded-lg border">
             Add to Cart
           </button>
         </div>

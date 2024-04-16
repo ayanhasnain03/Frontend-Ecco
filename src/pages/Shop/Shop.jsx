@@ -3,8 +3,16 @@ import Card from "../../components/Card";
 import { useGetAllCategoriesQuery, useSearchProductsQuery } from "../../redux/api/productApi";
 import Loader from "../../components/Loader";
 import ScrollToTopOnReload from "../../components/ResetPage";
-
+import { addToCart } from "../../redux/slices/cartSlice";
+import toast from "react-hot-toast"
+import { useDispatch } from "react-redux";
 const Shop = () => {
+  const dispatch = useDispatch()
+  const addToCartHandler = (cartItem) => {
+    if(cartItem.stock < 1) return toast.error("Out Of Stock");
+    dispatch(addToCart(cartItem))
+    toast.success("Added to cart")
+  }
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("");
   const [maxPrice, setMaxPrice] = useState(100000);
@@ -104,7 +112,9 @@ const {data:productCategory}=useGetAllCategoriesQuery()
           <div className="flex  md:flex-row flex-wrap md:items-center  justify-center gap-5  flex-col">
             {searchedData &&
               searchedData.products.map((e, i) => (
-                <Card products={e} key={i} />
+                <Card products={e} key={i}
+                handler={addToCartHandler}
+                />
               ))}
           </div>
         )
@@ -136,6 +146,7 @@ const {data:productCategory}=useGetAllCategoriesQuery()
       </div>
 </>
   );
-};
+}
+
 
 export default Shop;
