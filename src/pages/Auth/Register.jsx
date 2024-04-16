@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { register } from "../../redux/action/userAction";
-
+import { useUserRegisterMutation } from "../../redux/api/userProfileApi";
+import toast from "react-hot-toast";
+import { loadUser } from "../../redux/action/userAction";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -14,8 +15,6 @@ const Register = () => {
   const [gender, setGender] = useState("");
   const navigate = useNavigate();
 
-
-
   const changeImageHandler = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -25,9 +24,11 @@ const Register = () => {
       setImage(file);
     };
   };
-const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const [newUser, {error,isLoading}] = useUserRegisterMutation();
   const submitHandler = async (e) => {
     e.preventDefault();
+
     try {
       const myForm = new FormData();
       myForm.append("username", username);
@@ -36,9 +37,11 @@ const dispatch = useDispatch()
       myForm.append("dob", dob);
       myForm.append("gender", gender);
       myForm.append("file", image);
-dispatch(register(myForm))
+      const res = await newUser(myForm).unwrap();
+      toast.success(res?.message);
+      dispatch(loadUser());
     } catch (error) {
-
+      toast.error(error?.data?.message);
     }
   };
   return (
@@ -192,11 +195,14 @@ dispatch(register(myForm))
 
             <div>
               <button
+              disabled={isLoading}
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-yellow-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Sign in
-              </button>
+{
+  isLoading ? <p>Register...</p> : <p>Register</p>
+}              </button>
+
             </div>
           </form>
 

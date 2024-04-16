@@ -6,10 +6,12 @@ import moment from "moment";
 import UpdatePictureModal from "../../components/Profile/UpdatePictureModal";
 import UpdatePasswordModal from "../../components/Profile/UpdatePasswordModal";
 import UpdateProfileModal from "../../components/Profile/UpdateProfileModal";
+import LogoutPopUp from "../../components/Profile/LogoutModal";
 const Profile = ({ user }) => {
   const [updatePictureModal, setupdatePictureModal] = useState(false)
   const [updatePasswordModal, setupdatePasswordModal] = useState(false)
   const [updateProfile, setupdateProfile] = useState(false)
+  const [logoutModal, setlogoutModal] = useState(false)
   const profileModal = ()=>{
     setupdatePictureModal(!updatePictureModal)
   }
@@ -21,11 +23,12 @@ const Profile = ({ user }) => {
     setupdateProfile(!updateProfile)
   
   }
+  const logoutModalToogle = ()=>{
+    setlogoutModal(!logoutModal)
+  
+  }
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const logoutHandler = async () => {
-    dispatch(logout());
-  };
+
   return (
     <main className="h-[100vh]">
 {
@@ -45,6 +48,13 @@ const Profile = ({ user }) => {
 {
   updateProfile ? (<div className="z-30 bg-slate-900 md:h-[80vh] md:w-[40vw] h-[60vh] w-[60vw] absolute left-[25%] md:left-[30%] top-[20%] right-[70%]">
   <UpdateProfileModal profileUpdate={updateProfileModal} />
+  </div>):(
+    <></>
+  )
+}    
+{
+  logoutModal ? (<div className="z-30 bg-slate-900 md:h-[50vh] md:w-[40vw] h-[50vh] w-[60vw] absolute left-[25%] md:left-[30%] top-[20%] right-[70%]">
+  <LogoutPopUp logoutModal={logoutModalToogle} />
   </div>):(
     <></>
   )
@@ -93,7 +103,7 @@ const Profile = ({ user }) => {
             <h2>createdAt: {moment(user.createAt).format("l")}</h2>
 
             <button
-              onClick={logoutHandler}
+              onClick={logoutModalToogle}
               className="flex w-[20rem] justify-center rounded-md bg-[#F30000]  py-1.5 text-sm mt-8  font-semibold leading-6 text-white shadow-sm hover:bg-[#f30000e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Logout

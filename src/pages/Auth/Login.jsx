@@ -1,16 +1,26 @@
 import { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { login } from "../../redux/action/userAction";
+import { loadUser } from "../../redux/action/userAction";
 import { useDispatch } from "react-redux";
+import { useLoginUserMutation } from "../../redux/api/userProfileApi";
 export default function Login() {
 const dispatch = useDispatch()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate()
-  const submitHandler = e => {
+  const [loginUser,error]=useLoginUserMutation()
+
+  const submitHandler =async e => {
     e.preventDefault();
-    dispatch(login(email,password));
+try {
+  const res = await loginUser({email,password}).unwrap()
+dispatch(loadUser())
+toast.success(res?.message)
+} catch (error) {
+  toast.error(error?.data?.message)
+
+}
   };
   return (
     <>
