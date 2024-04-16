@@ -7,7 +7,9 @@ const Cart = () => {
   return (
     <main className="bg-black h-[100vh] flex flex-col md:flex-row items-center mt-8 ">
       <div className="bg-black md:w-[70%] w-full  h-full px-1 ">
+        
             <CartItems/>
+      
       </div>
       <div className="bg-black w-full md:w-[30%] h-[100vh] flex flex-col px-8">
         <div className="mt-6 flex flex-col gap-5 ">

@@ -24,11 +24,10 @@ const ProductPage = () => {
             <h1>Price : ₹{product?.price}</h1>
           </div>
           <div className=" px-8 mt-2  flex flex-col gap-2">
-            <h1>Rating:5</h1>
-            <h1>Brand: Nikon</h1>
-            <h1>Reviews:4</h1>
-            <h1>Quantity:4</h1>
-            <h1>inStock:4</h1>
+            <h1>Ratings: {product?.rating}</h1>
+            <h1>Brand: {product?.brand}</h1>
+            <h1>Reviews:{product?.numReviews}</h1>
+            <h1>inStock:{product?.stock}</h1>
           </div>
           <button className="bg-red-600 w-[8rem] mt-10 ml-7 rounded-lg border">
             Add to Cart

@@ -15,6 +15,9 @@ const Card = ({ products,handler }) => {
         </div>
         <div className="title mt-4">
           <div>
+            <h1>{products?.name}</h1>
+          </div>
+          <div>
             {" "}
             <h1 className="mb-2">{products?.brand}</h1>
             <p className="mb-4">
