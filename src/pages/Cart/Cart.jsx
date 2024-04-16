@@ -1,9 +1,14 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CartItems from "../../components/Cart-Items";
+import { calculatePrice } from "../../redux/slices/cartSlice";
+import { useEffect } from "react";
 
 const Cart = () => {
-  const {cartItems}=useSelector(state=>state.cartReducer)
-  console.log(cartItems)
+  const {cartItems,subtotal,shippingCharges,tax,total}=useSelector(state=>state.cartReducer)
+const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(calculatePrice())
+      }, [cartItems])
   return (
     <main className="bg-black h-[100vh] flex flex-col md:flex-row items-center mt-8 ">
       <div className="bg-black md:w-[70%] w-full  h-full px-1 ">
@@ -13,11 +18,11 @@ const Cart = () => {
       </div>
       <div className="bg-black w-full md:w-[30%] h-[100vh] flex flex-col px-8">
         <div className="mt-6 flex flex-col gap-5 ">
-          <p className="text-xl font-thin">Subtotal:2323</p>
-          <p className="text-xl font-thin">Shipping:2323</p>
-          <p className="text-xl font-thin">Tax:2323</p>
+          <p className="text-xl font-thin">Subtotal: ₹{subtotal}</p>
+          <p className="text-xl font-thin">Shipping: ₹{shippingCharges}</p>
+          <p className="text-xl font-thin">Tax: ₹{tax}</p>
           <p className="text-xl font-thin">Discount:2323</p>
-          <p className="text-xl font-thin">Total:2323</p>
+          <p className="text-xl font-thin">Total: ₹{total}</p>
         </div>
         <div className="mt-10">
           <input
