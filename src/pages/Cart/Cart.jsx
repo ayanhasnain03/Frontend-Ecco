@@ -1,24 +1,13 @@
+import { useSelector } from "react-redux";
 import CartItems from "../../components/Cart-Items";
-const product = [
-  {
-    title: "product1",
-    price: 2300,
-    image: "https://m.media-amazon.com/images/I/71dnFi6CQCL._AC_SX385_.jpg",
-  },
-  {
-    title: "product2",
-    price: 2300,
-    image: "https://m.media-amazon.com/images/I/71dnFi6CQCL._AC_SX385_.jpg",
-  },
-];
+
 const Cart = () => {
+  const {cartItems}=useSelector(state=>state.cartReducer)
+  console.log(cartItems)
   return (
     <main className="bg-black h-[100vh] flex flex-col md:flex-row items-center mt-8 ">
       <div className="bg-black md:w-[70%] w-full  h-full px-1 ">
-        {product &&
-          product.map((products, i) => (
-            <CartItems product={products} key={i} />
-          ))}{" "}
+            <CartItems/>
       </div>
       <div className="bg-black w-full md:w-[30%] h-[100vh] flex flex-col px-8">
         <div className="mt-6 flex flex-col gap-5 ">
