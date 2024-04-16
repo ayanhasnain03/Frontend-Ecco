@@ -1,9 +1,14 @@
 import { useState } from "react"
 import {FaTrash} from "react-icons/fa"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { removeCartItem } from "../redux/slices/cartSlice"
 const CartItems = () => {
 const {cartItems}=useSelector(state=>state.cartReducer)
-console.log(cartItems)
+const dispatch = useDispatch()
+const removeHandler = (id)=>{
+dispatch(removeCartItem(id))
+console.log(id)
+}
   const [quantity, setQuantity] = useState(1)
   return (
 <>
@@ -21,7 +26,7 @@ console.log(cartItems)
     <button onClick={()=>setQuantity(quantity - 1)} className="text-center">-</button>
     <p>{quantity}</p>
       <button onClick={()=>setQuantity(quantity + 1)} className="text-center">+</button>
-      <button >
+      <button onClick={() => removeHandler(item._id)}>
       <FaTrash />
     </button>
     </div>
