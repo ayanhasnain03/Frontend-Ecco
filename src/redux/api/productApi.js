@@ -56,6 +56,13 @@ export const productAPI = createApi({
       }),
       providesTags: ["product"],
     }),
+    getReview: builder.query({
+      query: (id) => ({
+        url: `review/${id}`,
+        method: "GET", 
+      }),
+      providesTags: ["product"],
+    }),
   }),
 });
-export const { useSearchProductsQuery, useGetAllCategoriesQuery,useGetTopProductsQuery,useGetProductByIdQuery,useLatestProductQuery,useNewProductMutation } = productAPI;
+export const { useSearchProductsQuery, useGetAllCategoriesQuery,useGetTopProductsQuery,useGetProductByIdQuery,useLatestProductQuery,useNewProductMutation,useGetReviewQuery} = productAPI;
