@@ -5,7 +5,7 @@ const Ratings = ({ value }) => {
   // Determine if the component is controlled based on the value prop
   const isControlled = value !== undefined;
 
-  const emptyStarColor = "#cccccc"; // Change this to your desired color
+  const emptyStarColor = "#f30000e7"; // Change this to your desired color
 
   const options = {
     value: isControlled ? value : null, // Pass null for uncontrolled state
@@ -21,7 +21,7 @@ const Ratings = ({ value }) => {
 
   return (
     <div className='flex flex-row items-center'>
-    Ratings:  <Rating {...options} />
+  <Rating {...options} />
     </div>
   );
 };

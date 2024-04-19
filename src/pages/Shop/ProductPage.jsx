@@ -8,16 +8,21 @@ import ScrollToTopOnReload from "../../components/ResetPage";
 
 import Ratings from "../../components/Rating";
 import ProductReview from "../../components/ProductReview";
+import { useState } from "react";
+import ReviewAddModal from "../../components/ReviewAddModal";
 
 
 const ProductPage = () => {
+  const [toggleReview, settoggleReview] = useState(false)
   const { id } = useParams();
   const { data } = useGetProductByIdQuery({ id });
   const { data: latestProducts } = useLatestProductQuery();
 
   const product = data?.product;
   console.log(product?.rating);
-  const submitReviewToggle = () => {};
+  const reviewToggle = () => {
+    settoggleReview(!toggleReview)
+  };
   return (
     <div className="">
       <ScrollToTopOnReload />
@@ -48,11 +53,22 @@ const ProductPage = () => {
           <Card products={item} />
         ))}
       </div>
-<div className="bg-green-500 w-full h-[70vh]">
+<div className="bg-green-500 w-full h-[70vh] mt-10 relative">
   <h1 className="text-3xl text-center">Reviews</h1>
+  <div className="float-end mr-8">
+    <button onClick={reviewToggle} className="bg-red-600 w-[8rem] mt-10 mb-5 ml-7 rounded-lg border">Add review</button>
+  </div>
+  {
+  toggleReview ? (<div className="z-30 bg-black md:h-[50vh] md:w-[40vw] h-[50vh] w-[60vw] absolute left-[25%] md:left-[30%] top-[20%] right-[70%]">
+  <ReviewAddModal reviewToggle={reviewToggle} productId={product?._id} />
+  </div>):(
+    <></>
+  )
+}  
   <div className="flex w-full flex-row mt-10 pr-12">
     <ProductReview productId={product?._id}/>
   </div>
+
 </div>
     </div>
   );

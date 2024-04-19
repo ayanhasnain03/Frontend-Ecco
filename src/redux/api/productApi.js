@@ -4,6 +4,7 @@ export const productAPI = createApi({
   reducerPath: "productApi",
   baseQuery: fetchBaseQuery({
     baseUrl: `${import.meta.env.VITE_SERVER}/product/`,
+    credentials:"include"
   }),
   tagTypes: ["product"],
   endpoints: (builder) => ({
@@ -57,12 +58,20 @@ export const productAPI = createApi({
       providesTags: ["product"],
     }),
     getReview: builder.query({
-      query: (id) => ({
+      query: ({id}) => ({
         url: `review/${id}`,
         method: "GET", 
       }),
       providesTags: ["product"],
     }),
+    createReview: builder.mutation({
+      query: ({id,comment,rating}) => ({
+        url: `/addreview/${id}`,
+        method: "POST", 
+        body:{comment,rating},
+      }),
+      invalidatesTags: ["product"],
+    }),
   }),
 });
-export const { useSearchProductsQuery, useGetAllCategoriesQuery,useGetTopProductsQuery,useGetProductByIdQuery,useLatestProductQuery,useNewProductMutation,useGetReviewQuery} = productAPI;
+export const { useSearchProductsQuery, useGetAllCategoriesQuery,useGetTopProductsQuery,useGetProductByIdQuery,useLatestProductQuery,useNewProductMutation,useGetReviewQuery,useCreateReviewMutation} = productAPI;
