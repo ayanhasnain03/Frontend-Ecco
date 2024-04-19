@@ -57,13 +57,6 @@ export const productAPI = createApi({
       }),
       providesTags: ["product"],
     }),
-    getReview: builder.query({
-      query: ({id}) => ({
-        url: `review/${id}`,
-        method: "GET", 
-      }),
-      providesTags: ["product"],
-    }),
     createReview: builder.mutation({
       query: ({id,comment,rating}) => ({
         url: `/addreview/${id}`,

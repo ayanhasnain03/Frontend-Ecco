@@ -66,7 +66,7 @@ const ProductPage = () => {
   )
 }  
   <div className="flex w-full flex-row mt-10 pr-12">
-    <ProductReview productId={product?._id}/>
+    <ProductReview productRev={product?.reviews}/>
   </div>
 
 </div>

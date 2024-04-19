@@ -4,22 +4,28 @@ import { styled } from '@mui/system';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import { useCreateReviewMutation } from "../redux/api/productApi";
 import {useParams} from "react-router-dom"
+import toast from "react-hot-toast";
 const ReviewAddModal = ({ reviewToggle,productId }) => {
 
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
-  console.log(comment)
+
   const StyledRating = styled(Rating)({
     '& .MuiRating-iconEmpty': {
       color: '#f30000e7', // Change to the color you desire
     },
   });
   
-  const [createReview]=useCreateReviewMutation()
+  const [createReview,{isLoading}]=useCreateReviewMutation()
   const reviewSubmitHandler = async(e)=>{
     e.preventDefault()
-    const res = await createReview({comment,rating,id:productId})
-    console.log(res)
+ try {
+  const res = await createReview({comment,rating,id:productId}).unwrap()
+  reviewToggle()
+toast.success(res?.message)
+ } catch (error) {
+toast.error(error?.data?.message)
+ }
   }
   return (
     <div className="relative flex items-center h-full">
@@ -70,8 +76,9 @@ id="message" rows="4" className="block resize-none p-2.5 w-full text-sm text-gra
                     type="submit"
                     className="flex w-[10rem] justify-center rounded-md bg-[#F30000]  py-1.5 text-sm mt-8  font-semibold leading-6 text-white shadow-sm hover:bg-[#f30000e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   >
-                    Submit
-                  </button>
+{
+  isLoading ? (<> submiting...</>) : (<>Submit</>)
+}                  </button>
                 </div>
               </form>
             </div>
