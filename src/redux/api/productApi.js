@@ -72,6 +72,13 @@ export const productAPI = createApi({
       }),
       invalidatesTags: ["product"],
     }),
+    adminProducts: builder.query({
+      query: () => ({
+        url: `/admin/products`,
+        method: "GET",
+      }),
+      invalidatesTags: ["product"],
+    }),
   }),
 });
-export const { useSearchProductsQuery, useGetAllCategoriesQuery,useGetTopProductsQuery,useGetProductByIdQuery,useLatestProductQuery,useNewProductMutation,useGetReviewQuery,useCreateReviewMutation,useDeleteReviewMutation} = productAPI;
+export const { useSearchProductsQuery, useGetAllCategoriesQuery,useGetTopProductsQuery,useGetProductByIdQuery,useLatestProductQuery,useNewProductMutation,useGetReviewQuery,useCreateReviewMutation,useDeleteReviewMutation,useAdminProductsQuery} = productAPI;

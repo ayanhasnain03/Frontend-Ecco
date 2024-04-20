@@ -15,6 +15,7 @@ import { loadUser } from "./redux/action/userAction";
 import Admin from "./pages/admin/admin";
 import Cart from "./pages/Cart/Cart";
 import CreateProduct from "./pages/admin/CreateProduct";
+import ProductManagement from "./pages/admin/ProductManagement";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -60,12 +61,15 @@ const App = () => {
             }
           >
             <Route path="/admin/dashboard" element={<Admin />} />
+            <Route path="/admin/productmanagement" element={<ProductManagement />} />
 
             <Route
               path="/admin/createproduct"
               element={<CreateProduct />}
             />
           </Route>
+
+
         </Routes>
         <Footer />
         <Toaster position="bottom-center" />
