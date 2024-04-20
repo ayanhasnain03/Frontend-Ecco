@@ -2,10 +2,14 @@ import { Link } from "react-router-dom";
 import Sidebar from "../../components/admin/Sidebar";
 import { useAdminProductsQuery } from "../../redux/api/productApi";
 import { FaTrash } from "react-icons/fa";
+import { useState } from "react";
 
 const ProductManagement = () => {
-  const { data } = useAdminProductsQuery();
-
+const [search, setSearch] = useState("")
+const [page, setPage] = useState(1);
+const { data } = useAdminProductsQuery({search,page});
+const isPrevPage = page > 1;
+const isNextPage = page < data?.totalPage;
   return (
     <div className=" flex w-full relative">
       <div className="absolute z-20">
@@ -17,7 +21,10 @@ const ProductManagement = () => {
 <h1 className="text-3xl mb-8 mr-10">Product Management</h1>
 <h1 className="text-3xl mb-8 mr-10">Total Product:{data?.products.length}</h1>
 <div className="mr-10">
-    <input type="text" placeholder="Search" className="rounded-xl px-2"/>
+    <input type="text"
+    value={search}
+    onChange={e=>setSearch(e.target.value)}
+    placeholder="Search" className="rounded-xl px-2 text-black border-none"/>
 </div>
 </div>
 <div className="mt-2 w-full">
@@ -61,6 +68,32 @@ Update Product
         </div>
     ))
   }
+
+<div className="md:ml-[10rem] ml-[5.5rem] mt-2">
+{data && data.totalPage > 1 && (
+          <article>
+            <button
+              disabled={!isPrevPage}
+              onClick={() => setPage((prev) => prev - 1)}
+              className="bg-[#F30000] w-20 rounded-md"
+
+            >
+              Prev
+            </button>
+            <span className="mx-8">
+              {page} of {data.totalPage}
+            </span>
+            <button
+              disabled={!isNextPage}
+              onClick={() => setPage((prev) => prev + 1)}
+              className="bg-[#F30000] w-20 rounded-md"
+
+            >
+              Next
+            </button>
+          </article>
+        )}
+      </div>
  </div>
     </div>
 </div>

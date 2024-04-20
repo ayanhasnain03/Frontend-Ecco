@@ -73,11 +73,16 @@ export const productAPI = createApi({
       invalidatesTags: ["product"],
     }),
     adminProducts: builder.query({
-      query: () => ({
-        url: `/admin/products`,
-        method: "GET",
-      }),
-      invalidatesTags: ["product"],
+      query: ({ price, search, sort, category, page }) => {
+        let base = `all?search=${search}&page=${page}`;
+
+        if (price) base += `&price=${price}`;
+        if (sort) base += `&sort=${sort}`;
+        if (category) base += `&category=${category}`;
+
+        return base;
+      },
+      providesTags: ["product"],
     }),
   }),
 });

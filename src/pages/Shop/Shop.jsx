@@ -30,7 +30,7 @@ const {data:productCategory}=useGetAllCategoriesQuery()
 
 
   const isPrevPage = page > 1;
-  const isNextPage = page < 4;
+  const isNextPage = page < searchedData?.totalPage;
   return (
 <>
 
