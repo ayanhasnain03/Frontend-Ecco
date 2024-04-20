@@ -53,7 +53,7 @@ const ProductPage = () => {
           <Card products={item} />
         ))}
       </div>
-<div className="bg-green-500 w-full h-[70vh] mt-10 relative">
+<div className=" w-full h-[70vh] mt-10 relative">
   <h1 className="text-3xl text-center">Reviews</h1>
   <div className="float-end mr-8">
     <button onClick={reviewToggle} className="bg-red-600 w-[8rem] mt-10 mb-5 ml-7 rounded-lg border">Add review</button>
@@ -66,7 +66,7 @@ const ProductPage = () => {
   )
 }  
   <div className="flex w-full flex-row mt-10 pr-12">
-    <ProductReview productRev={product?.reviews}/>
+    <ProductReview productRev={product?.reviews} productId={product?._id}/>
   </div>
 
 </div>
