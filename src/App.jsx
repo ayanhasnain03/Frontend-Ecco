@@ -13,8 +13,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { loadUser } from "./redux/action/userAction";
 import Admin from "./pages/admin/admin";
-import ProductManagement from "./pages/admin/ProductManagement";
 import Cart from "./pages/Cart/Cart";
+import CreateProduct from "./pages/admin/CreateProduct";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -60,9 +60,10 @@ const App = () => {
             }
           >
             <Route path="/admin/dashboard" element={<Admin />} />
+
             <Route
-              path="/admin/productmanage"
-              element={<ProductManagement />}
+              path="/admin/createproduct"
+              element={<CreateProduct />}
             />
           </Route>
         </Routes>

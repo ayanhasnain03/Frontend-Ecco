@@ -1,10 +1,9 @@
 import Sidebar from "../../components/admin/Sidebar";
-import productImg from "../../assets/productImg.jpg";
 import { useState } from "react";
 import { useNewProductMutation } from "../../redux/api/productApi";
 import {toast} from "react-hot-toast"
 
-const ProductManagement = () => {
+const CreateProduct = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -47,7 +46,7 @@ toast.success(res?.data?.message)
       <Sidebar />
       <div className="h-[40rem] relative w-full bg-black flex flex-col md:flex-row md:justify-around items-center">
       <div className="absolute top-8 left-5">
-    <h1 className="text-2xl">Product Management</h1>
+    <h1 className="text-2xl">Create Product</h1>
 </div>
         <div className="w-[20%] overflow-hidden mt-[10rem] md:mt-[1rem]">
         {imagePrev && <img src={imagePrev} alt="New Image" />}
@@ -198,4 +197,4 @@ toast.success(res?.data?.message)
     </div>
   );
 };
-export default ProductManagement;
+export default CreateProduct;

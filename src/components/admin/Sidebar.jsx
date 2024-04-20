@@ -23,7 +23,7 @@ const Sidebar = () => {
 
 <div className="mt-4">
 <li className="flex items-center justify-between flex-col">
-<Link to="/admin/productmanage">
+<Link to="/admin/productmanagement">
 <TbShoppingBagEdit size={"1.5rem"}/>
 </Link>
 <label className="sm:text-[0.9rem] md:text-[1rem]">Management</label>
