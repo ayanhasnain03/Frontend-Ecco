@@ -50,9 +50,9 @@ export const productAPI = createApi({
       }),
       providesTags: ["product"],
     }),
-    latestProduct: builder.query({
-      query: () => ({
-        url: `latestproducts`,
+    relatedProduct: builder.query({
+      query: ({id}) => ({
+        url: `related/${id}`,
         method: "GET", 
       }),
       providesTags: ["product"],
@@ -109,4 +109,4 @@ export const productAPI = createApi({
     }),
   }),
 });
-export const { useSearchProductsQuery, useGetAllCategoriesQuery,useGetTopProductsQuery,useGetProductByIdQuery,useLatestProductQuery,useNewProductMutation,useGetReviewQuery,useCreateReviewMutation,useDeleteReviewMutation,useAdminProductsQuery,useUpdateProductMutation,useUpdateProductImageMutation,useDeleteProductMutation} = productAPI;
+export const { useSearchProductsQuery, useGetAllCategoriesQuery,useGetTopProductsQuery,useGetProductByIdQuery,useRelatedProductQuery,useNewProductMutation,useGetReviewQuery,useCreateReviewMutation,useDeleteReviewMutation,useAdminProductsQuery,useUpdateProductMutation,useUpdateProductImageMutation,useDeleteProductMutation} = productAPI;

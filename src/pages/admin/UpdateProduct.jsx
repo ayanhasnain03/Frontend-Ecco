@@ -2,7 +2,6 @@ import Sidebar from "../../components/admin/Sidebar";
 import { useEffect, useState } from "react";
 import {
   useGetProductByIdQuery,
-  useLatestProductQuery,
   useUpdateProductImageMutation,
   useUpdateProductMutation,
 } from "../../redux/api/productApi";
