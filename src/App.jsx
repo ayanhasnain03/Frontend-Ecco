@@ -16,6 +16,7 @@ import Admin from "./pages/admin/admin";
 import Cart from "./pages/Cart/Cart";
 import CreateProduct from "./pages/admin/CreateProduct";
 import ProductManagement from "./pages/admin/ProductManagement";
+import UpdateProduct from "./pages/admin/UpdateProduct";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -62,6 +63,7 @@ const App = () => {
           >
             <Route path="/admin/dashboard" element={<Admin />} />
             <Route path="/admin/productmanagement" element={<ProductManagement />} />
+            <Route path="/admin/updateproduct/:id" element={<UpdateProduct />} />
 
             <Route
               path="/admin/createproduct"

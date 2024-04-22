@@ -25,7 +25,6 @@ const CreateProduct = () => {
         }
       };
     }
-
   };
 const [createProduct]=useNewProductMutation()
   const submitHandler = async(e)=>{

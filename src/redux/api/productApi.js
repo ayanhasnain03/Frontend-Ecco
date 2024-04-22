@@ -57,6 +57,29 @@ export const productAPI = createApi({
       }),
       providesTags: ["product"],
     }),
+    updateProduct: builder.mutation({
+      query: ({id,name,description,category,price,stock,brand}) => ({
+        url: `${id}`,
+        method: "PUT", 
+        body:{name,description,category,price,stock,brand}
+      }),
+      invalidatesTags: ["product"],
+    }),
+    updateProductImage: builder.mutation({
+      query: ({id,formData}) => ({
+        url: `updateimage/${id}`,
+        method: "PUT", 
+        body:formData
+      }),
+      invalidatesTags: ["product"],
+    }),
+    deleteProduct: builder.mutation({
+      query: ({id}) => ({
+        url: `${id}`,
+        method: "DELETE", 
+      }),
+      invalidatesTags: ["product"],
+    }),
     createReview: builder.mutation({
       query: ({id,comment,rating}) => ({
         url: `/addreview/${id}`,
@@ -86,4 +109,4 @@ export const productAPI = createApi({
     }),
   }),
 });
-export const { useSearchProductsQuery, useGetAllCategoriesQuery,useGetTopProductsQuery,useGetProductByIdQuery,useLatestProductQuery,useNewProductMutation,useGetReviewQuery,useCreateReviewMutation,useDeleteReviewMutation,useAdminProductsQuery} = productAPI;
+export const { useSearchProductsQuery, useGetAllCategoriesQuery,useGetTopProductsQuery,useGetProductByIdQuery,useLatestProductQuery,useNewProductMutation,useGetReviewQuery,useCreateReviewMutation,useDeleteReviewMutation,useAdminProductsQuery,useUpdateProductMutation,useUpdateProductImageMutation,useDeleteProductMutation} = productAPI;

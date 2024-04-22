@@ -8,7 +8,7 @@ import ScrollToTopOnReload from "../../components/ResetPage";
 
 import Ratings from "../../components/Rating";
 import ProductReview from "../../components/ProductReview";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReviewAddModal from "../../components/ReviewAddModal";
 
 
@@ -19,10 +19,10 @@ const ProductPage = () => {
   const { data: latestProducts } = useLatestProductQuery();
 
   const product = data?.product;
-  console.log(product?.rating);
   const reviewToggle = () => {
     settoggleReview(!toggleReview)
   };
+
   return (
     <div className="">
       <ScrollToTopOnReload />

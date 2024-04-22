@@ -1,13 +1,21 @@
 import { Link } from "react-router-dom";
 import Sidebar from "../../components/admin/Sidebar";
-import { useAdminProductsQuery } from "../../redux/api/productApi";
+import { useAdminProductsQuery, useDeleteProductMutation } from "../../redux/api/productApi";
 import { FaTrash } from "react-icons/fa";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import Loader from "../../components/Loader";
+import {toast} from "react-hot-toast"
 const ProductManagement = () => {
 const [search, setSearch] = useState("")
 const [page, setPage] = useState(1);
-const { data } = useAdminProductsQuery({search,page});
+const { data,isLoading } = useAdminProductsQuery({search,page});
+const [deleteProduct,{isLoading:deleteLoading}]=useDeleteProductMutation()
+const deleteHandler = async(id)=>{
+const res = await deleteProduct({id}).unwrap()
+toast.success(res?.message)
+}
+
+
 const isPrevPage = page > 1;
 const isNextPage = page < data?.totalPage;
   return (
@@ -26,15 +34,27 @@ const isNextPage = page < data?.totalPage;
     onChange={e=>setSearch(e.target.value)}
     placeholder="Search" className="rounded-xl px-2 text-black border-none"/>
 </div>
+<Link to="/admin/createproduct">
+<button className="mr-10">Add</button>
+</Link>
+
 </div>
 <div className="mt-2 w-full">
     
- <div className="h-full w-full">
+ {
+  deleteLoading ? <Loader length={20}/> : (
+    <div className="h-full w-full">
  {
     data?.products?.map((item)=>(
         <div key={item._id} className=" flex md:flex-row flex-col items-center justify-around w-full mb-[3rem] gap-[0.7rem]">
         <div>
-             <img src={item.image.url} alt="" className="h-[10rem] w-[8rem]" />
+           {
+            isLoading ? (<>
+            <Loader length={10}/>
+            </>):(
+               <img src={item.image.url} alt="" className="h-[10rem] w-[8rem]" />
+            )
+           }
          </div>
          <div>
              Name: {item.name}
@@ -52,7 +72,7 @@ const isNextPage = page < data?.totalPage;
          </div>
      
          <div>
-             <Link to="/updateproduct">
+             <Link to={`/admin/updateproduct/${item._id}`}>
 
 <button className="bg-red-600  text-center rounded px-2">
 Update Product
@@ -61,7 +81,7 @@ Update Product
              </Link>
          </div>
          <div>
-            <button>
+            <button onClick={()=>deleteHandler(item._id)}>
             <FaTrash />
             </button>
          </div>
@@ -95,6 +115,8 @@ Update Product
         )}
       </div>
  </div>
+  )
+ }
     </div>
 </div>
     </div>
