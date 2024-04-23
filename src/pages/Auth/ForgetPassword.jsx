@@ -9,7 +9,7 @@ const ForgetPassword = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     const res = await forgetPassword({email}).unwrap();
- toast.success(res?.message)
+   toast.success(res?.message)
   };
   return (
     <>

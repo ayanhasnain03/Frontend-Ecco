@@ -17,8 +17,9 @@ import Cart from "./pages/Cart/Cart";
 import CreateProduct from "./pages/admin/CreateProduct";
 import ProductManagement from "./pages/admin/ProductManagement";
 import UpdateProduct from "./pages/admin/UpdateProduct";
-import UserManagement from "./pages/admin/UserManagement";
+import UserManagement from "./pages/admin/userManagement";
 import ForgetPassword from "./pages/Auth/ForgetPassword";
+import ResetPassword from "./pages/Auth/ResetPassword";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgotpassword" element={<ForgetPassword/>} />
+            <Route path="/resetpassword/:token" element={<ResetPassword/>} />
           </Route>
 
           {/* Logged User */}
