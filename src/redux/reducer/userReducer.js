@@ -21,7 +21,6 @@ export const userReducer = createReducer({}, builder => {
       state.isAuthenticated = false;
       localStorage.removeItem('user');
       state.message = action.payload;
-
     })
     .addCase('logoutFail', (state, action) => {
       state.loading = false;

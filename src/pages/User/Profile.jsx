@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { loadUser, logout } from "../../redux/action/userAction";
 import { Link, useNavigate } from "react-router-dom";
 import moment from "moment";
 import UpdatePictureModal from "../../components/Profile/UpdatePictureModal";
