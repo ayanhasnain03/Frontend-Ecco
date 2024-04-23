@@ -18,6 +18,7 @@ import CreateProduct from "./pages/admin/CreateProduct";
 import ProductManagement from "./pages/admin/ProductManagement";
 import UpdateProduct from "./pages/admin/UpdateProduct";
 import UserManagement from "./pages/admin/UserManagement";
+import ForgetPassword from "./pages/Auth/ForgetPassword";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const App = () => {
           >
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/forgotpassword" element={<ForgetPassword/>} />
           </Route>
 
           {/* Logged User */}

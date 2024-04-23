@@ -48,6 +48,13 @@ export const userProfileApi = createApi({
       }),
       invalidatesTags:["profileupdate"]
     }),
+    forgotPassword:builder.mutation({
+      query:(email)=>({
+        url:"forgetpassword",
+        method:"POST",
+        body:email
+      })
+    })
   }),
 });
-export const { useUpdateProfilePictureMutation,useUpdatePasswordMutation,useUpdateProfileMutation,useLoginUserMutation,uselogoutUserMutation,useUserRegisterMutation } = userProfileApi;
+export const { useUpdateProfilePictureMutation,useUpdatePasswordMutation,useUpdateProfileMutation,useLoginUserMutation,uselogoutUserMutation,useUserRegisterMutation,useForgotPasswordMutation } = userProfileApi;
