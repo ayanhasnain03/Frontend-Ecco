@@ -6,10 +6,13 @@ import { MdDashboard } from "react-icons/md";
 import { motion } from "framer-motion";
 import Hamburger from "hamburger-react";
 import logo from "../assets/logo.png"
+import { useSelector } from "react-redux";
 const Navbar = ({user}) => {
  
   const [isOpen, setOpen] = useState(false);
   const [toggle, setToggle] = useState(false);
+  const {cartItems}=useSelector(state=>state.cartReducer)
+  console.log(cartItems)
   const togleHandler = () => {
     setToggle(!toggle);
   };
@@ -44,8 +47,11 @@ const Navbar = ({user}) => {
               )}
             </li>
            
-            <li className=" hidden md:block">
+            <li className=" hidden md:block ">
               <Link to="/cart">
+                <div className="bg-[#F30000] h-4 w-4 rounded-full absolute top-1 right-0 text-center">
+                 {cartItems.length}
+                </div>
                 <FaShoppingBag />
               </Link>
             </li>

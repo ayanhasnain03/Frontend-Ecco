@@ -20,8 +20,7 @@ const ProductReview = ({ productRev, productId }) => {
 
   return (
     <div>
-   {
-    productRev.length === 0 ? (<h1 className="text-4xl">No Reviews</h1>):(
+
       <div>
       {productRev?.map((rev) => (
        <div
@@ -47,8 +46,6 @@ const ProductReview = ({ productRev, productId }) => {
        </div>
      ))}
     </div>
-    )
-   }
     </div>
   );
 };
