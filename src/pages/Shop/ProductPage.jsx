@@ -10,6 +10,9 @@ import Ratings from "../../components/Rating";
 import ProductReview from "../../components/ProductReview";
 import { useState } from "react";
 import ReviewAddModal from "../../components/ReviewAddModal";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/slices/cartSlice";
+import toast from "react-hot-toast";
 
 const ProductPage = () => {
   const [toggleReview, settoggleReview] = useState(false);
@@ -21,7 +24,12 @@ const ProductPage = () => {
   const reviewToggle = () => {
     settoggleReview(!toggleReview);
   };
-
+  const dispatch = useDispatch()
+  const addToCartHandler = (cartItem) => {
+    if(cartItem.stock < 1) return toast.error("Out Of Stock");
+    dispatch(addToCart(cartItem))
+    toast.success("Added to cart")
+  }
   return (
     <div className="">
       <ScrollToTopOnReload />
@@ -41,12 +49,19 @@ const ProductPage = () => {
             <h1>Reviews:{product?.numReviews}</h1>
             <h1>inStock:{product?.stock}</h1>
           </div>
-          <button className="bg-red-600 w-[8rem] mt-10 ml-7 rounded-lg border">
+          <button onClick={()=>addToCartHandler(product)} className="bg-red-600 w-[8rem] mt-10 ml-7 rounded-lg border">
             Add to Cart
           </button>
         </div>
       </div>
-      <h1 className="text-center text-2xl">Related Products</h1>
+      {
+        productsWithoutFirst && (
+          <>
+{
+  productsWithoutFirst.length > 0 && (
+    <h1 className="text-center text-2xl">Related Products</h1>
+  )
+}
       <div className="flex flex-col md:flex-row flex-wrap justify-around mt-10 items-center md:items-start md:px-8 md:mr-6">
     {
       productsWithoutFirst?.map((item)=>(
@@ -54,6 +69,10 @@ const ProductPage = () => {
       ))
     }
       </div>
+          
+          </>
+        )
+      }
       <div className=" w-full h-[70vh] mt-10 relative">
         <h1 className="text-3xl text-center">Reviews</h1>
         <div className="float-end mr-8">

@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import Ratings from "./Rating";
 
 const Card = ({ products, handler }) => {
-
   return (
     <>
       <div className="card  h-[28rem] w-[25rem] overflow-hidden p-2 relative hover:-translate-y-4 duration-150">
