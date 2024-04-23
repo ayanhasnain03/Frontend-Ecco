@@ -4,9 +4,12 @@ import { motion } from "framer-motion";
 import Card from "../components/Card";
 import Marquee from "../components/Marquee";
 import { useGetTopProductsQuery } from "../redux/api/productApi";
+import { useLastestProductQuery } from "../redux/api/productApi";
 import ScrollToTopOnReload from "../components/ResetPage";
 const Home = () => {
   const { data } = useGetTopProductsQuery();
+  const {data:latestproduct}=useLastestProductQuery()
+  console.log(latestproduct)
   return (
     <div className="h-full w-full">
       <div className="banner">
@@ -40,6 +43,13 @@ const Home = () => {
       <h1 className="m-8 text-2xl font-semibold">Popular Products</h1>
       <div className="mt-5  w-full flex items-center justify-center md:justify-around flex-wrap gap-10 ">
         {data?.topProduct?.map((product, i) => (
+          <Card products={product} key={i} />
+        ))}
+      </div>
+
+      <h1 className="m-8 text-2xl font-semibold">latest Products</h1>
+      <div className="mt-5  w-full flex items-center justify-center md:justify-around flex-wrap gap-10 ">
+        {latestproduct?.products?.map((product, i) => (
           <Card products={product} key={i} />
         ))}
       </div>
