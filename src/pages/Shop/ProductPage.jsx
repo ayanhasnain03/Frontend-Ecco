@@ -18,63 +18,64 @@ const ProductPage = () => {
   const [toggleReview, settoggleReview] = useState(false);
   const { id } = useParams();
   const { data } = useGetProductByIdQuery({ id });
-  const { data:relatedProducts } = useRelatedProductQuery({id});
+  const { data: relatedProducts } = useRelatedProductQuery({ id });
   const productsWithoutFirst = relatedProducts?.product.slice(1);
   const product = data?.product;
   const reviewToggle = () => {
     settoggleReview(!toggleReview);
   };
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const addToCartHandler = (cartItem) => {
-    if(cartItem.stock < 1) return toast.error("Out Of Stock");
-    dispatch(addToCart(cartItem))
-    toast.success("Added to cart")
-  }
+    if (cartItem.stock < 1) return toast.error("Out Of Stock");
+    dispatch(addToCart(cartItem));
+    toast.success("Added to cart");
+  };
   return (
     <div className="">
       <ScrollToTopOnReload />
-      <div className="h-full w-full  mt-10 md:p-8 py-2 px-2 flex flex-col  md:flex-row  md:justify-between gap-9">
-        <div className=" md:w-[40%] w-full mt-8 h-[35rem] md:h-[25rem] overflow-hidden flex items-center justify-center ">
+      <div className="h-full w-full  md:p-8 py-2 px-2 flex flex-col  md:flex-row  md:justify-between ">
+        <div className=" md:w-[40%] w-full mt-2 h-[35rem] md:h-[25rem] overflow-hidden flex items-center justify-center ">
           <img src={product?.image?.url} alt="" />
         </div>
-        <div className=" md:w-[60%]  h-[35rem] overflow-hidden">
-          <div className=" p-8 flex flex-col gap-4">
+        <div className=" md:w-[60%]  h-[35rem] overflow-hidden p-10">
+          <div className="pl-8 flex flex-col gap-2">
             <h1>Title : {product?.name}</h1>
             <p>Description : {product?.description}</p>
             <h1>Price : ₹{product?.price}</h1>
           </div>
-          <div className=" px-8 mt-2  flex flex-col gap-2">
+          <div className=" px-8 flex flex-col justify-start gap-2">
             <Ratings value={product?.rating} />
             <h1>Brand: {product?.brand}</h1>
             <h1>Reviews:{product?.numReviews}</h1>
             <h1>inStock:{product?.stock}</h1>
           </div>
-          <button onClick={()=>addToCartHandler(product)} className="bg-red-600 w-[8rem] mt-10 ml-7 rounded-lg border">
+          <button
+            onClick={() => addToCartHandler(product)}
+            className="bg-red-600 w-[8rem] mt-10 ml-7 rounded-lg border"
+          >
             Add to Cart
           </button>
         </div>
       </div>
-      {
-        productsWithoutFirst && (
-          <>
-{
-  productsWithoutFirst.length > 0 && (
-    <h1 className="text-center text-2xl">Related Products</h1>
-  )
-}
-      <div className="flex flex-col md:flex-row flex-wrap justify-around mt-10 items-center md:items-start md:px-8 md:mr-6">
-    {
-      productsWithoutFirst?.map((item)=>(
-        <Card products={item}/>
-      ))
-    }
-      </div>
-          
-          </>
-        )
-      }
+      {productsWithoutFirst && (
+        <>
+          {productsWithoutFirst.length > 0 && (
+            <h1 className="text-center text-2xl">Related Products</h1>
+          )}
+          <div className="flex  flex-col md:flex-row flex-wrap md:justify-start justify-center gap-5 mt-10 items-center md:items-start md:px-10 md:mr-10">
+            {productsWithoutFirst?.map((item) => (
+              <Card products={item} />
+            ))}
+          </div>
+        </>
+      )}
       <div className=" w-full h-[70vh] mt-10 relative">
-        <h1 className="text-3xl text-center">Reviews</h1>
+        <div className="reletive">
+          <h1 className="text-3xl text-center">Reviews</h1>
+          <div className="absolute -top-1 right-[46%] bg-red-600 h-5 w-5 rounded-full text-center ">
+            {product?.numReviews}
+          </div>
+        </div>
         <div className="float-end mr-8">
           <button
             onClick={reviewToggle}
@@ -93,7 +94,7 @@ const ProductPage = () => {
         ) : (
           <></>
         )}
-        <div className="flex w-full flex-row mt-10 pr-12">
+        <div className="flex  w-full ">
           <ProductReview
             productRev={product?.reviews}
             productId={product?._id}

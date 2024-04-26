@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {  FaShoppingBag, FaUserAlt } from "react-icons/fa";
+import {  FaHeart, FaShoppingBag, FaUserAlt } from "react-icons/fa";
 import { IoMdLogIn } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { MdDashboard } from "react-icons/md";
@@ -37,19 +37,27 @@ const Navbar = ({user}) => {
           <div className="flex items-center gap-3">
             <li className=" hidden md:block">
               {user?._id ? (
+             <>
                 <Link to="/profile">
                   <FaUserAlt />
                 </Link>
+             </>
               ) : (
                 <Link to="/login">
                   <IoMdLogIn size={"1.3rem"} />
                 </Link>
               )}
             </li>
-           
-            <li className=" hidden md:block ">
+            {
+     user?._id && (
+      <Link to="/favourite" className="hidden md:block">
+      <FaHeart />
+    </Link>
+     )   
+       }
+            <li className=" hidden md:block relative">
               <Link to="/cart">
-                <div className="bg-[#F30000] h-4 w-4 rounded-full absolute top-1 right-0 text-center">
+                <div className="bg-[#F30000] h-4 w-4 rounded-full absolute -top-2 -right-2 text-center">
                  {cartItems.length}
                 </div>
                 <FaShoppingBag />
@@ -85,25 +93,22 @@ const Navbar = ({user}) => {
             <div>
               <Link to="/">Home</Link>
             </div>
-            <div>
-              <Link to="/shop">Shop</Link>
+            <div className="my-5">
+              <Link to="/shop" >Shop</Link>
             </div>
             <div>
-              <Link to="/men">Men</Link>
+            <Link to="/favourite">
+            favourite
+            </Link>
             </div>
-            <div>
-              <Link to="/women">Women</Link>
-            </div>
-            <div>
-              <Link to="/kids">Kids</Link>
-            </div>
+        
           </section>
           <div className="z-100 text-zinc-200 flex flex-col  items-center gap-8">
             <Link to="/cart">
               <FaShoppingBag />
             </Link>
             {user?._id ? (
-              <Link to="/">
+              <Link to="/profile">
                 <FaUserAlt />
               </Link>
             ) : (

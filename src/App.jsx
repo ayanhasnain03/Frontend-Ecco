@@ -20,6 +20,7 @@ import UpdateProduct from "./pages/admin/UpdateProduct";
 import UserManagement from "./pages/admin/userManagement";
 import ForgetPassword from "./pages/Auth/ForgetPassword";
 import ResetPassword from "./pages/Auth/ResetPassword";
+import Fav from "./pages/User/Fav";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ const App = () => {
             element={<ProtectedRoute isAuthenticated={user ? true : false} />}
           >
             <Route path="/profile" element={<Profile user={user} />}  />
+            <Route path="/favourite" element={<Fav />}  />
           </Route>
           <Route
             element={

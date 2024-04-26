@@ -21,11 +21,11 @@ const ProductReview = ({ productRev, productId }) => {
   return (
     <div>
 
-      <div>
+      <div className="flex md:justify-start items-center justify-center flex-wrap m-8 gap-20">
       {productRev?.map((rev) => (
        <div
          key={rev._id}
-         className="h-[11rem] w-[20rem] shadow-2xl shadow-white flex flex-col items-center ml-8 relative "
+         className="h-[11rem] w-[20rem] shadow-2xl shadow-white flex flex-col items-center mt-8 relative "
        >
          <>
            {/* Check if the logged-in user is the owner of the comment */}

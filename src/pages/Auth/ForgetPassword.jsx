@@ -3,12 +3,13 @@ import { useForgotPasswordMutation } from "../../redux/api/userProfileApi";
 import toast from "react-hot-toast";
 
 const ForgetPassword = () => {
-  const [email, setEmail] = useState("");
   const [forgetPassword,{isLoading}] = useForgotPasswordMutation();
 
+  const [email, setEmail] = useState("");
   const submitHandler = async (e) => {
     e.preventDefault();
-    const res = await forgetPassword({email}).unwrap();
+    const res = await forgetPassword({email:email}).unwrap();
+ 
    toast.success(res?.message)
   };
   return (

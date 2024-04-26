@@ -49,10 +49,10 @@ export const userProfileApi = createApi({
       invalidatesTags:["profileupdate"]
     }),
     forgotPassword:builder.mutation({
-      query:(email)=>({
+      query:({email})=>({
         url:"forgetpassword",
         method:"POST",
-        body:email
+        body:{email}
       })
     }),
     resetPassword:builder.mutation({
@@ -61,7 +61,16 @@ export const userProfileApi = createApi({
         method:"PUT",
         body:{password}
       })
+    }),
+
+    addToFav:builder.mutation({
+      query:({id})=>({
+        url:`fav/${id}`,
+        method:"POST",
+      }),
+      invalidatesTags:["profileupdate"]
+
     })
   }),
 });
-export const { useUpdateProfilePictureMutation,useUpdatePasswordMutation,useUpdateProfileMutation,useLoginUserMutation,uselogoutUserMutation,useUserRegisterMutation,useForgotPasswordMutation,useResetPasswordMutation } = userProfileApi;
+export const { useUpdateProfilePictureMutation,useUpdatePasswordMutation,useUpdateProfileMutation,useLoginUserMutation,uselogoutUserMutation,useUserRegisterMutation,useForgotPasswordMutation,useResetPasswordMutation,useAddToFavMutation } = userProfileApi;
