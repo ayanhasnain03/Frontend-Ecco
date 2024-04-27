@@ -12,10 +12,8 @@ const Navbar = ({user}) => {
   const [isOpen, setOpen] = useState(false);
   const [toggle, setToggle] = useState(false);
   const {cartItems}=useSelector(state=>state.cartReducer)
-  console.log(cartItems)
-  const togleHandler = () => {
-    setToggle(!toggle);
-  };
+
+
   return (
     <motion.div
       initial={{ opacity: 0 }}

@@ -69,8 +69,14 @@ export const userProfileApi = createApi({
         method:"POST",
       }),
       invalidatesTags:["profileupdate"]
-
+    }),
+    removeToFav:builder.mutation({
+      query:({id})=>({
+        url:`removefav/${id}`,
+        method:"DELETE",
+      }),
+      invalidatesTags:["profileupdate"]
     })
   }),
 });
-export const { useUpdateProfilePictureMutation,useUpdatePasswordMutation,useUpdateProfileMutation,useLoginUserMutation,uselogoutUserMutation,useUserRegisterMutation,useForgotPasswordMutation,useResetPasswordMutation,useAddToFavMutation } = userProfileApi;
+export const { useUpdateProfilePictureMutation,useUpdatePasswordMutation,useUpdateProfileMutation,useLoginUserMutation,uselogoutUserMutation,useUserRegisterMutation,useForgotPasswordMutation,useResetPasswordMutation,useAddToFavMutation,useRemoveToFavMutation } = userProfileApi;
