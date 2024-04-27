@@ -17,12 +17,13 @@ export const productAPI = createApi({
       invalidatesTags:["product"]
     }),
     searchProducts: builder.query({
-      query: ({ price, search, sort, category, page }) => {
+      query: ({ price, search, sort, category, page,brand }) => {
         let base = `all?search=${search}&page=${page}`;
 
         if (price) base += `&price=${price}`;
         if (sort) base += `&sort=${sort}`;
         if (category) base += `&category=${category}`;
+        if (brand) base += `&brand=${brand}`;
 
         return base;
       },
@@ -36,6 +37,7 @@ export const productAPI = createApi({
       }),
       providesTags: ["product"],
     }),
+    
     getTopProducts: builder.query({
       query: () => ({
         url: `topproducts`, // Assuming this endpoint retrieves the user profile

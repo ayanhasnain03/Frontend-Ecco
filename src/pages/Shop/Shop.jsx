@@ -17,13 +17,16 @@ const Shop = () => {
   const [sort, setSort] = useState("");
   const [maxPrice, setMaxPrice] = useState(100000);
   const [category, setCategory] = useState("");
+  const [brand, setBrand] = useState("");
   const [page, setPage] = useState(1);
   const { isLoading: productLoading, data: searchedData } =
     useSearchProductsQuery({ search,
       sort,
       category,
       page,
-      price: maxPrice});
+      price: maxPrice,
+    brand
+    });
 
 const {data:productCategory}=useGetAllCategoriesQuery()
 
@@ -95,21 +98,35 @@ const {data:productCategory}=useGetAllCategoriesQuery()
               }
             </select>
           </div>
+
+          <div className="category flex flex-col gap-2 mt-8">
+            <label htmlFor="sorting">Brand</label>
+
+            <select   value={brand}
+            onChange={(e) => setBrand(e.target.value)} className="text-black w-[10rem] p-1.5">
+              <option value="">All</option>
+              {
+              searchedData?.products.map((product)=>(
+              <option value={product.brand}>{product.brand.toUpperCase()}</option>
+              ))
+              }
+            </select>
+          </div>
         </div>
 
-        <div className="w-[80rem]  mt-[1rem] mr-[4rem]  overflow-hidden">
-          <div className="search mb-10 mt-6">
+        <div className=" mt-[3rem] md:mt-[1rem] mr-[4rem] w-[90%] ">
+          <div className="search mb-10 mt-6 ml-6 ">
             <input
               type="text"
               placeholder="Search by name..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-              className="w-[15rem] rounded-2xl outline-none md:w-[80rem] p-1.5 text-black"
+              className="w-full rounded-2xl outline-none md:w-[80rem] p-1.5 text-black"
             />
           </div>
       {
         productLoading ? (<Loader length={5}/>):(
-          <div className="flex  md:flex-row flex-wrap md:items-center  justify-center gap-5  flex-col">
+          <div className="flex  md:flex-row flex-wrap md:items-center  justify-center gap-5 ml-6 flex-col">
             {searchedData &&
               searchedData.products.map((e, i) => (
                 <Card products={e} key={i}

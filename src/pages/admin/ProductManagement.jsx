@@ -52,8 +52,11 @@ const isNextPage = page < data?.totalPage;
             isLoading ? (<>
             <Loader length={10}/>
             </>):(
-               <img src={item.image.url} alt="" className="h-[10rem] w-[8rem]" />
-            )
+<Link to={`/shop/product/${item._id}`}>
+<img src={item.image.url} alt="" className="h-[10rem] w-[8rem]" />
+
+</Link>
+)
            }
          </div>
          <div>
