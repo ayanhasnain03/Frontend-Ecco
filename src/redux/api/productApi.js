@@ -115,11 +115,9 @@ export const productAPI = createApi({
     adminProducts: builder.query({
       query: ({ price, search, sort, category, page }) => {
         let base = `all?search=${search}&page=${page}`;
-
         if (price) base += `&price=${price}`;
         if (sort) base += `&sort=${sort}`;
         if (category) base += `&category=${category}`;
-
         return base;
       },
       providesTags: ["product"],

@@ -9,6 +9,7 @@ const ProductManagement = () => {
 const [search, setSearch] = useState("")
 const [page, setPage] = useState(1);
 const { data,isLoading } = useAdminProductsQuery({search,page});
+
 const [deleteProduct,{isLoading:deleteLoading}]=useDeleteProductMutation()
 const deleteHandler = async(id)=>{
 const res = await deleteProduct({id}).unwrap()
@@ -27,7 +28,7 @@ const isNextPage = page < data?.totalPage;
 
 <div className="head w-full flex md:flex-row flex-col justify-between items-center m-8 md:px-10">
 <h1 className="text-3xl mb-8 mr-10">Product Management</h1>
-<h1 className="text-3xl mb-8 mr-10">Total Product:{data?.products.length}</h1>
+<h1 className="text-3xl mb-8 mr-10">Products:{data?.products.length}</h1>
 <div className="mr-10">
     <input type="text"
     value={search}
