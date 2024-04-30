@@ -20,7 +20,7 @@ toast.error(error?.data.message)
   }
   return (
     <>
-      <div className="card  h-[28rem] w-[22rem] overflow-hidden p-2 relative hover:-translate-y-4 duration-150">
+      <div className="card  h-[28rem] w-[18rem] overflow-hidden p-2 relative hover:-translate-y-4 duration-150">
       <div className="absolute right-5 top-3 z-40">
 <button onClick={()=>addToFavHandler(products._id)}>
 <CiBookmarkPlus style={{fontSize:"2rem",color:"red"}}/>
@@ -42,10 +42,10 @@ toast.error(error?.data.message)
             <div>
               {" "}
               <h1 className="mb-2">{products?.brand}</h1>
-              <p className="mb-4">{products?.description}</p>
+              <p className="mb-4">{products?.description?.substring(0,30)}...</p>
             </div>
             <div className="flex justify-between items-center">
-              <h1 className="mb-2">{products?.price}</h1>
+              <h1 className="mb-2">₹{products?.price}</h1>
               <Ratings value={products?.rating} />{" "}
             </div>
           </div>

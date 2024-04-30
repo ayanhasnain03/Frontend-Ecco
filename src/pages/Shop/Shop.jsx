@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Card from "../../components/Card";
-import { useGetAllCategoriesQuery, useSearchProductsQuery } from "../../redux/api/productApi";
+import { useGetAllBrandsQuery, useGetAllCategoriesQuery, useSearchProductsQuery } from "../../redux/api/productApi";
 import Loader from "../../components/Loader";
 import ScrollToTopOnReload from "../../components/ResetPage";
 import { addToCart } from "../../redux/slices/cartSlice";
@@ -29,6 +29,7 @@ const Shop = () => {
     });
 
 const {data:productCategory}=useGetAllCategoriesQuery()
+const {data:productBrands}=useGetAllBrandsQuery()
 
 
 
@@ -106,8 +107,8 @@ const {data:productCategory}=useGetAllCategoriesQuery()
             onChange={(e) => setBrand(e.target.value)} className="text-black w-[10rem] p-1.5">
               <option value="">All</option>
               {
-              searchedData?.products.map((product)=>(
-              <option value={product.brand}>{product.brand.toUpperCase()}</option>
+              productBrands?.brands.map((brand)=>(
+              <option value={brand}>{brand.toUpperCase()}</option>
               ))
               }
             </select>
@@ -124,18 +125,26 @@ const {data:productCategory}=useGetAllCategoriesQuery()
               className="w-full rounded-2xl outline-none md:w-[80rem] p-1.5 text-black"
             />
           </div>
-      {
-        productLoading ? (<Loader length={5}/>):(
-          <div className="flex  md:flex-row flex-wrap md:items-center  justify-center gap-5 ml-6 flex-col">
-            {searchedData &&
-              searchedData.products.map((e, i) => (
-                <Card products={e} key={i}
-                handler={addToCartHandler}
-                />
-              ))}
-          </div>
-        )
-      }
+     {
+      searchedData?.products.length ===0 ? (
+        <h1>Product {searchedData?.products.length}</h1>
+      ):(
+        <>
+        {
+          productLoading ? (<Loader length={5}/>):(
+            <div className="flex  md:flex-row flex-wrap items-center  justify-center gap-5 ml-6 flex-col">
+              {searchedData &&
+                searchedData.products.map((e, i) => (
+                  <Card products={e} key={i}
+                  handler={addToCartHandler}
+                  />
+                ))}
+            </div>
+          )
+        }
+        </>
+      )
+     }
         </div>
       </div>
       <div className="md:ml-[10rem] ml-[5.5rem] mt-2">

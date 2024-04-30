@@ -60,14 +60,14 @@ const isNextPage = page < data?.totalPage;
            }
          </div>
          <div>
-             Name: {item.name}
+             Name: {item.name.substring(0,10)}...
          </div>
          <div>
              Price: ₹{item.price}
          </div>
 
          <div>
-             description : {item.description}
+             description : {item.description.substring(0,15)}...
          </div>
      
          <div>

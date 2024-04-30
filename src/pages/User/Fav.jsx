@@ -25,12 +25,12 @@ toast.success(res?.message)
     <div className="flex flex-row items-center gap-2  flex-wrap justify-center md:justify-start">
 {
     user?.favourite.map((item)=>(
-        <div key={item.product} className="mt-10 md:ml-4 h-[15rem] bg-black w-[15rem] flex flex-col items-center justify-center border border-red-600">
+        <div key={item.product} className="mt-10 md:ml-4 h-[30rem] bg-black w-[30rem] flex flex-col items-center justify-center border border-red-600">
 
 <Link to={`/shop/product/${item.product}`}>
-<img src={item.productImage} className="h-[11.5rem] w-[15rem] bg-cover px-2 mt-4 " alt="" />
+<img src={item.productImage} className=" h-[20rem] bg-cover px-2 mt-4 " alt="" />
 </Link>
-<div className="">
+<div className="mt-8">
 
 
 <button onClick={()=>removeFavHandler(item.product)}>Remove</button>

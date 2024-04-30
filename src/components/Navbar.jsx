@@ -14,6 +14,7 @@ const Navbar = ({user}) => {
   const {cartItems}=useSelector(state=>state.cartReducer)
 
 
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -48,9 +49,14 @@ const Navbar = ({user}) => {
             </li>
             {
      user?._id && (
-      <Link to="/favourite" className="hidden md:block">
-      <FaHeart />
-    </Link>
+  <div className="relative">
+    <div className="bg-[#F30000] h-4 w-4 rounded-full absolute -top-3 -right-2 text-center">
+      {user.favourite.length}
+    </div>
+        <Link to="/favourite" className="hidden md:block">
+        <FaHeart />
+      </Link>
+  </div>
      )   
        }
             <li className=" hidden md:block relative">

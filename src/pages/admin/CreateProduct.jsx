@@ -2,6 +2,8 @@ import Sidebar from "../../components/admin/Sidebar";
 import { useState } from "react";
 import { useNewProductMutation } from "../../redux/api/productApi";
 import {toast} from "react-hot-toast"
+import Loader from "../../components/Loader";
+import { useNavigate } from "react-router-dom";
 
 const CreateProduct = () => {
   const [title, setTitle] = useState("");
@@ -26,7 +28,8 @@ const CreateProduct = () => {
       };
     }
   };
-const [createProduct]=useNewProductMutation()
+  const navigate = useNavigate()
+const [createProduct,{isLoading}]=useNewProductMutation()
   const submitHandler = async(e)=>{
 e.preventDefault()
 const formData = new FormData()
@@ -39,6 +42,7 @@ formData.append("stock",stock)
 formData.append("file",image)
 const res = await createProduct(formData)
 toast.success(res?.data?.message)
+navigate("/admin/productmanagement")
   }
   return (
     <div className="h-full flex w-full  bg-black ">
@@ -48,7 +52,14 @@ toast.success(res?.data?.message)
     <h1 className="text-2xl">Create Product</h1>
 </div>
         <div className="w-[20%] overflow-hidden mt-[10rem] md:mt-[1rem]">
+{
+  isLoading ? (<Loader length={8}/>):(
+    <>
         {imagePrev && <img src={imagePrev} alt="New Image" />}
+    
+    </>
+  )
+}
         </div>
 
 

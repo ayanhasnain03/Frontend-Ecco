@@ -10,13 +10,12 @@ const dispatch = useDispatch()
     dispatch(calculatePrice())
       }, [cartItems])
   return (
-    <main className="bg-black h-[100vh] flex flex-col md:flex-row items-center mt-8 ">
+    <main className="bg-black   flex flex-col md:flex-row items-center mt-8 relative">
       <div className="bg-black md:w-[70%] w-full  h-full px-1 ">
-        
-            <CartItems/>
-      
+            <CartItems/> 
       </div>
-      <div className="bg-black w-full md:w-[30%] h-[100vh] flex flex-col px-8">
+
+      <div className="bg-black w-full md:w-[30%]  flex flex-col px-8 md:absolute top-1 right-0">
         <div className="mt-6 flex flex-col gap-5 ">
           <p className="text-xl font-thin">Subtotal: ₹{subtotal}</p>
           <p className="text-xl font-thin">Shipping: ₹{shippingCharges}</p>

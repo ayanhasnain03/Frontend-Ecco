@@ -49,14 +49,14 @@ const Home = () => {
         </div>
       </div>
       <h1 className="m-8 text-2xl font-semibold">Popular Products</h1>
-      <div className="mt-5  w-full flex items-center justify-center md:justify-around  flex-wrap gap-5  ">
+      <div className="mt-5  w-full flex items-center justify-center md:justify-around  flex-wrap gap-5 px-5 ">
         {data?.topProduct?.map((product, i) => (
           <Card products={product} key={i} handler={addToCartHandler} />
         ))}
       </div>
 
       <h1 className="m-8 text-2xl font-semibold">latest Products</h1>
-      <div className="mt-5  w-full flex items-center justify-center md:justify-around flex-wrap md:mx-[3rem] gap-5 ">
+      <div className="mt-5  w-full flex items-center justify-center px-5 md:justify-around  flex-wrap gap-5   ">
         {latestproduct?.products?.map((product, i) => (
           <Card products={product} key={i} />
         ))}

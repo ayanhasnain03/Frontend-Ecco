@@ -38,6 +38,14 @@ export const productAPI = createApi({
       providesTags: ["product"],
     }),
     
+    getAllBrands: builder.query({
+      query: () => ({
+        url: `brand/all`, // Assuming this endpoint retrieves the user profile
+        method: "GET", // Use GET method to fetch data
+      }),
+      providesTags: ["product"],
+    }),
+    
     getTopProducts: builder.query({
       query: () => ({
         url: `topproducts`, // Assuming this endpoint retrieves the user profile
@@ -118,4 +126,4 @@ export const productAPI = createApi({
     }),
   }),
 });
-export const { useSearchProductsQuery, useGetAllCategoriesQuery,useGetTopProductsQuery,useGetProductByIdQuery,useRelatedProductQuery,useNewProductMutation,useGetReviewQuery,useCreateReviewMutation,useDeleteReviewMutation,useAdminProductsQuery,useUpdateProductMutation,useUpdateProductImageMutation,useDeleteProductMutation,useLastestProductQuery} = productAPI;
+export const { useSearchProductsQuery, useGetAllCategoriesQuery,useGetTopProductsQuery,useGetProductByIdQuery,useRelatedProductQuery,useNewProductMutation,useGetReviewQuery,useCreateReviewMutation,useDeleteReviewMutation,useAdminProductsQuery,useUpdateProductMutation,useUpdateProductImageMutation,useDeleteProductMutation,useLastestProductQuery,useGetAllBrandsQuery} = productAPI;
