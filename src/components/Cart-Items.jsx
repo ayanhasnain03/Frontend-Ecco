@@ -24,9 +24,11 @@ toast.success("removed")
 {
   cartItems && cartItems.length > 0 ? cartItems.map((item)=>(
     <div className="border flex items-center justify-between  md:pr-8 pr-4 md:mt-5 mt-2 text-center">
-    <div className="">
+<Link to={`/shop/product/${item._id}`}>
+<div className="">
       <img src={item?.image?.url} className="md:w-[15rem] w-[8rem]" alt="" />
     </div>
+</Link>
     <div>
       <h1>{item.name}</h1>
       <h3 className="mt-2">₹ {item.price}</h3>
@@ -43,12 +45,11 @@ toast.success("removed")
   )):(
     <div className="flex items-center justify-center flex-col gap-8 mt-20 ">
       <h1 className="text-3xl font-bold">Items Not Found ! </h1>
-      <p>Go to shop</p>
       <button
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-[#F30000] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#f30000e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-<Link to="/shop">Shop</Link>
+<Link to="/shop">Go to shop</Link>
               </button>
     </div>
   )

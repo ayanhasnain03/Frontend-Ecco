@@ -23,6 +23,7 @@ import ResetPassword from "./pages/Auth/ResetPassword";
 import Fav from "./pages/User/Fav";
 import Checkout from "./pages/order/PaymentPage";
 import Shipping from "./pages/order/Shipping";
+import MyOrder from "./pages/order/MyOrder";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -59,6 +60,7 @@ const App = () => {
             element={<ProtectedRoute isAuthenticated={user ? true : false} />}
           >
             <Route path="/profile" element={<Profile user={user} />}  />
+            <Route path="/orders" element={<MyOrder/>}  />
             <Route path="/favourite" element={<Fav />}  />
             <Route path="/shipping" element={<Shipping/>}  />
             <Route path="/checkout" element={<Checkout/>}  />

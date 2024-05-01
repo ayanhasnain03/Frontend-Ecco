@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const orderApi = createApi({
-  reducerPath: "userOrder",
+  reducerPath: "orderApi",
   baseQuery: fetchBaseQuery({
     baseUrl: `${import.meta.env.VITE_SERVER}/order/`,
     credentials:"include"
@@ -15,7 +15,14 @@ createOrder:builder.mutation({
         body:order
     }),
     invalidatesTags: ["order"],
+}),
+myOrder:builder.query({
+    query:()=>({
+        url:"myorders",
+        method:"GET"
+    }),
+    providesTags: ["order"],
 })
   }),
 });
-export const { useCreateOrderMutation } = orderApi;
+export const { useCreateOrderMutation,useMyOrderQuery } = orderApi;
