@@ -21,6 +21,8 @@ import UserManagement from "./pages/admin/userManagement";
 import ForgetPassword from "./pages/Auth/ForgetPassword";
 import ResetPassword from "./pages/Auth/ResetPassword";
 import Fav from "./pages/User/Fav";
+import Checkout from "./pages/order/PaymentPage";
+import Shipping from "./pages/order/Shipping";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -58,6 +60,8 @@ const App = () => {
           >
             <Route path="/profile" element={<Profile user={user} />}  />
             <Route path="/favourite" element={<Fav />}  />
+            <Route path="/shipping" element={<Shipping/>}  />
+            <Route path="/checkout" element={<Checkout/>}  />
           </Route>
           <Route
             element={

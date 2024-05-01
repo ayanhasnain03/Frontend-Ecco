@@ -3,21 +3,20 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = localStorage.getItem("cart")
   ? JSON.parse(localStorage.getItem("cart"))
   : {
-      cartItems: [],
-      subtotal: 0,
-      tax: 0,
-      shippingCharges: 0,
-      discount: 0,
-      total: 0,
-      shippingAddress: {
-        address: "",
-        city: "",
-        state: "",
-        country: "",
-        loading: false,
-        pinCode: "",
-      },
-      paymentMethod: "PayPal",
+    loading: false,
+    cartItems: [],
+    subtotal: 0,
+    tax: 0,
+    shippingCharges: 0,
+    discount: 0,
+    total: 0,
+    shippingInfo: {
+      address: "",
+      city: "",
+      state: "",
+      country: "",
+      pinCode: "",
+    },
     };
 
 export const cartReducer = createSlice({
@@ -56,7 +55,7 @@ export const cartReducer = createSlice({
       state.shippingCharges = state.subtotal > 1000 ? 0 : 200;
       state.tax = Math.round(state.subtotal * 0.18);
       state.total =
-        state.subtotal + state.tax + state.shippingCharges;
+        state.subtotal + state.tax + state.shippingCharges - state.discount;
     },
 
     discountApplied: (state, action) => {

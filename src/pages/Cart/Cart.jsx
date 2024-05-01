@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CartItems from "../../components/Cart-Items";
 import { calculatePrice } from "../../redux/slices/cartSlice";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const {cartItems,subtotal,shippingCharges,tax,total}=useSelector(state=>state.cartReducer)
@@ -30,11 +31,13 @@ const dispatch = useDispatch()
             placeholder="Enter Your Coupan Code"
             className="block   p-1.5 text-black  sm:text-sm sm:leading-6 w-[20rem]"
           />
+             <Link to="/shipping">
              <button
                 className="flex w-[20rem] justify-center rounded-md bg-[#F30000]  py-1.5 text-sm mt-8 font-semibold leading-6 text-white shadow-sm hover:bg-[#f30000e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Check Out
               </button>
+             </Link>
         </div>
      
       </div>
