@@ -24,6 +24,7 @@ import Fav from "./pages/User/Fav";
 import Checkout from "./pages/order/PaymentPage";
 import Shipping from "./pages/order/Shipping";
 import MyOrder from "./pages/order/MyOrder";
+import OrderDetailPage from "./pages/order/OrderDetailPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -61,6 +62,7 @@ const App = () => {
           >
             <Route path="/profile" element={<Profile user={user} />}  />
             <Route path="/orders" element={<MyOrder/>}  />
+            <Route path="/order/:id" element={<OrderDetailPage/>}  />
             <Route path="/favourite" element={<Fav />}  />
             <Route path="/shipping" element={<Shipping/>}  />
             <Route path="/checkout" element={<Checkout/>}  />

@@ -22,7 +22,14 @@ myOrder:builder.query({
         method:"GET"
     }),
     providesTags: ["order"],
+}),
+orderDetails:builder.query({
+    query:(id)=>({
+        url:`${id}`,
+        method:"GET"
+    }),
+    providesTags: ["order"],
 })
   }),
 });
-export const { useCreateOrderMutation,useMyOrderQuery } = orderApi;
+export const { useCreateOrderMutation,useMyOrderQuery,useOrderDetailsQuery } = orderApi;
