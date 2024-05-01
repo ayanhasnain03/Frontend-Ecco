@@ -29,7 +29,7 @@ toast.success("removed")
     </div>
     <div>
       <h1>{item.name}</h1>
-      <h3>{item.price}</h3>
+      <h3 className="mt-2">₹ {item.price}</h3>
     </div>
     <div className="flex justify-between w-[8rem] items-center">
     <button onClick={()=>decrementHandler(item)} className="text-center">-</button>
