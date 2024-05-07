@@ -22,7 +22,7 @@ const OrderManagemnt = () => {
             </tr>
           </thead>
           <tbody>
-            {data.orders.map((order) => (
+            {data?.orders?.map((order) => (
               <tr key={order._id} className=" border-b  ">
                <Link to={`/shop/product/${order.orderItems[0].productId}`}>
                 <td className="px-6 py-4 font-medium">

@@ -28,52 +28,7 @@ import OrderDetailPage from "./pages/order/OrderDetailPage";
 import OrderManagemnt from "./pages/admin/OrderManagement";
 
 const App = () => {
-  const columns = [
-    {
-      Header: 'Order ID',
-      accessor: 'orderId',
-    },
-    {
-      Header: 'Customer Name',
-      accessor: 'customerName',
-    },
-    {
-      Header: 'Product',
-      accessor: 'product',
-    },
-    {
-      Header: 'Quantity',
-      accessor: 'quantity',
-    },
-    {
-      Header: 'Price',
-      accessor: 'price',
-    },
-    {
-      Header: 'Date',
-      accessor: 'date',
-    },
-  ];
-  
-  const orderData = [
-    {
-      orderId: '123',
-      customerName: 'John Doe',
-      product: 'Laptop',
-      quantity: 1,
-      price: 1200,
-      date: '2023-10-10',
-    },
-    {
-      orderId: '124',
-      customerName: 'Jane Smith',
-      product: 'Smartphone',
-      quantity: 2,
-      price: 800,
-      date: '2023-10-11',
-    },
-    // Add more sample data if needed
-  ];
+
   
   const dispatch = useDispatch();
   useEffect(() => {
@@ -110,7 +65,7 @@ const App = () => {
           >
             <Route path="/profile" element={<Profile user={user} />}  />
             <Route path="/orders" element={<MyOrder/>}  />
-            <Route path="/order/:id" element={<OrderDetailPage/>}  />
+            <Route path="/order/:id" element={<OrderDetailPage user={user}/>}  />
             <Route path="/favourite" element={<Fav />}  />
             <Route path="/shipping" element={<Shipping/>}  />
             <Route path="/checkout" element={<Checkout/>}  />

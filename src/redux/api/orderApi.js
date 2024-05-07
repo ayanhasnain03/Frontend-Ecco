@@ -36,7 +36,14 @@ getAllOrders:builder.query({
         method:"GET"
     }),
     providesTags: ["order"],
+}),
+updateOrders:builder.mutation({
+    query:(id)=>({
+        url:`${id}`,
+        method:"PUT"
+    }),
+    invalidatesTags: ["order"],
 })
   }),
 });
-export const { useCreateOrderMutation,useMyOrderQuery,useOrderDetailsQuery,useGetAllOrdersQuery } = orderApi;
+export const { useCreateOrderMutation,useMyOrderQuery,useOrderDetailsQuery,useGetAllOrdersQuery,useUpdateOrdersMutation } = orderApi;
