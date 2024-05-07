@@ -26,6 +26,8 @@ import Shipping from "./pages/order/Shipping";
 import MyOrder from "./pages/order/MyOrder";
 import OrderDetailPage from "./pages/order/OrderDetailPage";
 import OrderManagemnt from "./pages/admin/OrderManagement";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import ContactUs from "./pages/ContactUs";
 
 const App = () => {
 
@@ -96,7 +98,8 @@ const App = () => {
 
           </Route>
 
-
+<Route path="/termsandcondition" element={<TermsAndConditions/>}/>
+<Route path="/contact" element={<ContactUs/>}/>
         </Routes>
         <Footer />
         <Toaster position="bottom-center" />

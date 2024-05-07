@@ -7,7 +7,7 @@ const OrderManagemnt = () => {
 
   return (
     <div className="h-full w-full px-10 mt-10">
-      <h1 className='text-2xl m-5'>MyOrders({data?.myTotalOrders})</h1>
+      <h1 className='text-2xl m-5'>MyOrders({data?.orders.length})</h1>
       <div className="relative overflow-x-auto shadow-md">
         <table className="w-full text-sm text-left rtl:text-right 0">
           <thead className="text-xs  uppercase bg-black border border-red-600">
