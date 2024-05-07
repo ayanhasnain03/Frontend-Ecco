@@ -29,7 +29,14 @@ orderDetails:builder.query({
         method:"GET"
     }),
     providesTags: ["order"],
+}),
+getAllOrders:builder.query({
+    query:()=>({
+        url:`all`,
+        method:"GET"
+    }),
+    providesTags: ["order"],
 })
   }),
 });
-export const { useCreateOrderMutation,useMyOrderQuery,useOrderDetailsQuery } = orderApi;
+export const { useCreateOrderMutation,useMyOrderQuery,useOrderDetailsQuery,useGetAllOrdersQuery } = orderApi;

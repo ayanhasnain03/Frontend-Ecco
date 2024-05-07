@@ -35,6 +35,11 @@ export default function Slider() {
             Users Management
           </Link>
         </div>
+        <div className='text-[0.9rem] mt-4'>
+          <Link to="/admin/ordermanagement" className="text-white">
+            Order Management
+          </Link>
+        </div>
       </List>
     </Box>
   );

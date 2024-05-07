@@ -25,8 +25,56 @@ import Checkout from "./pages/order/PaymentPage";
 import Shipping from "./pages/order/Shipping";
 import MyOrder from "./pages/order/MyOrder";
 import OrderDetailPage from "./pages/order/OrderDetailPage";
+import OrderManagemnt from "./pages/admin/OrderManagement";
 
 const App = () => {
+  const columns = [
+    {
+      Header: 'Order ID',
+      accessor: 'orderId',
+    },
+    {
+      Header: 'Customer Name',
+      accessor: 'customerName',
+    },
+    {
+      Header: 'Product',
+      accessor: 'product',
+    },
+    {
+      Header: 'Quantity',
+      accessor: 'quantity',
+    },
+    {
+      Header: 'Price',
+      accessor: 'price',
+    },
+    {
+      Header: 'Date',
+      accessor: 'date',
+    },
+  ];
+  
+  const orderData = [
+    {
+      orderId: '123',
+      customerName: 'John Doe',
+      product: 'Laptop',
+      quantity: 1,
+      price: 1200,
+      date: '2023-10-10',
+    },
+    {
+      orderId: '124',
+      customerName: 'Jane Smith',
+      product: 'Smartphone',
+      quantity: 2,
+      price: 800,
+      date: '2023-10-11',
+    },
+    // Add more sample data if needed
+  ];
+  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadUser());
@@ -78,6 +126,7 @@ const App = () => {
           >
             <Route path="/admin/dashboard" element={<Admin />} />
             <Route path="/admin/productmanagement" element={<ProductManagement />} />
+            <Route path="/admin/ordermanagement" element={<OrderManagemnt  />} />
             <Route path="/admin/updateproduct/:id" element={<UpdateProduct />} />
 
             <Route
