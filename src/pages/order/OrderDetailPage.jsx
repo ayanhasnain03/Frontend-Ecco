@@ -1,16 +1,24 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
+    useDeleteOrdersMutation,
   useOrderDetailsQuery,
   useUpdateOrdersMutation,
 } from "../../redux/api/orderApi";
 import {toast} from "react-hot-toast"
 const OrderDetailPage = ({ user }) => {
+    const naviagte = useNavigate()
   const { id } = useParams();
   const { data } = useOrderDetailsQuery(id);
   const [updateStatus] = useUpdateOrdersMutation();
+  const [deleteOrder] = useDeleteOrdersMutation();
   const updateStatusHandler = async (orderId) => {
     const res = await updateStatus(orderId).unwrap();
    toast.success(res?.message)
+  };
+  const deleteOrderHandler = async (orderId) => {
+    const res = await deleteOrder(orderId).unwrap();
+   toast.success(res?.message)
+naviagte("/admin/ordermanagement")
   };
   return (
     <div className="flex px-5 md:flex-row flex-col  items-center justify-center mt-20">
@@ -41,7 +49,7 @@ const OrderDetailPage = ({ user }) => {
             >
             {data?.orders?.status}
             </button>
-            <button className=" rounded-md bg-[#F30000] w-[8rem]  py-1.5 text-sm   font-semibold  text-white hover:bg-[#f30000e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ">
+            <button onClick={()=>deleteOrderHandler(data?.orders._id)} className=" rounded-md bg-[#F30000] w-[8rem]  py-1.5 text-sm   font-semibold  text-white hover:bg-[#f30000e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ">
               Delete
             </button>
           </div>

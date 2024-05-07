@@ -43,7 +43,14 @@ updateOrders:builder.mutation({
         method:"PUT"
     }),
     invalidatesTags: ["order"],
+}),
+deleteOrders:builder.mutation({
+    query:(id)=>({
+        url:`${id}`,
+        method:"DELETE"
+    }),
+    invalidatesTags: ["order"],
 })
   }),
 });
-export const { useCreateOrderMutation,useMyOrderQuery,useOrderDetailsQuery,useGetAllOrdersQuery,useUpdateOrdersMutation } = orderApi;
+export const { useCreateOrderMutation,useMyOrderQuery,useOrderDetailsQuery,useGetAllOrdersQuery,useUpdateOrdersMutation,useDeleteOrdersMutation } = orderApi;
