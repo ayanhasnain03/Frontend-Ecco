@@ -6,6 +6,7 @@ import {
 } from "../../redux/api/adminUserApi";
 import toast from "react-hot-toast";
 import Loader from "../../components/Loader";
+
 const UserManagement = () => {
   const { data } = useAllUsersQuery();
   const [updateUserRole] = useUpdateUserRoleMutation();
