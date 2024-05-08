@@ -27,7 +27,15 @@ export const userAPI = createApi({
         }),
         invalidatesTags:["users"]
       }),
+    contactFromUser: builder.mutation({
+        query: ({name,email,message}) => ({
+          url: `contact`,
+          method: 'POST',
+          body:{name,email,message}
+        }),
+        invalidatesTags:["users"]
+      }),
   }),
 });
 
-export const { useAllUsersQuery,useUpdateUserRoleMutation,useDeleteUserMutation } = userAPI;
+export const { useAllUsersQuery,useUpdateUserRoleMutation,useDeleteUserMutation ,useContactFromUserMutation} = userAPI;

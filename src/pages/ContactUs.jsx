@@ -1,11 +1,16 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-
+import { useContactFromUserMutation } from "../redux/api/adminUserApi"
+import {toast} from "react-hot-toast"
 const ContactUs = () => {
     const [email, setEmail] = useState("")
+    const [name, setName] = useState("")
     const [message, setMessage] = useState("")
-    const submitHandler = ()=>{
-        console.log("submit")
+    const [userContact,{isLoading}]=useContactFromUserMutation()
+    const submitHandler = async(e)=>{
+      e.preventDefault()
+   const res =await userContact({name,email,message}).unwrap()
+toast.success(res?.message)
     }
   return (
     <>
@@ -23,6 +28,26 @@ const ContactUs = () => {
               htmlFor="email"
               className="block text-sm font-medium leading-6"
             >
+              Name
+            </label>
+            <div className="mt-2">
+              <input
+               
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                name="name"
+                type="text"
+                placeholder="Your Name"
+                required
+                className="block w-full  py-1.5 text-black  sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium leading-6"
+            >
               Email address
             </label>
             <div className="mt-2">
@@ -33,6 +58,7 @@ const ContactUs = () => {
                 name="email"
                 type="email"
                 autoComplete="email"
+                placeholder="Your Email"
                 required
                 className="block w-full  py-1.5 text-black  sm:text-sm sm:leading-6"
               />
@@ -61,7 +87,7 @@ id="message" rows="4" className="block resize-none p-2.5 w-full text-sm text-gra
               type="submit"
               className="flex w-full justify-center rounded-md bg-[#F30000] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#f30000e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-             Send
+{isLoading ? (<>Sending...</>):(<>Send</>)}
             </button>
           </div>
         </form>
