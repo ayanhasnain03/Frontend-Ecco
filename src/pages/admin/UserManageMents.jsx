@@ -7,7 +7,7 @@ import {
 import toast from "react-hot-toast";
 import Loader from "../../components/Loader";
 
-const UserManagement = () => {
+const UserManageMent = () => {
   const { data } = useAllUsersQuery();
   const [updateUserRole] = useUpdateUserRoleMutation();
   const [deleteUser, { isLoading }] = useDeleteUserMutation();
@@ -82,4 +82,4 @@ const UserManagement = () => {
     </div>
   );
 };
-export default UserManagement;
+export default UserManageMent;

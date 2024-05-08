@@ -27,7 +27,9 @@ import OrderDetailPage from "./pages/order/OrderDetailPage";
 import OrderManagemnt from "./pages/admin/OrderManagement";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import ContactUs from "./pages/ContactUs";
-import UserManagement from "./pages/admin/userManagement";
+import UserManageMent from "./pages/admin/UserManageMents";
+
+
 
 const App = () => {
 
@@ -93,7 +95,7 @@ const App = () => {
 
             <Route
               path="/admin/usermanagement"
-              element={<UserManagement/>}
+              element={<UserManageMent/>}
             />
 
           </Route>
