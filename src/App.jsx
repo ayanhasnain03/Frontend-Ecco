@@ -17,6 +17,7 @@ import Cart from "./pages/Cart/Cart";
 import CreateProduct from "./pages/admin/CreateProduct";
 import ProductManagement from "./pages/admin/ProductManagement";
 import UpdateProduct from "./pages/admin/UpdateProduct";
+import UserManagement from "./pages/admin/UserManageMents";
 import ForgetPassword from "./pages/Auth/ForgetPassword";
 import ResetPassword from "./pages/Auth/ResetPassword";
 import Fav from "./pages/User/Fav";
@@ -27,9 +28,6 @@ import OrderDetailPage from "./pages/order/OrderDetailPage";
 import OrderManagemnt from "./pages/admin/OrderManagement";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import ContactUs from "./pages/ContactUs";
-import UserManageMent from "./pages/admin/UserManageMents";
-
-
 
 const App = () => {
 
@@ -95,7 +93,7 @@ const App = () => {
 
             <Route
               path="/admin/usermanagement"
-              element={<UserManageMent/>}
+              element={<UserManagement />}
             />
 
           </Route>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import { loadUser } from "../../redux/action/userAction";
 import { useDispatch } from "react-redux";
@@ -8,7 +8,6 @@ export default function Login() {
 const dispatch = useDispatch()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate()
   const [loginUser,error]=useLoginUserMutation()
 
   const submitHandler =async e => {
