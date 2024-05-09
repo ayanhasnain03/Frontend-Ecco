@@ -1,4 +1,4 @@
-import model from "../assets/.png";
+import model from "../assets/modelMen.png";
 import logo from "../assets/logo.png";
 import { motion } from "framer-motion";
 import Card from "../components/Card";
@@ -21,7 +21,7 @@ const Home = () => {
   return (
     <div className="h-full w-full">
       <div className="banner">
-        <div className="h-[90vh] w-[100vw] bg-black  flex md:flex-row justify-between items-center relative ">
+        <div className="h-[90vh] w-[100vw] bg-black  flex md:flex-row justify-between items-center relative px-8 md:px-2 md:mt-8">
           <motion.div
             initial={{ x: -600 }}
             animate={{ x: 10 }}
@@ -41,9 +41,9 @@ const Home = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.2 }}
-              src={banner}
+              src={model}
               alt=""
-              className=" w-full md:w-[60%]"
+              className=" md:w-full md:mt-8"
             />
           </div>
         </div>

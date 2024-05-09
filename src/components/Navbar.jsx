@@ -50,7 +50,7 @@ const Navbar = ({user}) => {
             {
      user?._id && (
   <div className="relative">
-    <div className="bg-[#F30000] h-4 w-4 rounded-full absolute -top-3 -right-2 text-center">
+    <div className="bg-[#F30000] h-4 w-4 rounded-full absolute -top-3 -right-2 text-center hidden md:block">
       {user.favourite.length}
     </div>
         <Link to="/favourite" className="hidden md:block">

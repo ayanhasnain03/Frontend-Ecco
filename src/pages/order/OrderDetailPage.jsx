@@ -37,7 +37,7 @@ naviagte("/admin/ordermanagement")
         <h2 className="mt-1 font-semibold space-x-4">
           Quantity:{data?.orders?.orderItems[0].quantity}
         </h2>
-        <h2 className="mt-1 font-semibold space-x-4">
+        <h2 className="mt-1 font-semibold space-x-4 pb-2">
           productId:{data?.orders?.orderItems[0].productId}
         </h2>
         <div>
@@ -56,7 +56,7 @@ naviagte("/admin/ordermanagement")
         )}
         </div>
       </div>
-      <div className=" h-[32rem]  mt-8  border border-red-600 mr-10 ">
+      <div className=" h-[32rem]  mt-8  border border-red-600  ">
         <div className="shipping info m-8">
           <div>
             <h1 className="text-xl font-semibold mb-2">Shipping Info</h1>

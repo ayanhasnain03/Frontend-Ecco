@@ -78,10 +78,10 @@ const CheckOutForm = () => {
     setIsProcessing(false);
   };
   return (
-    <div className="checkout-container">
-      <form onSubmit={submitHandler}>
-        <PaymentElement />
-        <button type="submit" disabled={isProcessing}>
+    <div className="checkout-container bg-black text-white p-5 flex items-center justify-center mt-8">
+      <form onSubmit={submitHandler} className="space-y-4">
+        <PaymentElement className="p-2 rounded-lg w-[20rem]" />
+        <button type="submit" disabled={isProcessing} className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
           {isProcessing ? "Processing..." : "Pay"}
         </button>
       </form>
@@ -102,6 +102,7 @@ const Checkout = () => {
         clientSecret,
       }}
       stripe={stripePromise}
+      className="bg-black min-h-screen"
     >
       <CheckOutForm />
     </Elements>
