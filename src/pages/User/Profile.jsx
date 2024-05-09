@@ -29,28 +29,28 @@ const Profile = ({ user }) => {
   return (
     <main className="h-[100vh]">
 {
-  updatePictureModal ? (<div className="z-30 bg-slate-900 md:h-[70vh] md:w-[40vw] h-[70vh] w-[65vw] absolute left-[25%] md:left-[30%] top-[20%] right-[70%]">
+  updatePictureModal ? (<div className="z-30 bg-black md:h-[70vh] md:w-[40vw] h-[70vh] w-[65vw] absolute left-[21%] md:left-[30%] top-[20%] right-[50%]">
   <UpdatePictureModal profileModal={profileModal} />
   </div>):(
     <></>
   )
 }    
 {
-  updatePasswordModal ? (<div className="z-30 bg-slate-900 md:h-[60vh] md:w-[40vw] h-[60vh] w-[60vw] absolute left-[21%] md:left-[30%] top-[20%] right-[70%]">
+  updatePasswordModal ? (<div className="z-30 bg-black md:h-[60vh] md:w-[40vw] h-[60vh] w-[60vw] absolute left-[21%] md:left-[30%] top-[20%] right-[70%]">
   <UpdatePasswordModal profilePassChange={profilePasswordModal} />
   </div>):(
     <></>
   )
 }    
 {
-  updateProfile ? (<div className="z-30 bg-slate-900 md:h-[80vh] md:w-[40vw] h-[60vh] w-[60vw] absolute left-[25%] md:left-[30%] top-[20%] right-[70%]">
+  updateProfile ? (<div className="z-30 bg-black md:h-[80vh] md:w-[40vw] h-[60vh] w-[60vw] absolute left-[25%] md:left-[30%] top-[20%] right-[70%]">
   <UpdateProfileModal profileUpdate={updateProfileModal} />
   </div>):(
     <></>
   )
 }    
 {
-  logoutModal ? (<div className="z-30 bg-slate-900 md:h-[50vh] md:w-[40vw] h-[50vh] w-[60vw] absolute left-[25%] md:left-[30%] top-[20%] right-[70%]">
+  logoutModal ? (<div className="z-30 bg-black md:h-[50vh] md:w-[40vw] h-[50vh] w-[60vw] absolute left-[25%] md:left-[30%] top-[20%] right-[70%]">
   <LogoutPopUp logoutModal={logoutModalToogle} />
   </div>):(
     <></>
