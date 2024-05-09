@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useMyOrderQuery } from '../../redux/api/orderApi';
 import { Link } from 'react-router-dom'; // For navigation to order details page
 import moment from 'moment';
+import MetaData from '../../components/MetaData';
 
 const MyOrder = () => {
 
@@ -19,6 +20,7 @@ const MyOrder = () => {
 
   return (
     <div className="h-full w-full px-10 mt-10">
+      <MetaData title="orders"/>
       <h1 className='text-2xl m-5'>MyOrders({data?.myTotalOrders})</h1>
       <div className="relative overflow-x-auto shadow-md">
         <table className="w-full text-sm text-left rtl:text-right 0">

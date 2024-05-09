@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import axios from "axios"
 import {server} from "../../redux/store"
 import { VscError } from "react-icons/vsc";
+import MetaData from "../../components/MetaData";
 const Cart = () => {
   const { cartItems, subtotal, shippingCharges, tax, total, discount } =
     useSelector((state) => state.cartReducer);
@@ -44,6 +45,8 @@ const Cart = () => {
   }, [cartItems]);
   return (
     <main className="bg-black   flex flex-col md:flex-row items-center mt-8 relative">
+      <MetaData title="cart"/>
+
       <div className="bg-black md:w-[70%] w-full  h-full px-1 ">
         <CartItems />
       </div>

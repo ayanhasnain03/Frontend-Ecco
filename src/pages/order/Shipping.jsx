@@ -5,6 +5,7 @@ import { resetCart, saveShippingInfo } from "../../redux/slices/cartSlice";
 import axios from "axios";
 import { server } from "../../redux/store";
 import toast from "react-hot-toast";
+import MetaData from "../../components/MetaData";
 
 const Shipping = () => {
   const dispatch = useDispatch();
@@ -67,6 +68,8 @@ const Shipping = () => {
 
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-6 lg:px-8">
+      <MetaData title="Shipping"/>
+
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-[#F30000]">
           Shipping Info

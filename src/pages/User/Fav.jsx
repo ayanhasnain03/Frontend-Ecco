@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useRemoveToFavMutation } from "../../redux/api/userProfileApi";
 import { loadUser } from "../../redux/action/userAction";
 import {toast} from "react-hot-toast"
+import MetaData from "../../components/MetaData";
 const Fav = () => {
   const { user } = useSelector((state) => state.user);
 const dispatch = useDispatch()
@@ -16,6 +17,7 @@ toast.success(res?.message)
 }
   return (
     <div className="" >
+      <MetaData title="favourite"/>
 
 <div>
         <h1 className="text-3xl m-8">Favourite Products ({user?.favourite.length})</h1>

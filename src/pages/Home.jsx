@@ -9,6 +9,7 @@ import ScrollToTopOnReload from "../components/ResetPage";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/slices/cartSlice";
 import toast from "react-hot-toast";
+import MetaData from "../components/MetaData";
 const Home = () => {
   const { data } = useGetTopProductsQuery();
   const {data:latestproduct}=useLastestProductQuery()
@@ -20,6 +21,7 @@ const Home = () => {
   }
   return (
     <div className="h-full w-full">
+      <MetaData title="Eccomerce"/>
       <div className="banner">
         <div className="h-[90vh] w-[100vw] bg-black  flex md:flex-row justify-between items-center relative px-8 md:px-2 md:mt-8">
           <motion.div

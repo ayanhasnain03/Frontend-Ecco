@@ -5,6 +5,7 @@ import UpdatePictureModal from "../../components/Profile/UpdatePictureModal";
 import UpdatePasswordModal from "../../components/Profile/UpdatePasswordModal";
 import UpdateProfileModal from "../../components/Profile/UpdateProfileModal";
 import LogoutPopUp from "../../components/Profile/LogoutModal";
+import MetaData from "../../components/MetaData";
 const Profile = ({ user }) => {
   const [updatePictureModal, setupdatePictureModal] = useState(false)
   const [updatePasswordModal, setupdatePasswordModal] = useState(false)
@@ -28,6 +29,7 @@ const Profile = ({ user }) => {
 
   return (
     <main className="h-[100vh]">
+      <MetaData title="profile"/>
 {
   updatePictureModal ? (<div className="z-30 bg-black md:h-[70vh] md:w-[40vw] h-[70vh] w-[65vw] absolute left-[21%] md:left-[30%] top-[20%] right-[50%]">
   <UpdatePictureModal profileModal={profileModal} />

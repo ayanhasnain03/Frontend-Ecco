@@ -6,6 +6,7 @@ import ScrollToTopOnReload from "../../components/ResetPage";
 import { addToCart } from "../../redux/slices/cartSlice";
 import toast from "react-hot-toast"
 import { useDispatch } from "react-redux";
+import MetaData from "../../components/MetaData";
 const Shop = () => {
   const dispatch = useDispatch()
   const addToCartHandler = (cartItem) => {
@@ -39,6 +40,7 @@ const {data:productBrands}=useGetAllBrandsQuery()
 <>
 
       <div className="flex md:flex-row flex-col mt-20 justify-around">
+        <MetaData title="shop"/>
     <ScrollToTopOnReload/>
 
         <div className="flex md:h-[35rem]  h-[25rem] w-[25rem] flex-col md:w-[15rem] bg-black md:m-5 px-5">

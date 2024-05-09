@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { loadUser } from "../../redux/action/userAction";
 import { useDispatch } from "react-redux";
 import { useLoginUserMutation } from "../../redux/api/userProfileApi";
+import MetaData from "../../components/MetaData";
 export default function Login() {
 const dispatch = useDispatch()
 const naviagte = useNavigate()
@@ -25,6 +26,7 @@ toast.success(res?.message)
   };
   return (
     <>
+    <MetaData title="login"/>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 mt-[4rem]">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-[#F30000]">

@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { resetCart } from "../../redux/slices/cartSlice";
 import { useCreateOrderMutation } from "../../redux/api/orderApi";
+import MetaData from "../../components/MetaData";
 
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
@@ -79,6 +80,7 @@ const CheckOutForm = () => {
   };
   return (
     <div className="checkout-container bg-black text-white p-5 flex items-center justify-center mt-8">
+     <MetaData title="payment"/>
       <form onSubmit={submitHandler} className="space-y-4">
         <PaymentElement className="p-2 rounded-lg w-[20rem]" />
         <button type="submit" disabled={isProcessing} className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
