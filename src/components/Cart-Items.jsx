@@ -23,7 +23,7 @@ toast.success("removed")
 <>
 {
   cartItems && cartItems.length > 0 ? cartItems.map((item)=>(
-    <div className="border flex items-center justify-between  md:pr-8 pr-4 md:mt-5 mt-2 text-center">
+    <div className="border flex items-center justify-between  md:pr-8 pr-4 md:mt-5 mt-2 text-center" key={item._id}>
 <Link to={`/shop/product/${item._id}`}>
 <div className="">
       <img src={item?.image?.url} className="md:w-[15rem] w-[8rem]" alt="" />

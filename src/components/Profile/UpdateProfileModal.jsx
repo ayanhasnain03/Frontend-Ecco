@@ -20,7 +20,7 @@ toast.success(res?.data?.message)
     }
   return (
     <div className="relative flex items-center h-full  ">
-<button className="absolute top-5 right-8" onClick={profileUpdate}>X</button>
+<button className="absolute top-3 right-3 " onClick={profileUpdate}>X</button>
 
 <div className="w-full flex flex-col items-center ">
 <>
@@ -121,7 +121,7 @@ toast.success(res?.data?.message)
           
 
             <div>
-            <button  type="submit" className="flex w-[10rem] justify-center rounded-md bg-[#F30000]  py-1.5 text-sm mt-8  font-semibold leading-6 text-white shadow-sm hover:bg-[#f30000e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            <button  type="submit" className="flex w-[10rem] mb-8 justify-center rounded-md bg-[#F30000]  py-1.5 text-sm mt-8  font-semibold leading-6 text-white shadow-sm hover:bg-[#f30000e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                   Update Profile 
                 </button>
             </div>

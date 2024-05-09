@@ -15,7 +15,6 @@ const Profile = ({ user }) => {
   }
   const profilePasswordModal = ()=>{
     setupdatePasswordModal(!updatePasswordModal)
-    console.log("password upfdate")
   }
   const updateProfileModal = ()=>{
     setupdateProfile(!updateProfile)
@@ -37,14 +36,14 @@ const Profile = ({ user }) => {
   )
 }    
 {
-  updatePasswordModal ? (<div className="z-30 bg-slate-900 md:h-[70vh] md:w-[40vw] h-[40vh] w-[60vw] absolute left-[25%] md:left-[30%] top-[20%] right-[70%]">
+  updatePasswordModal ? (<div className="z-30 bg-slate-900 md:h-[60vh] md:w-[40vw] h-[60vh] w-[60vw] absolute left-[21%] md:left-[30%] top-[20%] right-[70%]">
   <UpdatePasswordModal profilePassChange={profilePasswordModal} />
   </div>):(
     <></>
   )
 }    
 {
-  updateProfile ? (<div className="z-30 bg-slate-900 md:h-[80vh] md:w-[40vw] h-[65vh] w-[60vw] absolute left-[21%] md:left-[30%] top-[30%] right-[70%]">
+  updateProfile ? (<div className="z-30 bg-slate-900 md:h-[80vh] md:w-[40vw] h-[60vh] w-[60vw] absolute left-[25%] md:left-[30%] top-[20%] right-[70%]">
   <UpdateProfileModal profileUpdate={updateProfileModal} />
   </div>):(
     <></>
@@ -92,7 +91,7 @@ const Profile = ({ user }) => {
             </div>
           </div>
         </div>
-        <div className=" md:w-[60%] w-full h-[30rem] md:mr-[1.5rem] mt-12">
+        <div className=" md:w-[60%] w-full h-[30rem] md:mr-[1.5rem] mr-5">
           <div className="m-4 flex flex-col gap-6 w-full items-center justify-end">
             <h2>Name: {user.username}</h2>
             <h2>Email: {user.email}</h2>
