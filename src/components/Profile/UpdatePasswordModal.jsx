@@ -25,7 +25,7 @@ const UpdatePasswordModal = ({ profilePassChange }) => {
 
       <div className="w-full flex flex-col items-center ">
         <>
-          <div className="flex min-h-full flex-1 flex-col justify-center px-6  lg:px-8 ">
+          <div className="flex min-h-full flex-1 flex-col justify-center px-6  lg:px-8 w-[60%]">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
               <h2 className=" text-center text-2xl font-bold leading-9 tracking-tight text-[#F30000]">
                 Update Password
@@ -74,20 +74,15 @@ const UpdatePasswordModal = ({ profilePassChange }) => {
                 </div>
 
                 <div>
-                  {isLoading ? (
-                    <>
-                      <button className="flex w-[20rem] justify-center rounded-md bg-[#cb6f6f]  py-1.5 text-sm mt-8  font-semibold leading-6 text-white shadow-sm hover:bg-[#f30000e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                        loading...
-                      </button>
-                    </>
-                  ) : (
+                 
                     <button
                       type="submit"
-                      className="flex w-[20rem] justify-center rounded-md bg-[#F30000]  py-1.5 text-sm mt-8  font-semibold leading-6 text-white shadow-sm hover:bg-[#f30000e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      className="flex w-[11.5rem] justify-center rounded-md bg-[#F30000]  py-1.5 text-sm mt-8  font-semibold leading-6 text-white shadow-sm hover:bg-[#f30000e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
-                      Update Password
-                    </button>
-                  )}
+{
+  isLoading ? (<>Updateing...</>):(<>Update</>)
+}                    </button>
+             
                 </div>
               </form>
             </div>

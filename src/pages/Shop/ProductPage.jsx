@@ -64,7 +64,7 @@ const ProductPage = () => {
           )}
           <div className="flex  flex-col md:flex-row flex-wrap md:justify-start justify-center gap-5 mt-10 items-center md:items-start md:px-10 md:mr-10">
             {productsWithoutFirst?.map((item) => (
-              <Card products={item} />
+              <Card products={item} key={item._id} handler={addToCartHandler} />
             ))}
           </div>
         </>

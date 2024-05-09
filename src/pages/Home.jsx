@@ -34,7 +34,7 @@ const Home = () => {
               alt=""
               className="lg:ml-[8rem] w-[10rem] mt-2 mb-6"
             />
-            <p className="lg:ml-[8rem]">India's Best Coustom Cloth Seller</p>
+            <p className="lg:ml-[8rem]">Unlock Exclusive Savings: Shop Our Premium Deals Today!</p>
           </motion.div>
           <div className="w-[60%]">
             <motion.img

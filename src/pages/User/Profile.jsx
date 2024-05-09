@@ -44,7 +44,7 @@ const Profile = ({ user }) => {
   )
 }    
 {
-  updateProfile ? (<div className="z-30 bg-slate-900 md:h-[80vh] md:w-[40vw] h-[60vh] w-[60vw] absolute left-[25%] md:left-[30%] top-[20%] right-[70%]">
+  updateProfile ? (<div className="z-30 bg-slate-900 md:h-[80vh] md:w-[40vw] h-[65vh] w-[60vw] absolute left-[21%] md:left-[30%] top-[30%] right-[70%]">
   <UpdateProfileModal profileUpdate={updateProfileModal} />
   </div>):(
     <></>
