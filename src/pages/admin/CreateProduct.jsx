@@ -134,7 +134,7 @@ navigate("/admin/productmanagement")
               <input
                 id="price"
                 name="price"
-                value={brand}
+                value={brand.toUpperCase()}
                 onChange={e=>setBrand(e.target.value)}
                 type="text"
                 required
@@ -154,7 +154,7 @@ navigate("/admin/productmanagement")
               <input
                 id="price"
                 name="price"
-                value={category}
+                value={category.toUpperCase()}
                 onChange={e=>setCategory(e.target.value)}
                 type="text"
                 required

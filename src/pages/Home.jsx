@@ -1,4 +1,4 @@
-import banner from "../assets/banner.png";
+import model from "../assets/.png";
 import logo from "../assets/logo.png";
 import { motion } from "framer-motion";
 import Card from "../components/Card";
