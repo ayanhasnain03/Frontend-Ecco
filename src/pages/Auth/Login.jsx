@@ -9,7 +9,7 @@ const dispatch = useDispatch()
 const naviagte = useNavigate()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loginUser,error]=useLoginUserMutation()
+  const [loginUser,{isLoading}]=useLoginUserMutation()
 
   const submitHandler =async e => {
     e.preventDefault();
@@ -91,8 +91,9 @@ toast.success(res?.message)
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-[#F30000] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#f30000e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Sign in
-              </button>
+{
+  isLoading ? (<>Signin...</>):(<>Signin</>)
+}              </button>
             </div>
           </form>
 
