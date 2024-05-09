@@ -96,7 +96,7 @@ const {data:productBrands}=useGetAllBrandsQuery()
               <option value="">All</option>
               {
               productCategory?.categories.map((cat)=>(
-              <option value={cat} key={cat}>{cat.toUpperCase()}</option>
+              <option value={cat} key={cat}>{cat}</option>
               ))
               }
             </select>
@@ -110,7 +110,7 @@ const {data:productBrands}=useGetAllBrandsQuery()
               <option value="">All</option>
               {
               productBrands?.brands.map((brand)=>(
-              <option value={brand}>{brand.toUpperCase()}</option>
+              <option value={brand}>{brand}</option>
               ))
               }
             </select>
