@@ -9,17 +9,16 @@ export const orderApi = createApi({
   tagTypes: ["order"],
   endpoints: (builder) => ({
 createOrder:builder.mutation({
-    query:(order)=>({
+    query:(orderData)=>({
         url:"/create",
         method:"POST",
-        body:order
+        body:orderData
     }),
     invalidatesTags: ["order"],
 }),
 myOrder:builder.query({
     query:()=>({
         url:"myorders",
-        method:"GET"
     }),
     providesTags: ["order"],
 }),

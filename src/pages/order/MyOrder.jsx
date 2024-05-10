@@ -5,11 +5,12 @@ import moment from 'moment';
 import MetaData from '../../components/MetaData';
 
 const MyOrder = () => {
+  const { data, isLoading, error, refetch } = useMyOrderQuery();
 
-  const { data, isLoading, error,refetch } = useMyOrderQuery();
   useEffect(() => {
     refetch(); 
   }, [refetch]);
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -18,13 +19,16 @@ const MyOrder = () => {
     return <div>Error loading orders: {error.message}</div>;
   }
 
+  // Flatten the array of arrays to get all order items in a single array
+  const allOrderItems = data?.orders.flatMap(order => order.orderItems) || [];
+
   return (
     <div className="h-full w-full px-10 mt-10">
       <MetaData title="orders"/>
-      <h1 className='text-2xl m-5'>MyOrders({data?.myTotalOrders})</h1>
+      <h1 className='text-2xl m-5'>My Orders ({data?.myTotalOrders})</h1>
       <div className="relative overflow-x-auto shadow-md">
-        <table className="w-full text-sm text-left rtl:text-right 0">
-          <thead className="text-xs  uppercase bg-black border border-red-600">
+        <table className="w-full text-sm text-left rtl:text-right">
+          <thead className="text-xs uppercase bg-black border border-red-600">
             <tr>
               <th scope="col" className="px-6 py-3">Product</th>
               <th scope="col" className="px-6 py-3">Total Price</th>
@@ -36,25 +40,23 @@ const MyOrder = () => {
             </tr>
           </thead>
           <tbody>
-            {data.orders.map((order) => (
-              <tr key={order._id} className=" border-b  ">
-               <Link to={`/shop/product/${order.orderItems[0].productId}`}>
+            {allOrderItems.map((item, index) => (
+              <tr key={index} className=" border-b">
                 <td className="px-6 py-4 font-medium">
-                  <img src={order.orderItems[0].image.url} alt=""  className='md:h-[10rem] w-[9rem]'/>
-<p className='pt-4'>
-{order.orderItems[0].name}
-</p>
-                </td>
-                </Link>
-                <td className="px-6 py-4">
-                  ${order.subtotal.toFixed(2)} 
+                  <Link to={`/shop/product/${item.productId}`}>
+                    <img src={item.image.url} alt="" className='md:h-[10rem] w-[9rem]'/>
+                    <p className='pt-4'>{item.name}</p>
+                  </Link>
                 </td>
                 <td className="px-6 py-4">
-                {moment(order.createdAt).format("dddd, MMMM Do YYYY, h:mm:ss a")}  
+                  ${item.price} {/* Assuming subtotal is not available directly */}
                 </td>
-                <td className="px-6 py-4">{order.status}</td>
+                <td className="px-6 py-4">
+                  {moment(item.createdAt).format("dddd, MMMM Do YYYY, h:mm:ss a")}
+                </td>
+                <td className="px-6 py-4">{item.status}</td>
                 <td className="px-6 py-4 text-right">
-                  <Link to={`/order/${order._id}`} className="text-blue-500 hover:underline">
+                  <Link to={`/order/${item._id}`} className="text-blue-500 hover:underline">
                     View Details
                   </Link>
                 </td>
