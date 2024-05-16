@@ -6,6 +6,7 @@ import Loader from "../../components/Loader";
 import { useNavigate } from "react-router-dom";
 
 const CreateProduct = () => {
+  
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");

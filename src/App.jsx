@@ -28,6 +28,7 @@ import OrderDetailPage from "./pages/order/OrderDetailPage";
 import OrderManagemnt from "./pages/admin/OrderManagement";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import ContactUs from "./pages/ContactUs";
+import PageNotFound from "./pages/PageNotFound";
 
 const App = () => {
 
@@ -100,6 +101,7 @@ const App = () => {
 
 <Route path="/termsandcondition" element={<TermsAndConditions/>}/>
 <Route path="/contact" element={<ContactUs/>}/>
+<Route path="*" element={<PageNotFound/>}/>
         </Routes>
         <Footer />
         <Toaster position="bottom-center" />
