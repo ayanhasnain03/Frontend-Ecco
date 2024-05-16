@@ -10,8 +10,9 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/slices/cartSlice";
 import toast from "react-hot-toast";
 import MetaData from "../components/MetaData";
+import Loader from "../components/Loader"
 const Home = () => {
-  const { data } = useGetTopProductsQuery();
+  const { data,isLoading } = useGetTopProductsQuery();
   const {data:latestproduct}=useLastestProductQuery()
   const dispatch = useDispatch()
   const addToCartHandler = (cartItem) => {
@@ -51,18 +52,28 @@ const Home = () => {
         </div>
       </div>
       <h1 className="m-8 text-2xl font-semibold">Popular Products</h1>
-      <div className="mt-5  w-full flex items-center justify-center md:justify-around  flex-wrap gap-5 px-5 ">
+  {
+    isLoading ? (<>
+    <Loader length={5}/>
+    </>):(
+        <div className="mt-5  w-full flex items-center justify-center md:justify-around  flex-wrap gap-5 px-5 ">
         {data?.topProduct?.map((product, i) => (
           <Card products={product} key={i} handler={addToCartHandler} />
         ))}
       </div>
+    )
+  }
 
       <h1 className="m-8 text-2xl font-semibold">latest Products</h1>
+  {
+    isLoading ? (<Loader length={5}/>):(
       <div className="mt-5  w-full flex items-center justify-center px-5 md:justify-around  flex-wrap gap-5   ">
-        {latestproduct?.products?.map((product, i) => (
-          <Card products={product} key={i} />
-        ))}
-      </div>
+      {latestproduct?.products?.map((product, i) => (
+        <Card products={product} key={i} />
+      ))}
+    </div>
+    )
+  }
 
       <div className="">
         <Marquee />

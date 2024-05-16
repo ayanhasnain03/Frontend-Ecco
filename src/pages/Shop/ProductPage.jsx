@@ -14,11 +14,12 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/slices/cartSlice";
 import toast from "react-hot-toast";
 import MetaData from "../../components/MetaData";
+import Loader from "../../components/Loader";
 
 const ProductPage = () => {
   const [toggleReview, settoggleReview] = useState(false);
   const { id } = useParams();
-  const { data } = useGetProductByIdQuery({ id });
+  const { data,isLoading} = useGetProductByIdQuery({ id });
   const { data: relatedProducts } = useRelatedProductQuery({ id });
   const productsWithoutFirst = relatedProducts?.product.slice(1);
   const product = data?.product;
@@ -34,7 +35,10 @@ const ProductPage = () => {
   return (
     <div className="">
       <MetaData title="product page"/>
-      <ScrollToTopOnReload />
+{
+  isLoading ? (<Loader length={10}/>):(
+    <>
+          <ScrollToTopOnReload />
       <div className="h-full w-full  md:p-8 py-2 px-2 flex flex-col  md:flex-row  md:justify-between ">
         <div className=" md:w-[40%] w-full mt-2 h-[35rem] md:h-[25rem] overflow-hidden flex items-center justify-center ">
           <img src={product?.image?.url} alt="" />
@@ -103,6 +107,9 @@ const ProductPage = () => {
           />
         </div>
       </div>
+    </>
+  )
+}
     </div>
   );
 };
