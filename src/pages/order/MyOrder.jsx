@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useMyOrderQuery } from '../../redux/api/orderApi';
-import { Link } from 'react-router-dom'; // For navigation to order details page
-import moment from 'moment';
+import { Link } from 'react-router-dom';
+import moment from 'moment-timezone';
 import MetaData from '../../components/MetaData';
 
 const MyOrder = () => {
   const { data, isLoading, error, refetch } = useMyOrderQuery();
 
   useEffect(() => {
-    refetch(); 
+    refetch();
   }, [refetch]);
 
   if (isLoading) {
@@ -19,7 +19,6 @@ const MyOrder = () => {
     return <div>Error loading orders: {error.message}</div>;
   }
 
-  // Flatten the array of arrays to get all order items in a single array
   const allOrderItems = data?.orders.flatMap(order => order.orderItems) || [];
 
   return (
@@ -41,18 +40,18 @@ const MyOrder = () => {
           </thead>
           <tbody>
             {allOrderItems.map((item, index) => (
-              <tr key={index} className=" border-b">
+              <tr key={index} className="border-b">
                 <td className="px-6 py-4 font-medium">
                   <Link to={`/shop/product/${item.productId}`}>
-                    <img src={item.image.url} alt="" className='md:h-[10rem] w-[9rem]'/>
+                    <img src={item.image.url} alt={item.name} className='md:h-[10rem] w-[9rem]'/>
                     <p className='pt-4'>{item.name}</p>
                   </Link>
                 </td>
                 <td className="px-6 py-4">
-                  ${item.price} {/* Assuming subtotal is not available directly */}
+                  ${item.price}
                 </td>
                 <td className="px-6 py-4">
-                  {moment(item.createdAt).format("dddd, MMMM Do YYYY, h:mm:ss a")}
+                  {moment(item.createdAt).tz('UTC').format('YYYY-MM-DDTHH:mm:ss.SSSZ')}
                 </td>
                 <td className="px-6 py-4">{item.status}</td>
                 <td className="px-6 py-4 text-right">

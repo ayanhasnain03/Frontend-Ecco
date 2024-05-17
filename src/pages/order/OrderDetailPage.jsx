@@ -9,6 +9,7 @@ const OrderDetailPage = ({ user }) => {
     const naviagte = useNavigate()
   const { id } = useParams();
   const { data } = useOrderDetailsQuery(id);
+  console.log(data)
   const [updateStatus] = useUpdateOrdersMutation();
   const [deleteOrder] = useDeleteOrdersMutation();
   const updateStatusHandler = async (orderId) => {
