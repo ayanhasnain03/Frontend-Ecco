@@ -51,7 +51,8 @@ const Cart = ({user}) => {
         <CartItems />
       </div>
 
-      <div className="bg-black w-full md:w-[30%]  flex flex-col px-8 md:absolute top-1 right-0">
+    {cartItems.length > 0 && (
+        <div className="bg-black w-full md:w-[30%]  flex flex-col px-8 md:absolute top-1 right-0">
         <div className="mt-6 flex flex-col gap-5 ">
           <p className="text-xl font-thin">Subtotal: ₹{subtotal}</p>
           <p className="text-xl font-thin">Shipping: ₹{shippingCharges}</p>
@@ -81,7 +82,7 @@ const Cart = ({user}) => {
        {
         cartItems.length > 0 && (
           <Link to={user? `/shipping` : `/login`}>
-          <button className="flex w-[20rem] justify-center rounded-md bg-[#F30000]  py-1.5 text-sm mt-8 font-semibold leading-6 text-white shadow-sm hover:bg-[#f30000e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+          <button className="flex w-[20rem] justify-center rounded-md bg-[#F30000]  py-1.5 text-sm mt-5 font-semibold leading-6 text-white shadow-sm hover:bg-[#f30000e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
             Check Out
           </button>
         </Link>
@@ -89,6 +90,7 @@ const Cart = ({user}) => {
        }
         </div>
       </div>
+    )}
     </main>
   );
 };

@@ -43,7 +43,7 @@ toast.success("removed")
     </div>
   </div>
   )):(
-    <div className="flex items-center justify-center flex-col gap-8 mt-20 ">
+    <div className="flex items-center justify-center flex-col gap-8 mt-20 w-[100vw] ">
       <h1 className="text-3xl font-bold">Items Not Found ! </h1>
       <button
                 type="submit"
