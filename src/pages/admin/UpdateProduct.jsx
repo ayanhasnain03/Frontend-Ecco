@@ -89,7 +89,7 @@ const navigate = useNavigate()
   return (
     <div className="h-full flex w-full  bg-black ">
       <Sidebar />
-      <div className="h-[40rem] relative w-full bg-black flex flex-col md:flex-row md:justify-around items-center">
+      <div className="md:h-[40rem] relative w-full bg-black flex flex-col md:flex-row md:justify-around items-center">
         <div className="absolute top-8 left-5">
           <h1 className="text-2xl">Update Product</h1>
         </div>
@@ -123,7 +123,7 @@ const navigate = useNavigate()
                 onChange={(e) => setTitle(e.target.value)}
                 name="title"
                 type="text"
-                className="block w-full  md:py-1.5 py-1rem text-black  sm:text-sm sm:leading-6"
+                className="block w-full px-2  md:py-1.5 py-1rem text-black  sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -141,7 +141,7 @@ const navigate = useNavigate()
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 type="text"
-                className="block w-full  md:py-1.5 py-1rem text-black  sm:text-sm sm:leading-6"
+                className="block w-full  px-2 md:py-1.5 py-1rem text-black  sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -160,7 +160,7 @@ const navigate = useNavigate()
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
                 type="number"
-                className="block w-full  md:py-1.5 py-1rem text-black  sm:text-sm sm:leading-6"
+                className="block w-full px-2  md:py-1.5 py-1rem text-black  sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -179,7 +179,7 @@ const navigate = useNavigate()
                 value={brand}
                 onChange={(e) => setBrand(e.target.value)}
                 type="text"
-                className="block w-full  md:py-1.5 py-1rem text-black  sm:text-sm sm:leading-6"
+                className="block w-full px-2  md:py-1.5 py-1rem text-black  sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -198,7 +198,7 @@ const navigate = useNavigate()
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
                 type="text"
-                className="block w-full  md:py-1.5 py-1rem text-black  sm:text-sm sm:leading-6"
+                className="block w-full px-2 md:py-1.5 py-1rem text-black  sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -217,7 +217,7 @@ const navigate = useNavigate()
                 value={stock}
                 onChange={(e) => setStock(e.target.value)}
                 type="number"
-                className="block w-full  md:py-1.5 py-1rem text-black  sm:text-sm sm:leading-6"
+                className="block w-full px-2  md:py-1.5 py-1rem text-black  sm:text-sm sm:leading-6"
               />
             </div>
 
