@@ -77,10 +77,8 @@ const ProductPage = () => {
       )}
       <div className=" w-full h-[70vh] mt-10 relative">
         <div className="reletive">
-          <h1 className="text-3xl text-center">Reviews</h1>
-          <div className="absolute -top-1 right-[46%] bg-red-600 h-5 w-5 rounded-full text-center ">
-            {product?.numReviews}
-          </div>
+          <h1 className="text-3xl text-center">Reviews({product?.numReviews})</h1>
+       
         </div>
         <div className="float-end mr-8">
           <button
