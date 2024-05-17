@@ -52,25 +52,25 @@ const MyOrder = () => {
                     </Link>
                   </td>
                   <td className="px-6 py-4">
-                    ₹{item.price}
+                    ₹ {item.price}
                   </td>
                   <td className="px-6 py-4">
-                    {item.quantity}
+                    x {item.quantity}
                   </td>
                   <td className="px-6 py-4">
-                    ₹{order.discount}
+                   - ₹{order.discount}
                   </td>
                   <td className="px-6 py-4">
-                    ₹{order.shippingCharges}
+                   + ₹{order.shippingCharges}
                   </td>
                   <td className="px-6 py-4">
-                    ₹{order.tax}
+                   + ₹{order.tax}
                   </td>
                   <td className="px-6 py-4">
                     ₹{item.price * item.quantity + order.shippingCharges + order.tax - order.discount}
                   </td>
                   <td className="px-6 py-4">
-                    {moment(order.createdAt).format("dddd, MMMM Do YYYY, h:mm:ss a")}
+                    {moment(order.createdAt).format("dddd, MMMM Do YYYY")}
                   </td>
                   <td className="px-6 py-4">{order.status}</td>
                   <td className="px-6 py-4 text-right">
