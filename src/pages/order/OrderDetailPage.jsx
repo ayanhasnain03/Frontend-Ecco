@@ -5,6 +5,7 @@ import {
   useUpdateOrdersMutation,
 } from "../../redux/api/orderApi";
 import {toast} from "react-hot-toast"
+import moment from "moment";
 const OrderDetailPage = ({ user }) => {
     const naviagte = useNavigate()
   const { id } = useParams();
@@ -100,7 +101,8 @@ naviagte("/admin/ordermanagement")
           <h3 className=" text-sm">Discount: {data?.orders?.discount}</h3>
           <h3 className=" text-sm">Total: {data?.orders?.total}</h3>
           <h3 className=" text-sm">Status: {data?.orders?.status}</h3>
-          <h3 className=" text-sm">CreatedAt: {data?.orders?.createdAt}</h3>
+          <h3 className="text-sm">CreatedAt: {moment(data?.orders?.createdAt).format("YYYY-MM-DD HH:mm:ss")}</h3>
+
         </div>
       </div>
     </div>
