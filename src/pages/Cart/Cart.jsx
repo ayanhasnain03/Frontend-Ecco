@@ -7,7 +7,7 @@ import axios from "axios"
 import {server} from "../../redux/store"
 import { VscError } from "react-icons/vsc";
 import MetaData from "../../components/MetaData";
-const Cart = () => {
+const Cart = ({user}) => {
   const { cartItems, subtotal, shippingCharges, tax, total, discount } =
     useSelector((state) => state.cartReducer);
     const dispatch = useDispatch();
@@ -80,7 +80,7 @@ const Cart = () => {
           ))}
        {
         cartItems.length > 0 && (
-          <Link to="/shipping">
+          <Link to={user? `/shipping` : `/login`}>
           <button className="flex w-[20rem] justify-center rounded-md bg-[#F30000]  py-1.5 text-sm mt-8 font-semibold leading-6 text-white shadow-sm hover:bg-[#f30000e7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
             Check Out
           </button>

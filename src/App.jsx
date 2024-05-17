@@ -49,7 +49,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/shop/product/:id" element={<ProductPage />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart user={user}  />} />
 
 
           <Route
