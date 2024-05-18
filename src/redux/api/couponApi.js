@@ -14,6 +14,13 @@ getAllCoupon:builder.query({
     }),
     providesTags: ["coupon"],
 }),
+deleteCoupon:builder.mutation({
+    query:({id})=>({
+        url:`/coupon/${id}`,
+        method:"DELETE"
+    }),
+    invalidatesTags: ["coupon"],
+}),
   }),
 });
-export const {useGetAllCouponQuery} = couponApi;
+export const {useGetAllCouponQuery,useDeleteCouponMutation} = couponApi;
