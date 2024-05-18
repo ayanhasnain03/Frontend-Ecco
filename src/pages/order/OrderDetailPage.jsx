@@ -5,11 +5,12 @@ import {
   useUpdateOrdersMutation,
 } from "../../redux/api/orderApi";
 import {toast} from "react-hot-toast"
+import Loader from "../../components/Loader"
 import moment from "moment";
 const OrderDetailPage = ({ user }) => {
     const naviagte = useNavigate()
   const { id } = useParams();
-  const { data } = useOrderDetailsQuery(id);
+  const { data,isLoading } = useOrderDetailsQuery(id);
   console.log(data)
   const [updateStatus] = useUpdateOrdersMutation();
   const [deleteOrder] = useDeleteOrdersMutation();
@@ -24,7 +25,10 @@ naviagte("/admin/ordermanagement")
   };
   return (
     <div className="flex px-5 md:flex-row flex-col  items-center justify-center mt-20">
-      <div className=" md:w-[20%] mt-8  px-2 border border-red-600">
+    {
+      isLoading ? (<Loader length={5}/>):(
+        <>
+          <div className=" md:w-[20%] mt-8  px-2 border border-red-600">
         <img
           src={data?.orders?.orderItems[0].image.url}
           alt=""
@@ -105,6 +109,9 @@ naviagte("/admin/ordermanagement")
 
         </div>
       </div>
+        </>
+      )
+    }
     </div>
   );
 };
