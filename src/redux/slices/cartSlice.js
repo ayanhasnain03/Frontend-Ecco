@@ -17,7 +17,7 @@ const initialState = localStorage.getItem("cart")
       country: "",
       pinCode: "",
     },
-    };
+  };
 
 export const cartReducer = createSlice({
   name: "cartReducer",
@@ -55,16 +55,35 @@ export const cartReducer = createSlice({
       state.shippingCharges = state.subtotal > 1000 ? 0 : 200;
       state.tax = Math.round(state.subtotal * 0.18);
       state.total =
-        state.subtotal + state.tax + state.shippingCharges -state.discount;
+        state.subtotal + state.tax + state.shippingCharges - state.discount;
     },
-
     discountApplied: (state, action) => {
       state.discount = action.payload;
     },
     saveShippingInfo: (state, action) => {
       state.shippingInfo = action.payload;
     },
-    resetCart: () => initialState,
+    resetCart: (state) => {
+      // Reset the state to initial values
+      Object.assign(state, {
+        loading: false,
+        cartItems: [],
+        subtotal: 0,
+        tax: 0,
+        shippingCharges: 0,
+        discount: 0,
+        total: 0,
+        shippingInfo: {
+          address: "",
+          city: "",
+          state: "",
+          country: "",
+          pinCode: "",
+        },
+      });
+      // Persist the updated state to localStorage
+      localStorage.setItem("cart", JSON.stringify(state));
+    },
   },
 });
 
