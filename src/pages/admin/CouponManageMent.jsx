@@ -4,6 +4,7 @@ import { useDeleteCouponMutation, useGetAllCouponQuery } from "../../redux/api/c
 import moment from "moment";
 import { FaTrash } from 'react-icons/fa';
 import { toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const CouponManagement = () => {
   const { data } = useGetAllCouponQuery();
@@ -38,12 +39,14 @@ const CouponManagement = () => {
           Coupon Management ({data?.coupons.length})
         </h1>
         <div className="flex justify-end mb-4">
-          <button
+<Link to="/admin/couponmanagement/create">
+<button
             className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
             onClick={handleCreateCoupon}
           >
             Create Coupon
           </button>
+</Link>
         </div>
         {data?.coupons?.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:mr-[4rem]">
@@ -55,7 +58,7 @@ const CouponManagement = () => {
                 </div>
                 <div className="flex justify-between items-center mb-2">
                   <h2 className="text-lg font-semibold">Amount</h2>
-                  <p className="text-lg">{c.amount}</p>
+                  <p className="text-lg">₹{c.amount}</p>
                 </div>
                 <div className="flex justify-between items-center mb-2">
                   <h2 className="text-lg font-semibold">Used</h2>

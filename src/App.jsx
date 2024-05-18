@@ -30,6 +30,7 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 import ContactUs from "./pages/ContactUs";
 import PageNotFound from "./pages/PageNotFound";
 import CouponManageMent from "./pages/admin/CouponManageMent";
+import CreateCoupon from "./pages/admin/CreateCoupon";
 
 const App = () => {
 
@@ -101,6 +102,10 @@ const App = () => {
             <Route
               path="/admin/couponmanagement"
               element={<CouponManageMent/>}
+            />
+            <Route
+              path="/admin/couponmanagement/create"
+              element={<CreateCoupon/>}
             />
 
           </Route>
