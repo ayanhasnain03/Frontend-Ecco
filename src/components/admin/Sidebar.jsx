@@ -17,34 +17,26 @@ export default function Slider() {
   const DrawerList = (
     <Box sx={{ width: 250, margin: 2 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
-        <div>
-          <Link to="/admin/dashboard" className="text-white">
+        <div className="my-2">
+          <Link to="/admin/dashboard" className="text-white text-lg">
             Dashboard
           </Link>
         </div>
       </List>
-      <Divider />
+      <Divider className="bg-gray-700" />
       <List>
-        <div className='text-[0.9rem] mt-4'>
-          <Link to="/admin/productmanagement" className="text-white">
-            Products Management
-          </Link>
-        </div>
-        <div className='text-[0.9rem] mt-4'>
-          <Link to="/admin/usermanagement" className="text-white">
-            Users Management
-          </Link>
-        </div>
-        <div className='text-[0.9rem] mt-4'>
-          <Link to="/admin/ordermanagement" className="text-white">
-            Order Management
-          </Link>
-        </div>
-        <div className='text-[0.9rem] mt-4'>
-          <Link to="/admin/couponmanagement" className="text-white">
-            Coupon Management
-          </Link>
-        </div>
+        {[
+          { path: '/admin/productmanagement', label: 'Products Management' },
+          { path: '/admin/usermanagement', label: 'Users Management' },
+          { path: '/admin/ordermanagement', label: 'Order Management' },
+          { path: '/admin/couponmanagement', label: 'Coupon Management' },
+        ].map((item) => (
+          <div key={item.path} className="my-[6rem]">
+            <Link to={item.path} className="text-white text-lg">
+              {item.label}
+            </Link>
+          </div>
+        ))}
       </List>
     </Box>
   );
@@ -52,7 +44,7 @@ export default function Slider() {
   return (
     <div>
       <Button onClick={toggleDrawer(true)}>
-        <RxHamburgerMenu className='text-red-600' />
+        <RxHamburgerMenu className="text-red-600" />
       </Button>
       <Drawer
         open={open}

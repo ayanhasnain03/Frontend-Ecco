@@ -23,7 +23,7 @@
     "@stripe/react-stripe-js": "^2.7.0",
     "@stripe/stripe-js": "^3.3.0",
     "axios": "^1.6.8",
-    "chart.js": "^4.4.2",
+    "chart.js": "^4.4.3",
     "framer-motion": "^11.0.24",
     "hamburger-react": "^2.5.0",
     "marqueee": "^1.4.8",

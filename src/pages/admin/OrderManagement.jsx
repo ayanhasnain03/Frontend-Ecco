@@ -3,7 +3,7 @@ import { useGetAllOrdersQuery } from '../../redux/api/orderApi';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import MetaData from '../../components/MetaData';
-
+import SideBar from "../../components/admin/Sidebar"
 const MyOrder = () => {
   const { data, isLoading, error, refetch } = useGetAllOrdersQuery();
 
@@ -20,7 +20,10 @@ const MyOrder = () => {
   }
 
   return (
+  <>
+  <SideBar/>
     <div className="h-full w-full px-10 mt-10">
+      
       <MetaData title="My Orders" />
       <h1 className='text-2xl m-5'>My Orders ({data?.totalOrder || 0})</h1>
       <div className="relative overflow-x-auto shadow-md">
@@ -85,6 +88,7 @@ const MyOrder = () => {
         </table>
       </div>
     </div>
+  </>
   );
 };
 
