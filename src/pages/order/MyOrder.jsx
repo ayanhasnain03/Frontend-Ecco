@@ -70,7 +70,7 @@ const MyOrder = () => {
                     ₹{item.price * item.quantity + order.shippingCharges + order.tax - order.discount}
                   </td>
                   <td className="px-6 py-4">
-                    {moment(order.createdAt).format("dddd, MMMM Do YYYY")}
+                    {moment(order.createdAt).format("MMMM Do YYYY, h:mm:ss a")}
                   </td>
                   <td className="px-6 py-4">{order.status}</td>
                   <td className="px-6 py-4 text-right">

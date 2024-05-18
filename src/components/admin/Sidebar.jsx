@@ -40,6 +40,11 @@ export default function Slider() {
             Order Management
           </Link>
         </div>
+        <div className='text-[0.9rem] mt-4'>
+          <Link to="/admin/couponmanagement" className="text-white">
+            Coupon Management
+          </Link>
+        </div>
       </List>
     </Box>
   );

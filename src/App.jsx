@@ -29,6 +29,7 @@ import OrderManagemnt from "./pages/admin/OrderManagement";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import ContactUs from "./pages/ContactUs";
 import PageNotFound from "./pages/PageNotFound";
+import CouponManageMent from "./pages/admin/CouponManageMent";
 
 const App = () => {
 
@@ -95,6 +96,11 @@ const App = () => {
             <Route
               path="/admin/usermanagement"
               element={<UserManagement />}
+            />
+
+            <Route
+              path="/admin/couponmanagement"
+              element={<CouponManageMent/>}
             />
 
           </Route>
