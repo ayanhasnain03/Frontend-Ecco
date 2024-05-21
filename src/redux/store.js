@@ -6,6 +6,7 @@ import { cartReducer, localStorageMiddleware } from "./slices/cartSlice";
 import { userAPI } from "./api/adminUserApi";
 import { orderApi } from "./api/orderApi";
 import { couponApi } from "./api/couponApi";
+import { dashBoardApi } from "./api/dashboardApi";
 
 export const store = configureStore({
     reducer: {
@@ -16,10 +17,11 @@ export const store = configureStore({
         [orderApi.reducerPath]: orderApi.reducer,
         [cartReducer.name]:cartReducer.reducer,
         [couponApi.reducerPath]:couponApi.reducer,
+        [dashBoardApi.reducerPath]:dashBoardApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat( 
-        productAPI.middleware,userProfileApi.middleware,userAPI.middleware,orderApi.middleware,couponApi.middleware,localStorageMiddleware)
+        productAPI.middleware,userProfileApi.middleware,userAPI.middleware,orderApi.middleware,couponApi.middleware,dashBoardApi.middleware,localStorageMiddleware)
 });
 
 export const server = import.meta.env.VITE_SERVER;

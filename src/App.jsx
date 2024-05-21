@@ -75,6 +75,7 @@ const App = () => {
             <Route path="/shipping" element={<Shipping/>}  />
             <Route path="/checkout" element={<Checkout/>}  />
           </Route>
+          
           <Route
             element={
               <ProtectedRoute
