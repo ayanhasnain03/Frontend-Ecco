@@ -92,15 +92,16 @@ export const BarChart = ({
   return <Bar width={horizontal ? "200%" : ""} options={options} data={data} />;
 };
 
+
 export const LineChart = ({
   data_1 = [],
   title_1,
   horizontal = false,
   labels = months,
-})=>{
-  const options={
+}) => {
+  const options = {
     responsive: true,
-    indexAxis: horizontal ? "y" : "x",
+    indexAxis: horizontal ? 'y' : 'x',
     plugins: {
       legend: {
         display: true,
@@ -112,7 +113,6 @@ export const LineChart = ({
         display: false,
       },
     },
-
     scales: {
       y: {
         beginAtZero: true,
@@ -122,6 +122,7 @@ export const LineChart = ({
         },
         ticks: {
           color: 'white', // Change color of ticks to white
+          stepSize: 1, // Ensure Y-axis ticks increment by 1
         },
       },
       x: {
@@ -134,7 +135,8 @@ export const LineChart = ({
         },
       },
     },
-  }
+  };
+  
   const data = {
     labels,
     datasets: [
@@ -145,12 +147,13 @@ export const LineChart = ({
         borderColor: 'rgb(255, 255, 255)',
         backgroundColor: 'rgba(0, 255, 127, 0.76)',
       },
-    
     ],
   };
 
   return <Line width={horizontal ? "200%" : ""} options={options} data={data} />;
-}
+};
+
+
 
 export const VerticalBarChart = ({
   data_1 = [],

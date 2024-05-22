@@ -14,6 +14,7 @@ import {
 } from "../../redux/api/dashboardApi";
 import CategoryPercentage from "../../components/admin/CategoryPercentage";
 import MetaData from "../../components/MetaData";
+import LatestTransaction from "../../components/admin/LatestTransaction";
 
 const Admin = () => {
   const { data, isLoading: isLoadingBarChartData } = useGetBarChartDataQuery();
@@ -122,21 +123,21 @@ const Admin = () => {
       <div className="mt-10 flex items-center justify-around max-w-full px-8">
         <div className="md:h-[8rem] md:w-[20rem] h-[6rem] w-[8rem] border flex flex-col items-center text-center justify-center">
           <div className="flex items-center justify-center flex-col">
-            <FaUserAlt style={{ color: "red" }} />
+            <FaUserAlt />
             <h1>Users</h1>
             <h1>{data?.stats?.count?.user}</h1> {/* Display user count */}
           </div>
         </div>
         <div className="md:h-[8rem] md:w-[20rem] h-[6rem] w-[8rem] border flex flex-col items-center text-center justify-center">
           <div className="flex items-center justify-center flex-col">
-            <FaTshirt style={{ color: "blue" }} />
+            <FaTshirt  />
             <h1>Products</h1>
             <h1>{data?.stats?.count?.product}</h1>
           </div>
         </div>
         <div className="md:h-[8rem] md:w-[20rem] h-[6rem] w-[8rem] border flex flex-col items-center text-center justify-center">
           <div className="flex items-center justify-center flex-col">
-            <FaShoppingBag style={{ color: "rgba(0, 255, 127, 0.76)" }} />
+            <FaShoppingBag  />
             <h1>Orders</h1>
             <h1>{data?.stats?.count?.order}</h1> {/* Display order count */}
           </div>
@@ -156,7 +157,7 @@ const Admin = () => {
           <BarChart
             data_1={data?.stats?.charts?.revenue}
             title_1="Revenue"
-            bgColor_1="rgb(255, 255, 255)"
+            bgColor_1="#F30000"
           />
           <div className="bg-white w-full h-[2px] mt-1.5 md:hidden"></div>
         </div>
@@ -176,7 +177,7 @@ const Admin = () => {
             );
           })}
         </div>
-        <div className="md:w-[70rem] w-[30rem] p-2 md:mr-16 mt-4 md:p-4 m-2 md:border border-b-2">
+        <div className="md:w-[70rem]  p-2 md:mr-16 mt-4 md:p-4 m-2 md:border border-b-2">
           <h1>Last Six Months Orders</h1>
           <LineChart
             borderColor={"#F30000"}
@@ -186,7 +187,7 @@ const Admin = () => {
         </div>
       </div>
       {/* Users Ratio */}
-      <div className="flex items-center justify-center  flex-col ">
+      <div className="flex items-center justify-center  flex-col  ">
         <div className="p-10 md:w-[60rem] w-[32rem] md:h-[35rem] border-b-2">
           <h1>Last 12 Months Order & Products</h1>
           <VerticalBarChart
@@ -198,69 +199,73 @@ const Admin = () => {
             data_3={yearStats?.charts?.users}
           />
         </div>
-        <div className="mt-[10rem]">
-        <div className="flex w-full">
-        <div className="flex items-center justify-between w-[80vw] md:flex-row  flex-col">
-        <div className=" w-[20rem]">
-          <h1 className=" underline">Order Fulfillment Status</h1>
-          <DoughnutChart
-            labels={orderStatusLabels}
-            data={orderStatusData}
-            backgroundColor={orderStatusBackgroundColor}
-            legends={false}
-            offset={[0, 0, 0, 80]}
-          />
-        </div>
-        <div className=" w-[20rem]">
-          <h1 className=" underline">Product Categories</h1>
-          <DoughnutChart
-            labels={categoriesMappedData.map((item) => item.categoryName)}
-            data={categoriesMappedData.map((item) => item.categoryValue)}
-            backgroundColor={productCategoriesBackgroundColor}
-            legends={false}
-            offset={[0, 0, 0, 80]}
-          />
-        </div>
+        <div className="mt-[10rem] ">
+          <div className="flex w-full ">
+            <div className="flex items-center justify-between w-[100vw] md:flex-row  flex-col ml-[3rem] md:m-0 md:px-[10rem]">
+              <div className=" w-[20rem]">
+                <h1 className=" underline">Order Fulfillment Status</h1>
+                <DoughnutChart
+                  labels={orderStatusLabels}
+                  data={orderStatusData}
+                  backgroundColor={orderStatusBackgroundColor}
+                  legends={false}
+                  offset={[0, 0, 0, 80]}
+                />
+              </div>
+              <div className=" w-[20rem]">
+                <h1 className=" underline">Product Categories</h1>
+                <DoughnutChart
+                  labels={categoriesMappedData.map((item) => item.categoryName)}
+                  data={categoriesMappedData.map((item) => item.categoryValue)}
+                  backgroundColor={productCategoriesBackgroundColor}
+                  legends={false}
+                  offset={[0, 0, 0, 80]}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="flex w-full items-center justify-center  ">
+            <div className=" md:w-[25rem] w-[20rem]">
+              <h1 className=" underline">Revenue Distribution</h1>
+              <DoughnutChart
+                labels={revenueDistributionLabel}
+                data={revenueDistributionLabelData}
+                backgroundColor={revenueDistributionBackgound}
+                legends={false}
+                offset={[0, 0, 0, 80]}
+              />
+            </div>
+          </div>
+
+          <div className="flex w-[100vw] md:px-[10rem] md:flex-row  justify-between  flex-col  ml-[7rem] md:m-0  ">
+            <div className=" w-[20rem] ">
+              <h1 className=" underline">Users Age Ratio</h1>
+              <DoughnutChart
+                labels={ageGroupLabels}
+                data={ageGroupData}
+                backgroundColor={ageGroupBackgroundColor}
+                legends={false}
+                offset={[0, 0, 0, 80]}
+              />
+            </div>
+            <div className=" w-[20rem]">
+              <h1 className="mt-2 underline">Admin Customer Ratio</h1>
+              <DoughnutChart
+                labels={adminCustomerLabels}
+                data={adminCustomerData}
+                backgroundColor={adminCustomerBackgroundColor}
+                cutout="50%"
+                legends={false}
+                offset={[0, 0, 0, 80]}
+              />
+            </div>
+          </div>
         </div>
       </div>
-      
-     <div className="flex w-full items-center justify-center ">
-     <div className=" md:w-[25rem] w-[20rem]">
-          <h1 className=" underline">Revenue Distribution</h1>
-          <DoughnutChart
-            labels={revenueDistributionLabel}
-            data={revenueDistributionLabelData}
-            backgroundColor={revenueDistributionBackgound}
-            legends={false}
-            offset={[0, 0, 0, 80]}
-          />
-        </div>
-      </div> 
-   
-      <div className="flex w-[80vw] md:flex-row  justify-between  flex-col   ">
-      <div className=" w-[20rem] ">
-          <h1 className=" underline">Users Age Ratio</h1>
-          <DoughnutChart
-            labels={ageGroupLabels}
-            data={ageGroupData}
-            backgroundColor={ageGroupBackgroundColor}
-            legends={false}
-            offset={[0, 0, 0, 80]}
-          />
-        </div>
-        <div className=" w-[20rem]">
-          <h1 className="mt-2 underline">Admin Customer Ratio</h1>
-          <DoughnutChart
-            labels={adminCustomerLabels}
-            data={adminCustomerData}
-            backgroundColor={adminCustomerBackgroundColor}
-            cutout="50%"
-            legends={false}
-            offset={[0, 0, 0, 80]}
-          />
-        </div>
-      </div>
-        </div>
+
+      <div className="mt-20">
+        <LatestTransaction />
       </div>
     </div>
   );
