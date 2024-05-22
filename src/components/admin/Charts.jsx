@@ -249,12 +249,8 @@ export const DoughnutChart = ({
       legend: {
         display: legends,
         position: 'bottom',
-        labels: {
-          padding: 40,
-        },
       },
-    },
-    cutout,
+    }
   };
 
   return <Doughnut data={doughnutData} options={doughnutOptions} />;

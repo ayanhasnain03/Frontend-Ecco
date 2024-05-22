@@ -17,48 +17,70 @@ import MetaData from "../../components/MetaData";
 
 const Admin = () => {
   const { data, isLoading: isLoadingBarChartData } = useGetBarChartDataQuery();
-  const { data: yearStats, isLoading: isLoadingYearStats } = useGetYearChartDataQuery();
-  const { data: pieStats, isLoading: isLoadingPieStats } = useGetPieChartDataQuery();
+  const { data: yearStats, isLoading: isLoadingYearStats } =
+    useGetYearChartDataQuery();
+  const { data: pieStats, isLoading: isLoadingPieStats } =
+    useGetPieChartDataQuery();
 
   // Check if any of the data is still loading
-  const isLoading = isLoadingBarChartData || isLoadingYearStats || isLoadingPieStats;
+  const isLoading =
+    isLoadingBarChartData || isLoadingYearStats || isLoadingPieStats;
 
   // Extracting data for the DoughnutChart when data is available
-  const ageGroupLabels = pieStats ? Object.keys(pieStats.charts.usersAgeGroup) : [];
-  const ageGroupData = pieStats ? Object.values(pieStats.charts.usersAgeGroup) : [];
+  const ageGroupLabels = pieStats
+    ? Object.keys(pieStats.charts.usersAgeGroup)
+    : [];
+  const ageGroupData = pieStats
+    ? Object.values(pieStats.charts.usersAgeGroup)
+    : [];
 
-  const orderStatusLabels = pieStats ? Object.keys(pieStats.charts.orderFullfillment) : [];
-  const orderStatusData = pieStats ? Object.values(pieStats.charts.orderFullfillment) : [];
+  const orderStatusLabels = pieStats
+    ? Object.keys(pieStats.charts.orderFullfillment)
+    : [];
+  const orderStatusData = pieStats
+    ? Object.values(pieStats.charts.orderFullfillment)
+    : [];
 
-  const adminCustomerLabels = pieStats ? Object.keys(pieStats.charts.adminCustomer) : [];
-  const adminCustomerData = pieStats ? Object.values(pieStats.charts.adminCustomer) : [];
+  const adminCustomerLabels = pieStats
+    ? Object.keys(pieStats.charts.adminCustomer)
+    : [];
+  const adminCustomerData = pieStats
+    ? Object.values(pieStats.charts.adminCustomer)
+    : [];
 
-  const productCategoriesLabels = pieStats ? Object.keys(pieStats.charts.productCategories) : [];
-  const productCategoriesData = pieStats ? Object.values(pieStats.charts.productCategories) : [];
+  const productCategoriesData = pieStats
+    ? Object.values(pieStats.charts.productCategories)
+    : [];
 
+  const categoriesMappedData = productCategoriesData.map((i) => {
+    const categoryName = Object.keys(i)[0];
+    const categoryValue = Object.values(i)[0];
+    return { categoryName, categoryValue };
+  });
 
- const categoriesMappedData =  productCategoriesData.map((i)=>{
-      const categoryName = Object.keys(i)[0]
-      const categoryValue = Object.values(i)[0]
-      return {categoryName,categoryValue}
-    }) 
-   
+  const revenueDistributionLabel = pieStats
+    ? Object.keys(pieStats.charts.revenueDistribution)
+    : [];
+  const revenueDistributionLabelData = pieStats
+    ? Object.values(pieStats.charts.revenueDistribution)
+    : [];
+
   // Define specific colors for each category
   const ageGroupColors = {
     adult: "hsl(200, 70%, 50%)", // Blue
-    teen: "hsl(100, 70%, 50%)",  // Green
-    old: "hsl(0, 70%, 50%)"      // Red
+    teen: "hsl(100, 70%, 50%)", // Green
+    old: "hsl(0, 70%, 50%)", // Red
   };
 
   const orderStatusColors = {
     delivered: "hsl(120, 70%, 50%)", // Green
     processing: "hsl(60, 70%, 50%)", // Yellow
-    shipped: "hsl(240, 70%, 50%)"    // Blue
+    shipped: "hsl(240, 70%, 50%)", // Blue
   };
 
   const adminCustomerColors = {
     admin: "hsl(300, 70%, 50%)", // Purple
-    customer: "hsl(0, 70%, 50%)" // Red
+    customer: "hsl(0, 70%, 50%)", // Red
   };
 
   const productCategoriesColors = [
@@ -66,14 +88,29 @@ const Admin = () => {
     "hsl(30, 70%, 50%)",
     "hsl(60, 70%, 50%)",
     "hsl(90, 70%, 50%)",
-    "hsl(120, 70%, 50%)"
+    "hsl(120, 70%, 50%)",
   ];
 
-  const ageGroupBackgroundColor = ageGroupLabels.map(label => ageGroupColors[label]);
-  const orderStatusBackgroundColor = orderStatusLabels.map(label => orderStatusColors[label]);
-  const adminCustomerBackgroundColor = adminCustomerLabels.map(label => adminCustomerColors[label]);
+  const revenueDistributionColors = [
+    "hsl(0, 70%, 50%)",
+    "hsl(30, 70%, 50%)",
+    "hsl(60, 70%, 50%)",
+    "hsl(90, 70%, 50%)",
+    "hsl(120, 70%, 50%)",
+  ];
+
+  const ageGroupBackgroundColor = ageGroupLabels.map(
+    (label) => ageGroupColors[label]
+  );
+  const orderStatusBackgroundColor = orderStatusLabels.map(
+    (label) => orderStatusColors[label]
+  );
+  const adminCustomerBackgroundColor = adminCustomerLabels.map(
+    (label) => adminCustomerColors[label]
+  );
   const productCategoriesBackgroundColor = productCategoriesColors;
 
+  const revenueDistributionBackgound = revenueDistributionColors;
   if (isLoading) {
     return <div>Loading...</div>; // Display a loading message while data is being fetched
   }
@@ -131,7 +168,11 @@ const Admin = () => {
           {data?.stats?.categoryCount.map((i) => {
             const [heading, value] = Object.entries(i)[0];
             return (
-              <CategoryPercentage key={heading} value={value} heading={heading} />
+              <CategoryPercentage
+                key={heading}
+                value={value}
+                heading={heading}
+              />
             );
           })}
         </div>
@@ -157,30 +198,58 @@ const Admin = () => {
             data_3={yearStats?.charts?.users}
           />
         </div>
-        <div className="md:w-[25rem] w-[20rem]">
-          <h1 className="mt-5 underline">Users Age Ratio</h1>
-          <DoughnutChart
-            labels={ageGroupLabels}
-            data={ageGroupData}
-            backgroundColor={ageGroupBackgroundColor}
-            cutout="50%"
-            legends={false}
-            offset={[0, 0, 0, 80]}
-          />
-        </div>
-        <div className="md:w-[25rem] w-[20rem]">
-          <h1 className="mt-5 underline">Order Fulfillment Status</h1>
+        <div className="mt-[10rem]">
+        <div className="flex w-full">
+        <div className="flex items-center justify-between w-[80vw] md:flex-row  flex-col">
+        <div className=" w-[20rem]">
+          <h1 className=" underline">Order Fulfillment Status</h1>
           <DoughnutChart
             labels={orderStatusLabels}
             data={orderStatusData}
             backgroundColor={orderStatusBackgroundColor}
-            cutout="50%"
             legends={false}
             offset={[0, 0, 0, 80]}
           />
         </div>
-        <div className="md:w-[25rem] w-[20rem]">
-          <h1 className="mt-5 underline">Admin Customer Ratio</h1>
+        <div className=" w-[20rem]">
+          <h1 className=" underline">Product Categories</h1>
+          <DoughnutChart
+            labels={categoriesMappedData.map((item) => item.categoryName)}
+            data={categoriesMappedData.map((item) => item.categoryValue)}
+            backgroundColor={productCategoriesBackgroundColor}
+            legends={false}
+            offset={[0, 0, 0, 80]}
+          />
+        </div>
+        </div>
+      </div>
+      
+     <div className="flex w-full items-center justify-center ">
+     <div className=" md:w-[25rem] w-[20rem]">
+          <h1 className=" underline">Revenue Distribution</h1>
+          <DoughnutChart
+            labels={revenueDistributionLabel}
+            data={revenueDistributionLabelData}
+            backgroundColor={revenueDistributionBackgound}
+            legends={false}
+            offset={[0, 0, 0, 80]}
+          />
+        </div>
+      </div> 
+   
+      <div className="flex w-[80vw] md:flex-row  justify-between  flex-col   ">
+      <div className=" w-[20rem] ">
+          <h1 className=" underline">Users Age Ratio</h1>
+          <DoughnutChart
+            labels={ageGroupLabels}
+            data={ageGroupData}
+            backgroundColor={ageGroupBackgroundColor}
+            legends={false}
+            offset={[0, 0, 0, 80]}
+          />
+        </div>
+        <div className=" w-[20rem]">
+          <h1 className="mt-2 underline">Admin Customer Ratio</h1>
           <DoughnutChart
             labels={adminCustomerLabels}
             data={adminCustomerData}
@@ -190,19 +259,7 @@ const Admin = () => {
             offset={[0, 0, 0, 80]}
           />
         </div>
-        <div className="md:w-[25rem] w-[20rem]">
-          <h1 className="mt-5 underline">Product Categories</h1>
-          <DoughnutChart
-  labels={categoriesMappedData.map(item => item.categoryName)}
-  data={categoriesMappedData.map(item => item.categoryValue)}
-  backgroundColor={productCategoriesBackgroundColor}
-  cutout="50%"
-  legends={false}
-  offset={[0, 0, 0, 80]}
-/>
-
-
-
+      </div>
         </div>
       </div>
     </div>
