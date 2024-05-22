@@ -100,6 +100,7 @@ const Profile = ({ user }) => {
             <h2>Gender: {user.gender}</h2>
 
             <h2>createdAt: {moment(user.createAt).format("l")}</h2>
+            <h2>Dob: {moment(user.dob).format("l")}</h2>
 
             <button
               onClick={logoutModalToogle}

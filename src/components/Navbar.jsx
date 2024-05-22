@@ -122,9 +122,13 @@ const Navbar = ({user}) => {
             )}
           
           
-            <Link to="/admin/dashboard">
+            {
+              user?.role === "admin" && (
+                <Link to="/admin/dashboard">
               <MdDashboard />
             </Link>
+              )
+            }
           </div>
         </ul>
       </nav>

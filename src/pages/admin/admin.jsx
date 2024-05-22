@@ -54,7 +54,7 @@ const Admin = () => {
           <div className="bg-white w-full h-[2px] mt-1.5 md:hidden"></div>
         </div>
       </div>
-      {/* Categories % */}
+      {/* Categories % & six month Orders */}
      <div className="md:ml-10 md:mt-10 flex items-center justify-between md:flex-row flex-col">
      <div className="w-[20rem]">
         <h1>Categories%</h1>
@@ -69,11 +69,13 @@ const Admin = () => {
                     );
                   })}
       </div>
-      <div className=" md:w-[70rem] overflow-auto w-full md:mr-16 mt-2 md:p-4 m-2  border">
+      <div className=" md:w-[70rem] overflow-auto w-full md:mr-16 mt-2 md:p-4 m-2  md:border  border-b-2">
         <h1>Last Six Months Orders</h1>
       <LineChart borderColor={"#F30000"}  title_1={"Orders"} data_1={data?.stats?.charts?.order} />
       </div>
      </div>
+     {/* Users Ratio */}
+     <div></div>
     </div>
   );
 };

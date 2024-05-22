@@ -14,6 +14,7 @@ const Register = () => {
   const [image, setImage] = useState("");
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
+  console.log(dob)
   const navigate = useNavigate();
 
   const changeImageHandler = (e) => {
@@ -140,9 +141,7 @@ const Register = () => {
                 <input
                   value={dob}
                   onChange={(e) => setDob(e.target.value)}
-                  name="password"
                   type="date"
-                  autoComplete="current-password"
                   required
                   className="block w-full  py-1.5 text-black  sm:text-sm sm:leading-6"
                 />
