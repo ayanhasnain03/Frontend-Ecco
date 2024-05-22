@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import { useContactFromUserMutation } from "../redux/api/adminUserApi"
 import {toast} from "react-hot-toast"
+import MetaData from "../components/MetaData"
 const ContactUs = () => {
     const [email, setEmail] = useState("")
     const [name, setName] = useState("")
@@ -15,6 +16,7 @@ toast.success(res?.message)
   return (
     <>
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 mt-[4rem]">
+      <MetaData title="contact"/>
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-[#F30000]">
           Contact

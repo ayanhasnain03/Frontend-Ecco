@@ -34,7 +34,7 @@ const ProductPage = () => {
   };
   return (
     <div className="">
-      <MetaData title="product page"/>
+      <MetaData title={product?.name}/>
 {
   isLoading ? (<Loader length={10}/>):(
     <>

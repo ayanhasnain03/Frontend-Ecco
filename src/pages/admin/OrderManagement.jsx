@@ -24,7 +24,7 @@ const MyOrder = () => {
   <SideBar/>
     <div className="h-full w-full px-10 mt-10">
       
-      <MetaData title="My Orders" />
+      <MetaData title=" Order Management" />
       <h1 className='text-2xl m-5'>My Orders ({data?.totalOrder || 0})</h1>
       <div className="relative overflow-x-auto shadow-md">
         <table className="w-full text-sm text-left rtl:text-right">

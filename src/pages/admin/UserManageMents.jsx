@@ -6,11 +6,13 @@ import {
 } from "../../redux/api/adminUserApi";
 import toast from "react-hot-toast";
 import Loader from "../../components/Loader";
+import Slider from "../../components/admin/Sidebar";
+import MetaData from "../../components/MetaData";
 
 const UserManageMent = () => {
-  const { data } = useAllUsersQuery();
-  const [updateUserRole] = useUpdateUserRoleMutation();
-  const [deleteUser, { isLoading }] = useDeleteUserMutation();
+  const { data,isLoading } = useAllUsersQuery();
+  const [updateUserRole,{updateUserLoading}] = useUpdateUserRoleMutation();
+  const [deleteUser, { isLoading:deleteUserLoading }] = useDeleteUserMutation();
   const changeUsersRole = async (id) => {
     if (window.confirm("Are You Sure")) {
       const res = await updateUserRole({ id }).unwrap();
@@ -25,13 +27,16 @@ const UserManageMent = () => {
     }
   };
   return (
-    <div className=" h-full w-full flex flex-col items-center gap-20">
-      {isLoading ? (
+  <>
+      <MetaData title="User Mangement"/>
+<Slider/>
+   <div className=" h-full w-full flex flex-col items-center gap-20">
+      {isLoading || updateUserLoading ? (
         <Loader length={20} />
       ) : (
-        <div className="h-[100%] w-full  flex-row items-center p-2 ">
+        <div className="h-[100%] w-full  flex-row items-center p-2  mt-8">
           {data?.user.map((users) => (
-            <div className="flex md:flex-row flex-col  items-center md:justify-around md:gap-5 gap-2">
+            <div className="flex md:flex-row flex-col  items-center md:justify-around md:gap-5 gap-2 mt-8">
               <div>
                 <img
                   src={users.avatar.url}
@@ -49,13 +54,12 @@ const UserManageMent = () => {
                 <h1>Gender:{users.gender}</h1>
               </div>
               <div>
-                <h1>Dob:{users.dob}</h1>
               </div>
               <div>
                 <h1>Role:{users.role}</h1>
               </div>
               <div>
-                <h1>CreatedAt:{moment(users.createAt).format("l")}</h1>
+                <h1>CreatedAt:{moment(users.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</h1>
               </div>
               <div>
                 <button
@@ -80,6 +84,7 @@ const UserManageMent = () => {
         </div>
       )}
     </div>
+  </>
   );
 };
 export default UserManageMent;

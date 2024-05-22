@@ -2,11 +2,13 @@
 
 import React from 'react';
 import ScrollToTopOnReload from '../components/ResetPage';
+import MetaData from '../components/MetaData';
 
 const TermsAndConditions = () => {
   return (
   <div className='w-full'>
       <ScrollToTopOnReload />
+      <MetaData title="Terms And Conditions"/>
 
       <div className="  px-6 py-8 border border-red-600 m-20">
       <h1 className="text-3xl font-bold mb-6">Terms and Conditions</h1>

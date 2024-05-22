@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useForgotPasswordMutation } from "../../redux/api/userProfileApi";
 import toast from "react-hot-toast";
+import MetaData from "../../components/MetaData";
 
 const ForgetPassword = () => {
   const [forgetPassword,{isLoading}] = useForgotPasswordMutation();
@@ -15,6 +16,7 @@ const ForgetPassword = () => {
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 mt-[4rem]">
+        <MetaData title="Forget Password"/>
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-[#F30000]">
             Forget Password

@@ -5,6 +5,7 @@ import { FaTrash } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import Loader from "../../components/Loader";
 import {toast} from "react-hot-toast"
+import MetaData from "../../components/MetaData";
 const ProductManagement = () => {
 const [search, setSearch] = useState("")
 const [page, setPage] = useState(1);
@@ -21,6 +22,7 @@ const isPrevPage = page > 1;
 const isNextPage = page < data?.totalPage;
   return (
     <div className=" flex w-full relative">
+      <MetaData title="Product Management"/>
       <div className="absolute z-20">
         <Sidebar />
       </div>

@@ -3,6 +3,7 @@ import Sidebar from "../../components/admin/Sidebar";
 import { FaShoppingBag, FaTshirt, FaUserAlt } from "react-icons/fa";
 import { useGetBarChartDataQuery } from "../../redux/api/dashboardApi";
 import CategoryPercentage from "../../components/admin/CategoryPercentage";
+import MetaData from "../../components/MetaData";
 
 
 const Admin = () => {
@@ -10,6 +11,7 @@ const Admin = () => {
 
   return (
     <div className="">
+      <MetaData title="Dashboard"/>
       <Sidebar />
       <div className=" mt-10 flex items-center justify-around max-w-full px-8">
         <div className="md:h-[8rem] md:w-[20rem] h-[6rem] w-[8rem] border flex flex-col items-center text-center justify-center">

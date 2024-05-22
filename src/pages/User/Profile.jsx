@@ -11,6 +11,7 @@ const Profile = ({ user }) => {
   const [updatePasswordModal, setupdatePasswordModal] = useState(false)
   const [updateProfile, setupdateProfile] = useState(false)
   const [logoutModal, setlogoutModal] = useState(false)
+  
   const profileModal = ()=>{
     setupdatePictureModal(!updatePictureModal)
   }
@@ -28,7 +29,7 @@ const Profile = ({ user }) => {
   const navigate = useNavigate();
 
   return (
-    <main className="h-[100vh]">
+    <main className="">
       <MetaData title="profile"/>
 {
   updatePictureModal ? (<div className="z-30 bg-black md:h-[70vh] md:w-[40vw] h-[70vh] w-[65vw] absolute left-[21%] md:left-[30%] top-[20%] right-[50%]">
@@ -99,8 +100,8 @@ const Profile = ({ user }) => {
             <h2>Email: {user.email}</h2>
             <h2>Gender: {user.gender}</h2>
 
-            <h2>createdAt: {moment(user.createAt).format("l")}</h2>
-            <h2>Dob: {moment(user.dob).format("l")}</h2>
+            <h2>Dob: {moment(user.dob).format('MMMM Do YYYY')}</h2>
+            <h2>createdAt: {moment(user.createdAt).format('MMMM Do YYYY, h:mm:ss a')}</h2>
 
             <button
               onClick={logoutModalToogle}

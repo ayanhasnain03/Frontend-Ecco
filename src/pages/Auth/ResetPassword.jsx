@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useResetPasswordMutation } from "../../redux/api/userProfileApi"
 import { useNavigate, useParams } from "react-router-dom"
 import toast from "react-hot-toast"
+import MetaData from "../../components/MetaData"
 
 const ResetPassword = () => {
     const [password, setPassword] = useState("")
@@ -26,6 +27,7 @@ const submitHandler = async(e)=>{
   return (
     <>
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 mt-[4rem]">
+      <MetaData title="Reset Password"/>
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-[#F30000]">
          Reset Password
