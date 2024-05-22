@@ -14,7 +14,7 @@ const Register = () => {
   const [image, setImage] = useState("");
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
-  console.log(dob)
+
   const navigate = useNavigate();
 
   const changeImageHandler = (e) => {
