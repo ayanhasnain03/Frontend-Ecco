@@ -25,7 +25,7 @@ const MyOrder = () => {
     <div className="h-full w-full px-10 mt-10">
       
       <MetaData title=" Order Management" />
-      <h1 className='text-2xl m-5'>My Orders ({data?.totalOrder || 0})</h1>
+      <h1 className='text-2xl m-5'>All Orders ({data?.orders.length })</h1>
       <div className="relative overflow-x-auto shadow-md">
         <table className="w-full text-sm text-left rtl:text-right">
           <thead className="text-xs uppercase bg-black border border-red-600">
